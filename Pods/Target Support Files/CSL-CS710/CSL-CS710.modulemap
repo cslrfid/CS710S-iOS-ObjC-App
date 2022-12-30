@@ -1,0 +1,6 @@
+framework module CSL_CS710 {
+  umbrella header "CSL-CS710-umbrella.h"
+
+  export *
+  module * { export * }
+}
