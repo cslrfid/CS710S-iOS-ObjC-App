@@ -1,4 +1,6 @@
 PODS:
+  - CSL-CS710 (1.0.0):
+    - MQTTClient
   - MQTTClient (0.15.2):
     - MQTTClient/Core (= 0.15.2)
   - MQTTClient/Core (0.15.2):
@@ -9,15 +11,21 @@ PODS:
   - MQTTClient/Min (0.15.2)
 
 DEPENDENCIES:
+  - CSL-CS710 (from `~/Documents/GitHub/CSL-CS710/`)
   - MQTTClient
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - MQTTClient
 
+EXTERNAL SOURCES:
+  CSL-CS710:
+    :path: "~/Documents/GitHub/CSL-CS710/"
+
 SPEC CHECKSUMS:
+  CSL-CS710: 640f1344b801497746ed4e601cc08aade932931a
   MQTTClient: 902c7bcac1501595f3d0b15178c7205b40331fb0
 
-PODFILE CHECKSUM: 5a86a5fcb851a6ee39d3fcc4640510bdecb992f6
+PODFILE CHECKSUM: c7b74b2b04b20d54a8f0341b3bbf877c1880600f
 
-COCOAPODS: 1.6.1
+COCOAPODS: 1.11.3
