@@ -31,6 +31,7 @@
 @synthesize btnRegion;
 @synthesize btnFrequencyChannel;
 @synthesize btnFrequencyOrder;
+@synthesize txtDupEliminiation;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -95,6 +96,7 @@
     [txtQValue setDelegate:self];
     [txtTagPopulation setDelegate:self];
     [txtPower setDelegate:self];
+    [txtDupEliminiation setDelegate:self];
     
     if ([CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber == CS463) {
         [btnAntennaSettings setHidden:false];
@@ -133,6 +135,7 @@
     
     //refresh UI with stored values
     txtPower.text=[NSString stringWithFormat:@"%d", [CSLRfidAppEngine sharedAppEngine].settings.power];
+    txtDupEliminiation.text=[NSString stringWithFormat:@"%d", [CSLRfidAppEngine sharedAppEngine].settings.DuplicateEliminiationWindow];
     txtTagPopulation.text=[NSString stringWithFormat:@"%d", [CSLRfidAppEngine sharedAppEngine].settings.tagPopulation];
     [btnQOverride setOn:[CSLRfidAppEngine sharedAppEngine].settings.isQOverride];
     txtQValue.text=[NSString stringWithFormat:@"%d", [CSLRfidAppEngine sharedAppEngine].settings.QValue];
@@ -172,17 +175,38 @@
             break;
     }
     switch([CSLRfidAppEngine sharedAppEngine].settings.linkProfile) {
-        case MULTIPATH_INTERFERENCE_RESISTANCE :
-            [btnLinkProfile setTitle:@"0. Multipath Interference Resistance" forState:UIControlStateNormal];
+        case MID_103 :
+            [btnLinkProfile setTitle:@"103: Miller 1 640kHz Tari 6.25us" forState:UIControlStateNormal];
             break;
-        case RANGE_DRM :
-            [btnLinkProfile setTitle:@"1. Range/Dense Reader" forState:UIControlStateNormal];
+        case MID_120 :
+            [btnLinkProfile setTitle:@"120: Miller 2 640kHz Tari 6.25us" forState:UIControlStateNormal];
             break;
-        case RANGE_THROUGHPUT_DRM :
-            [btnLinkProfile setTitle:@"2. Range/Throughput/Dense Reader" forState:UIControlStateNormal];
+        case MID_345 :
+            [btnLinkProfile setTitle:@"345: Miller 4 640kHz Tari 7.5us" forState:UIControlStateNormal];
             break;
-        case MAX_THROUGHPUT :
-            [btnLinkProfile setTitle:@"3. Max Throughput" forState:UIControlStateNormal];
+        case MID_302 :
+            [btnLinkProfile setTitle:@"302: Miller 1 640kHz Tari 7.5us" forState:UIControlStateNormal];
+            break;
+        case MID_323 :
+            [btnLinkProfile setTitle:@"323: Miller 2 640kHz Tari 7.5us" forState:UIControlStateNormal];
+            break;
+        case MID_344 :
+            [btnLinkProfile setTitle:@"344: Miller 4 640kHz Tari 7.5us" forState:UIControlStateNormal];
+            break;
+        case MID_223 :
+            [btnLinkProfile setTitle:@"223: Miller 2 320kHz Tari 15us" forState:UIControlStateNormal];
+            break;
+        case MID_222 :
+            [btnLinkProfile setTitle:@"222: Miller 2 320kHz Tari 20us" forState:UIControlStateNormal];
+            break;
+        case MID_241 :
+            [btnLinkProfile setTitle:@"241: Miller 4 320kHz Tari 20us" forState:UIControlStateNormal];
+            break;
+        case MID_244 :
+            [btnLinkProfile setTitle:@"244: Miller 4 250kHz Tari 20us" forState:UIControlStateNormal];
+            break;
+        case MID_285:
+            [btnLinkProfile setTitle:@"285: Miller 8 160kHz Tari 20us" forState:UIControlStateNormal];
             break;
     }
     
@@ -307,14 +331,28 @@
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Link Profile"
                                                                    message:@"Please select profile"
                                                             preferredStyle:UIAlertControllerStyleActionSheet];
-    UIAlertAction *profile0 = [UIAlertAction actionWithTitle:@"0. Multipath Interference Resistance" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
-                         { [self.btnLinkProfile setTitle:@"0. Multipath Interference Resistance" forState:UIControlStateNormal]; }]; // 0
-    UIAlertAction *profile1 = [UIAlertAction actionWithTitle:@"1. Range/Dense Reader" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
-                         { [self.btnLinkProfile setTitle:@"1. Range/Dense Reader" forState:UIControlStateNormal]; }]; // 1
-    UIAlertAction *profile2 = [UIAlertAction actionWithTitle:@"2. Range/Throughput/Dense Reader" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
-                         { [self.btnLinkProfile setTitle:@"2. Range/Throughput/Dense Reader" forState:UIControlStateNormal]; }]; // 2
-    UIAlertAction *profile3 = [UIAlertAction actionWithTitle:@"3. Max Throughput" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
-                         { [self.btnLinkProfile setTitle:@"3. Max Throughput" forState:UIControlStateNormal]; }]; // 3
+    UIAlertAction *profile0 = [UIAlertAction actionWithTitle:@"103: Miller 1 640kHz Tari 6.25us" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+                         { [self.btnLinkProfile setTitle:@"103: Miller 1 640kHz Tari 6.25us" forState:UIControlStateNormal]; }]; // 0
+    UIAlertAction *profile1 = [UIAlertAction actionWithTitle:@"120: Miller 2 640kHz Tari 6.25us" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+                         { [self.btnLinkProfile setTitle:@"120: Miller 2 640kHz Tari 6.25us" forState:UIControlStateNormal]; }]; // 1
+    UIAlertAction *profile2 = [UIAlertAction actionWithTitle:@"345: Miller 4 640kHz Tari 7.5us" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+                         { [self.btnLinkProfile setTitle:@"345: Miller 4 640kHz Tari 7.5us" forState:UIControlStateNormal]; }]; // 2
+    UIAlertAction *profile3 = [UIAlertAction actionWithTitle:@"302: Miller 1 640kHz Tari 7.5us" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+                         { [self.btnLinkProfile setTitle:@"302: Miller 1 640kHz Tari 7.5us" forState:UIControlStateNormal]; }]; // 3
+    UIAlertAction *profile4 = [UIAlertAction actionWithTitle:@"323: Miller 2 640kHz Tari 7.5us" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+                         { [self.btnLinkProfile setTitle:@"323: Miller 2 640kHz Tari 7.5us" forState:UIControlStateNormal]; }]; // 4
+    UIAlertAction *profile5 = [UIAlertAction actionWithTitle:@"344: Miller 4 640kHz Tari 7.5us" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+                         { [self.btnLinkProfile setTitle:@"344: Miller 4 640kHz Tari 7.5us" forState:UIControlStateNormal]; }]; // 5
+    UIAlertAction *profile6 = [UIAlertAction actionWithTitle:@"223: Miller 2 320kHz Tari 15us" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+                         { [self.btnLinkProfile setTitle:@"223: Miller 2 320kHz Tari 15us" forState:UIControlStateNormal]; }]; // 6
+    UIAlertAction *profile7 = [UIAlertAction actionWithTitle:@"222: Miller 2 320kHz Tari 20us" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+                         { [self.btnLinkProfile setTitle:@"222: Miller 2 320kHz Tari 20us" forState:UIControlStateNormal]; }]; // 7
+    UIAlertAction *profile8 = [UIAlertAction actionWithTitle:@"241: Miller 4 320kHz Tari 20us" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+                         { [self.btnLinkProfile setTitle:@"241: Miller 4 320kHz Tari 20us" forState:UIControlStateNormal]; }]; // 8
+    UIAlertAction *profile9 = [UIAlertAction actionWithTitle:@"244: Miller 4 250kHz Tari 20us" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+                         { [self.btnLinkProfile setTitle:@"244: Miller 4 250kHz Tari 20us" forState:UIControlStateNormal]; }]; // 9
+    UIAlertAction *profile10 = [UIAlertAction actionWithTitle:@"285: Miller 8 160kHz Tari 20us" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+                         { [self.btnLinkProfile setTitle:@"285: Miller 8 160kHz Tari 20us" forState:UIControlStateNormal]; }]; // 10
     
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]; // cancel
     
@@ -322,6 +360,13 @@
     [alert addAction:profile1];
     [alert addAction:profile2];
     [alert addAction:profile3];
+    [alert addAction:profile4];
+    [alert addAction:profile5];
+    [alert addAction:profile6];
+    [alert addAction:profile7];
+    [alert addAction:profile8];
+    [alert addAction:profile9];
+    [alert addAction:profile10];
     [alert addAction:cancel];
     
     [self presentViewController:alert animated:YES completion:nil];
@@ -428,14 +473,29 @@
         [CSLRfidAppEngine sharedAppEngine].settings.algorithm = FIXEDQ;
     if ([btnAlgorithm.titleLabel.text compare:@"DynamicQ"] == NSOrderedSame)
         [CSLRfidAppEngine sharedAppEngine].settings.algorithm = DYNAMICQ;
-    if ([btnLinkProfile.titleLabel.text compare:@"0. Multipath Interference Resistance"] == NSOrderedSame)
-        [CSLRfidAppEngine sharedAppEngine].settings.linkProfile = MULTIPATH_INTERFERENCE_RESISTANCE;
-    if ([btnLinkProfile.titleLabel.text compare:@"1. Range/Dense Reader"] == NSOrderedSame)
-        [CSLRfidAppEngine sharedAppEngine].settings.linkProfile = RANGE_DRM;
-    if ([btnLinkProfile.titleLabel.text compare:@"2. Range/Throughput/Dense Reader"] == NSOrderedSame)
-        [CSLRfidAppEngine sharedAppEngine].settings.linkProfile = RANGE_THROUGHPUT_DRM;
-    if ([btnLinkProfile.titleLabel.text compare:@"3. Max Throughput"] == NSOrderedSame)
-        [CSLRfidAppEngine sharedAppEngine].settings.linkProfile = MAX_THROUGHPUT;
+    if ([btnLinkProfile.titleLabel.text compare:@"103: Miller 1 640kHz Tari 6.25us"] == NSOrderedSame)
+        [CSLRfidAppEngine sharedAppEngine].settings.linkProfile = MID_103;
+    if ([btnLinkProfile.titleLabel.text compare:@"120: Miller 2 640kHz Tari 6.25us"] == NSOrderedSame)
+        [CSLRfidAppEngine sharedAppEngine].settings.linkProfile = MID_120;
+    if ([btnLinkProfile.titleLabel.text compare:@"345: Miller 4 640kHz Tari 7.5us"] == NSOrderedSame)
+        [CSLRfidAppEngine sharedAppEngine].settings.linkProfile = MID_345;
+    if ([btnLinkProfile.titleLabel.text compare:@"302: Miller 1 640kHz Tari 7.5us"] == NSOrderedSame)
+        [CSLRfidAppEngine sharedAppEngine].settings.linkProfile = MID_302;
+    if ([btnLinkProfile.titleLabel.text compare:@"323: Miller 2 640kHz Tari 7.5us"] == NSOrderedSame)
+        [CSLRfidAppEngine sharedAppEngine].settings.linkProfile = MID_323;
+    if ([btnLinkProfile.titleLabel.text compare:@"344: Miller 4 640kHz Tari 7.5us"] == NSOrderedSame)
+        [CSLRfidAppEngine sharedAppEngine].settings.linkProfile = MID_344;
+    if ([btnLinkProfile.titleLabel.text compare:@"223: Miller 2 320kHz Tari 15us"] == NSOrderedSame)
+        [CSLRfidAppEngine sharedAppEngine].settings.linkProfile = MID_223;
+    if ([btnLinkProfile.titleLabel.text compare:@"222: Miller 2 320kHz Tari 20us"] == NSOrderedSame)
+        [CSLRfidAppEngine sharedAppEngine].settings.linkProfile = MID_222;
+    if ([btnLinkProfile.titleLabel.text compare:@"241: Miller 4 320kHz Tari 20us"] == NSOrderedSame)
+        [CSLRfidAppEngine sharedAppEngine].settings.linkProfile = MID_241;
+    if ([btnLinkProfile.titleLabel.text compare:@"244: Miller 4 250kHz Tari 20us"] == NSOrderedSame)
+        [CSLRfidAppEngine sharedAppEngine].settings.linkProfile = MID_244;
+    if ([btnLinkProfile.titleLabel.text compare:@"285: Miller 8 160kHz Tari 20us"] == NSOrderedSame)
+        [CSLRfidAppEngine sharedAppEngine].settings.linkProfile = MID_285;
+    [CSLRfidAppEngine sharedAppEngine].settings.DuplicateEliminiationWindow=[txtDupEliminiation.text intValue];
     [CSLRfidAppEngine sharedAppEngine].settings.enableSound=swSound.isOn;
     
     if (swTagFocus.isOn)
@@ -520,6 +580,17 @@
     }
     
     
+}
+
+- (IBAction)txtDupEliminationChanged:(id)sender {
+    NSScanner* scan = [NSScanner scannerWithString:txtDupEliminiation.text];
+    int val;
+    if ([scan scanInt:&val] && [scan isAtEnd] && [txtDupEliminiation.text intValue] >= 0 && [txtDupEliminiation.text intValue] <= 255) //valid int between 0 to 255
+    {
+        NSLog(@"Duplicate eliminiation value entered: OK");
+    }
+    else    //invalid input.  reset to stored configurations
+        txtDupEliminiation.text=[NSString stringWithFormat:@"%d", [CSLRfidAppEngine sharedAppEngine].settings.DuplicateEliminiationWindow];
 }
 
 - (IBAction)swFastIdChanged:(id)sender {

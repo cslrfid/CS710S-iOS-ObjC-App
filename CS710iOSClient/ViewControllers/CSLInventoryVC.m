@@ -63,9 +63,6 @@
     tblTagList.estimatedRowHeight=45.0;
     tblTagList.rowHeight = UITableViewAutomaticDimension;
     
-    // Do any additional setup after loading the view.
-    //[((CSLTabVC*)self.tabBarController) setAntennaPortsAndPowerForTags];
-    //[((CSLTabVC*)self.tabBarController) setConfigurationsForTags];
 }
 
 - (void)handleSwipes:(UISwipeGestureRecognizer*)gestureRecognizer {
@@ -121,7 +118,7 @@
             [CSLRfidAppEngine sharedAppEngine].reader.uniqueTagCount =0;
             
             //incrememt elapse time
-            lbElapsedTime.text = [NSString stringWithFormat: @"%d", [lbElapsedTime.text intValue] + 1];
+            lbElapsedTime.text = [NSString stringWithFormat: @"%.1f", [lbElapsedTime.text doubleValue] + 0.2];
             
         }
         else if ([CSLRfidAppEngine sharedAppEngine].isBarcodeMode) {
@@ -129,12 +126,7 @@
             [tblTagList reloadData];
         }
             
-        if ([CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber==CS108) {
-            if ([CSLRfidAppEngine sharedAppEngine].readerInfo.batteryPercentage < 0 || [CSLRfidAppEngine sharedAppEngine].readerInfo.batteryPercentage > 100)
-                self.lbStatus.text=@"Battery: -";
-            else
-                self.lbStatus.text=[NSString stringWithFormat:@"Battery: %d%%", [CSLRfidAppEngine sharedAppEngine].readerInfo.batteryPercentage];
-        }
+        self.lbStatus.text=[NSString stringWithFormat:@"Battery: %d%%", [CSLRfidAppEngine sharedAppEngine].readerInfo.batteryPercentage];
         
         if ([CSLRfidAppEngine sharedAppEngine].reader.lastMacErrorCode != 0x0000)
         {
@@ -225,8 +217,6 @@
     }
     
     // Do any additional setup after loading the view.
-    //[((CSLTabVC*)self.tabBarController) setAntennaPortsAndPowerForTags];
-    //[((CSLTabVC*)self.tabBarController) setConfigurationsForTags];
     [CSLReaderConfigurations setAntennaPortsAndPowerForTags:false];
     [CSLReaderConfigurations setConfigurationsForTags];
 }
