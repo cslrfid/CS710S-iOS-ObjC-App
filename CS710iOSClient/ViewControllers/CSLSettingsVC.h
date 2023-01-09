@@ -37,6 +37,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnFrequencyChannel;
 @property (weak, nonatomic) IBOutlet UIButton *btnFrequencyOrder;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *actSettingSpinner;
+@property (weak, nonatomic) IBOutlet UITextField *txtDupEliminiation;
 
 - (IBAction)btnSessionPressed:(id)sender;
 - (IBAction)btnAlgorithmPressed:(id)sender;
@@ -57,6 +58,7 @@
 - (IBAction)btnFrequencyOrderPressed:(id)sender;
 - (IBAction)swTagFocusChanged:(id)sender;
 - (IBAction)swFastIdChanged:(id)sender;
+- (IBAction)txtDupEliminationChanged:(id)sender;
 
 
 @end

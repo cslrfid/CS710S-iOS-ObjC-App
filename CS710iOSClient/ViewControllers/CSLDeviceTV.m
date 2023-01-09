@@ -103,7 +103,7 @@
             NSString * btFwVersion;
             NSString * slVersion;
             NSString * rfidBoardSn;
-            NSString * pcbBoardVersion;
+            //NSString * pcbBoardVersion;
             NSString * rfidFwVersion;
             NSString * appVersion;
 
@@ -116,8 +116,8 @@
                 [CSLRfidAppEngine sharedAppEngine].readerInfo.BtFirmwareVersion=btFwVersion;
             if ([[CSLRfidAppEngine sharedAppEngine].reader getSilLabIcVersion:&slVersion])
                 [CSLRfidAppEngine sharedAppEngine].readerInfo.SiLabICFirmwareVersion=slVersion;
-            //if ([[CSLRfidAppEngine sharedAppEngine].reader getRfidBrdSerialNumber:&rfidBoardSn])
-            //    [CSLRfidAppEngine sharedAppEngine].readerInfo.deviceSerialNumber=rfidBoardSn;
+            if ([[CSLRfidAppEngine sharedAppEngine].reader getRfidBrdSerialNumber:&rfidBoardSn])
+                [CSLRfidAppEngine sharedAppEngine].readerInfo.deviceSerialNumber=rfidBoardSn;
             //if ([[CSLRfidAppEngine sharedAppEngine].reader getPcBBoardVersion:&pcbBoardVersion])
             //    [CSLRfidAppEngine sharedAppEngine].readerInfo.pcbBoardVersion=pcbBoardVersion;
             //[[CSLRfidAppEngine sharedAppEngine].reader.batteryInfo setPcbVersion:[pcbBoardVersion doubleValue]];
@@ -130,64 +130,54 @@
             appVersion = [NSString stringWithFormat:@"v%@ Build %@", [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"],[[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey]];
             [CSLRfidAppEngine sharedAppEngine].readerInfo.appVersion=appVersion;
             
-            /*
+            
             //read OEM data: to be implemented for getting reader regional settings and parameters
             UInt32 OEMData;
+            UInt32 CountryEnum = 0;
             
             //device country code
-            [[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0x00000002 forData:&OEMData];
+            [[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0xEF98 forData:&OEMData];
             [CSLRfidAppEngine sharedAppEngine].readerInfo.countryCode=OEMData;
-            NSLog(@"OEM data address 0x%08X: 0x%08X", 0x02, OEMData);
+            NSLog(@"OEM data address 0x%04X: 0x%08X", 0xEF98, OEMData);
             //special country version
-            [[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0x0000008E forData:&OEMData];
+            [[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0xEFAC forData:&OEMData];
             [CSLRfidAppEngine sharedAppEngine].readerInfo.specialCountryVerison=OEMData;
-            NSLog(@"OEM data address 0x%08X: 0x%08X", 0x8E, OEMData);
+            NSLog(@"OEM data address 0x%04X: 0x%08X", 0xEFAC, OEMData);
             //freqency modification flag
-            [[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0x0000008F forData:&OEMData];
+            [[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0xEFB0 forData:&OEMData];
             [CSLRfidAppEngine sharedAppEngine].readerInfo.freqModFlag=OEMData;
-            NSLog(@"OEM data address 0x%08X: 0x%08X", 0x8F, OEMData);
+            NSLog(@"OEM data address 0x%04X: 0x%08X", 0xEFB0, OEMData);
             //model code
-            [[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0x000000A4 forData:&OEMData];
+            [[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0xEFB4 forData:&OEMData];
             [CSLRfidAppEngine sharedAppEngine].readerInfo.modelCode=OEMData;
-            NSLog(@"OEM data address 0x%08X: 0x%08X", 0xA4, OEMData);
-            //hopping/fixed frequency
-            [[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0x0000009D forData:&OEMData];
-            [CSLRfidAppEngine sharedAppEngine].readerInfo.isFxied=OEMData;
-            NSLog(@"OEM data address 0x%08X: 0x%08X", 0x9D, OEMData);
-
+            NSLog(@"OEM data address 0x%04X: 0x%08X", 0xEFB4, OEMData);
+            
+            //Current Country Enum
+            [[CSLRfidAppEngine sharedAppEngine].reader getCountryEnum:[CSLRfidAppEngine sharedAppEngine].reader forData:&CountryEnum];
+            NSLog(@"Current Country Enum: %d", CountryEnum);
+            
+            
             [CSLRfidAppEngine sharedAppEngine].readerRegionFrequency = [[CSLReaderFrequency alloc] initWithOEMData:[CSLRfidAppEngine sharedAppEngine].readerInfo.countryCode
                                                                                              specialCountryVerison:[CSLRfidAppEngine sharedAppEngine].readerInfo.specialCountryVerison
                                                                                                        FreqModFlag:[CSLRfidAppEngine sharedAppEngine].readerInfo.freqModFlag
                                                                                                          ModelCode:[CSLRfidAppEngine sharedAppEngine].readerInfo.modelCode
-                                                                                                           isFixed:[CSLRfidAppEngine sharedAppEngine].readerInfo.isFxied];
-
+                                                                                                       CountryEnum:CountryEnum];
+            [CSLRfidAppEngine sharedAppEngine].readerInfo.isFxied = [CSLRfidAppEngine sharedAppEngine].readerRegionFrequency.isFixed;
+            
             if([CSLRfidAppEngine sharedAppEngine].readerRegionFrequency.TableOfFrequencies[[CSLRfidAppEngine sharedAppEngine].settings.region] == nil) {
                 //the region being stored is not valid, reset to default region and frequency channel
                 [CSLRfidAppEngine sharedAppEngine].settings.region=[CSLRfidAppEngine sharedAppEngine].readerRegionFrequency.RegionList[0];
                 [CSLRfidAppEngine sharedAppEngine].settings.channel=@"0";
                 [[CSLRfidAppEngine sharedAppEngine] saveSettingsToUserDefaults];
             }
-*/
-            if ([btFwVersion length]>=5)
-            {
-                if ([[btFwVersion substringToIndex:1] isEqualToString:@"3"]) {
-                    //if BT firmware version is greater than v3, it is connecting to CS463
-                    [CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber=CS463;
-                }
-                else {
-                    [CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber=CS108;
-                    [[CSLRfidAppEngine sharedAppEngine].reader startBatteryAutoReporting];
-                }
-            }
             
-/*
-            //set low power mode
-            [[CSLRfidAppEngine sharedAppEngine].reader setPowerMode:true];
-            
+            [CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber=CS710;
+            [[CSLRfidAppEngine sharedAppEngine].reader startBatteryAutoReporting];
+
             [CSLReaderConfigurations setReaderRegionAndFrequencies];
             [CSLReaderConfigurations setAntennaPortsAndPowerForTags:true];
             [CSLReaderConfigurations setConfigurationsForTags];
-*/
+            
             [self->actSpinner stopAnimating];
         }
         
