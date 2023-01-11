@@ -138,6 +138,9 @@
 
 - (void)showTemperatureTabInterfaceActiveView:(int)identifier
 {
+    //Temperorily disable feature
+    return;
+    
     CSLTemperatureTabVC * tabVC = (CSLTemperatureTabVC*)[[UIStoryboard storyboardWithName:@"CSLRfidDemoApp" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"ID_TempTabVC"];
     [tabVC setActiveView:identifier];
     
@@ -243,6 +246,9 @@
 
 - (IBAction)btnTagAccessPressed:(id)sender {
     
+    //Temperorily disable feature
+    return;
+    
     //if no device is connected, the settings page will not be loaded
     if ([CSLRfidAppEngine sharedAppEngine].reader.connectStatus==NOT_CONNECTED || [CSLRfidAppEngine sharedAppEngine].reader.connectStatus==SCANNING) {
         
@@ -266,6 +272,9 @@
 
 - (IBAction)btnTagSearchPressed:(id)sender {
     
+    //Temperorily disable feature
+    return;
+    
     //if no device is connected, the settings page will not be loaded
     if ([CSLRfidAppEngine sharedAppEngine].reader.connectStatus==NOT_CONNECTED || [CSLRfidAppEngine sharedAppEngine].reader.connectStatus==SCANNING) {
         
@@ -287,6 +296,9 @@
 }
 
 - (IBAction)btnFunctionsPressed:(id)sender {
+    
+    //Temperorily disable feature
+    return;
     
     CSLMoreFunctionsVC * funcVC;
     //if no device is connected, the settings page will not be loaded
@@ -311,6 +323,10 @@
 }
 
 - (IBAction)btnReadTemperaturePressed:(id)sender {
+    
+    //Temperorily disable feature
+    return;
+    
     //if no device is connected, the settings page will not be loaded
     if ([CSLRfidAppEngine sharedAppEngine].reader.connectStatus==NOT_CONNECTED || [CSLRfidAppEngine sharedAppEngine].reader.connectStatus==SCANNING) {
         
