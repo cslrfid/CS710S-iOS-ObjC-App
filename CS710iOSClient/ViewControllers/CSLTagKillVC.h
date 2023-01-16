@@ -1,6 +1,6 @@
 //
 //  CSLTagKillVC.h
-//  CS108iOSClient
+//  CS710SiOSClient
 //
 //  Created by Lam Ka Shun on 2021-10-30.
 //  Copyright © 2021 Convergence Systems Limited. All rights reserved.
