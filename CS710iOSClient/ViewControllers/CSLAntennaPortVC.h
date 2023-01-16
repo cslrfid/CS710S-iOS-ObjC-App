@@ -1,6 +1,6 @@
 //
 //  CSLAntennaPortVC.h
-//  CS108iOSClient
+//  CS710SiOSClient
 //
 //  Created by Lam Ka Shun on 2019-11-01.
 //  Copyright © 2019 Convergence Systems Limited. All rights reserved.
