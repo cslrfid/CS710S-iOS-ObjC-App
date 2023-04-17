@@ -244,7 +244,7 @@
 - (IBAction)btnTagAccessPressed:(id)sender {
     
     //if no device is connected, the settings page will not be loaded
-    if ([CSLRfidAppEngine sharedAppEngine].reader.connectStatus==NOT_CONNECTED || [CSLRfidAppEngine sharedAppEngine].reader.connectStatus==SCANNING || [CSLRfidAppEngine sharedAppEngine].reader.connectStatus==CONNECTED) {
+    if ([CSLRfidAppEngine sharedAppEngine].reader.connectStatus==NOT_CONNECTED || [CSLRfidAppEngine sharedAppEngine].reader.connectStatus==SCANNING || [CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber == CS710) {
         
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Reader NOT connected" message:@"Please connect to reader first." preferredStyle:UIAlertControllerStyleAlert];
         
@@ -267,7 +267,7 @@
 - (IBAction)btnTagSearchPressed:(id)sender {
     
     //if no device is connected, the settings page will not be loaded
-    if ([CSLRfidAppEngine sharedAppEngine].reader.connectStatus==NOT_CONNECTED || [CSLRfidAppEngine sharedAppEngine].reader.connectStatus==SCANNING || [CSLRfidAppEngine sharedAppEngine].reader.connectStatus==CONNECTED) {
+    if ([CSLRfidAppEngine sharedAppEngine].reader.connectStatus==NOT_CONNECTED || [CSLRfidAppEngine sharedAppEngine].reader.connectStatus==SCANNING || [CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber == CS710) {
         
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Reader NOT connected" message:@"Please connect to reader first." preferredStyle:UIAlertControllerStyleAlert];
         
@@ -290,7 +290,7 @@
     
     CSLMoreFunctionsVC * funcVC;
     //if no device is connected, the settings page will not be loaded
-    if ([CSLRfidAppEngine sharedAppEngine].reader.connectStatus==NOT_CONNECTED || [CSLRfidAppEngine sharedAppEngine].reader.connectStatus==SCANNING || [CSLRfidAppEngine sharedAppEngine].reader.connectStatus==CONNECTED) {
+    if ([CSLRfidAppEngine sharedAppEngine].reader.connectStatus==NOT_CONNECTED || [CSLRfidAppEngine sharedAppEngine].reader.connectStatus==SCANNING || [CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber == CS710) {
         
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Reader NOT connected" message:@"Please connect to reader first." preferredStyle:UIAlertControllerStyleAlert];
         
@@ -313,7 +313,7 @@
 - (IBAction)btnReadTemperaturePressed:(id)sender {
     
     //if no device is connected, the settings page will not be loaded
-    if ([CSLRfidAppEngine sharedAppEngine].reader.connectStatus==NOT_CONNECTED || [CSLRfidAppEngine sharedAppEngine].reader.connectStatus==SCANNING || [CSLRfidAppEngine sharedAppEngine].reader.connectStatus==CONNECTED) {
+    if ([CSLRfidAppEngine sharedAppEngine].reader.connectStatus==NOT_CONNECTED || [CSLRfidAppEngine sharedAppEngine].reader.connectStatus==SCANNING || [CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber == CS710) {
         
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Reader NOT connected" message:@"Please connect to reader first." preferredStyle:UIAlertControllerStyleAlert];
         

@@ -112,7 +112,10 @@
                   ((long)[CSLRfidAppEngine sharedAppEngine].reader.uniqueTagCount),
                   (long)[[NSDate date] timeIntervalSinceDate:tagRangingStartTime],
                   ((long)[CSLRfidAppEngine sharedAppEngine].reader.readerTagRate));
-            lbTagRate.text = [NSString stringWithFormat: @"%ld", ((long)[CSLRfidAppEngine sharedAppEngine].reader.readerTagRate)];
+            if ([CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber == CS710)
+                lbTagRate.text = [NSString stringWithFormat: @"%ld", ((long)[CSLRfidAppEngine sharedAppEngine].reader.readerTagRate)];
+            else
+                lbTagRate.text = [NSString stringWithFormat: @"%ld", ((long)[CSLRfidAppEngine sharedAppEngine].reader.rangingTagCount)];
             lbUniqueTagRate.text = [NSString stringWithFormat: @"%ld", ((long)[CSLRfidAppEngine sharedAppEngine].reader.uniqueTagCount)];
             [CSLRfidAppEngine sharedAppEngine].reader.rangingTagCount =0;
             [CSLRfidAppEngine sharedAppEngine].reader.uniqueTagCount =0;
@@ -166,7 +169,7 @@
     self.tblTagList.backgroundView = tempImageView;
     
     //timer event on updating UI
-    scrRefreshTimer = [NSTimer scheduledTimerWithTimeInterval:0.2
+    scrRefreshTimer = [NSTimer scheduledTimerWithTimeInterval:[CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber==CS710 ? 0.2 : 1.0
                                                        target:self
                                                      selector:@selector(refreshTagListing)
                                                      userInfo:nil
