@@ -100,7 +100,7 @@
         else {
             
             //initialize reader settings and read previous settings from user defaults
-            [CSLRfidAppEngine sharedAppEngine].settings = [[CSLReaderSettings alloc] initWithReaderType:[CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber];
+            [[CSLRfidAppEngine sharedAppEngine] reloadSettingsFromUserDefaults];
             
             //set device name to singleton object
             [CSLRfidAppEngine sharedAppEngine].reader.deviceName=[[CSLRfidAppEngine sharedAppEngine].reader.deviceListName objectAtIndex:indexPath.row];
