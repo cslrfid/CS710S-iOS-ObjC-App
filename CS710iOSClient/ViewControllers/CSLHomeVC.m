@@ -36,7 +36,8 @@
     @autoreleasepool {
         if ([CSLRfidAppEngine sharedAppEngine].reader.connectStatus!=NOT_CONNECTED)
         {
-            self.lbReaderStatus.text=[NSString stringWithFormat:@"Battery: %d%%", [CSLRfidAppEngine sharedAppEngine].readerInfo.batteryPercentage];
+            if ([CSLRfidAppEngine sharedAppEngine].readerInfo.batteryPercentage > 0)
+                self.lbReaderStatus.text=[NSString stringWithFormat:@"Battery: %d%%", [CSLRfidAppEngine sharedAppEngine].readerInfo.batteryPercentage];
         }
         else
             self.lbReaderStatus.text=@"";

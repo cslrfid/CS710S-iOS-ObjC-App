@@ -100,7 +100,7 @@
         else {
             
             //initialize reader settings and read previous settings from user defaults
-            [CSLRfidAppEngine sharedAppEngine].settings = [[CSLReaderSettings alloc] initWithReaderType:[CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber];
+            [[CSLRfidAppEngine sharedAppEngine] reloadSettingsFromUserDefaults];
             
             //set device name to singleton object
             [CSLRfidAppEngine sharedAppEngine].reader.deviceName=[[CSLRfidAppEngine sharedAppEngine].reader.deviceListName objectAtIndex:indexPath.row];
@@ -113,9 +113,12 @@
 
             
             //Configure reader
-            [[CSLRfidAppEngine sharedAppEngine].reader barcodeReader:true];
+            [[CSLRfidAppEngine sharedAppEngine].reader barcodeReader:false];
             [[CSLRfidAppEngine sharedAppEngine].reader powerOnRfid:false];
+            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.5]];
+            [[CSLRfidAppEngine sharedAppEngine].reader barcodeReader:true];
             [[CSLRfidAppEngine sharedAppEngine].reader powerOnRfid:true];
+            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.5]];
             if ([[CSLRfidAppEngine sharedAppEngine].reader getBtFirmwareVersion:&btFwVersion])
                 [CSLRfidAppEngine sharedAppEngine].readerInfo.BtFirmwareVersion=btFwVersion;
             if ([[CSLRfidAppEngine sharedAppEngine].reader getSilLabIcVersion:&slVersion])
