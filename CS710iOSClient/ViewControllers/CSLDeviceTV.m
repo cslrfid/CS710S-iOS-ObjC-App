@@ -113,12 +113,11 @@
 
             
             //Configure reader
+            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.5]];
             [[CSLRfidAppEngine sharedAppEngine].reader barcodeReader:false];
             [[CSLRfidAppEngine sharedAppEngine].reader powerOnRfid:false];
-            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.5]];
             [[CSLRfidAppEngine sharedAppEngine].reader barcodeReader:true];
             [[CSLRfidAppEngine sharedAppEngine].reader powerOnRfid:true];
-            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.5]];
             if ([[CSLRfidAppEngine sharedAppEngine].reader getBtFirmwareVersion:&btFwVersion])
                 [CSLRfidAppEngine sharedAppEngine].readerInfo.BtFirmwareVersion=btFwVersion;
             if ([[CSLRfidAppEngine sharedAppEngine].reader getSilLabIcVersion:&slVersion])
@@ -149,25 +148,34 @@
             if ([CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber == CS710)
             {
                 //device country code
-                [[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0xEF98 forData:&OEMData];
-                [CSLRfidAppEngine sharedAppEngine].readerInfo.countryCode=OEMData;
-                NSLog(@"OEM data address 0x%04X: 0x%08X", 0xEF98, OEMData);
+                if([[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0xEF98 forData:&OEMData])
+                {
+                    [CSLRfidAppEngine sharedAppEngine].readerInfo.countryCode=OEMData;
+                    NSLog(@"OEM data address 0x%04X: 0x%08X", 0xEF98, OEMData);
+                }
                 //special country version
-                [[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0xEFAC forData:&OEMData];
-                [CSLRfidAppEngine sharedAppEngine].readerInfo.specialCountryVerison=OEMData;
-                NSLog(@"OEM data address 0x%04X: 0x%08X", 0xEFAC, OEMData);
+                if([[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0xEFAC forData:&OEMData])
+                {
+                    [CSLRfidAppEngine sharedAppEngine].readerInfo.specialCountryVerison=OEMData;
+                    NSLog(@"OEM data address 0x%04X: 0x%08X", 0xEFAC, OEMData);
+                }
                 //freqency modification flag
-                [[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0xEFB0 forData:&OEMData];
-                [CSLRfidAppEngine sharedAppEngine].readerInfo.freqModFlag=OEMData;
-                NSLog(@"OEM data address 0x%04X: 0x%08X", 0xEFB0, OEMData);
+                if ([[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0xEFB0 forData:&OEMData])
+                {
+                    [CSLRfidAppEngine sharedAppEngine].readerInfo.freqModFlag=OEMData;
+                    NSLog(@"OEM data address 0x%04X: 0x%08X", 0xEFB0, OEMData);
+                }
                 //model code
-                [[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0xEFB4 forData:&OEMData];
-                [CSLRfidAppEngine sharedAppEngine].readerInfo.modelCode=OEMData;
-                NSLog(@"OEM data address 0x%04X: 0x%08X", 0xEFB4, OEMData);
-                
+                if ([[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0xEFB4 forData:&OEMData])
+                {
+                    [CSLRfidAppEngine sharedAppEngine].readerInfo.modelCode=OEMData;
+                    NSLog(@"OEM data address 0x%04X: 0x%08X", 0xEFB4, OEMData);
+                }
                 //Current Country Enum
-                [[CSLRfidAppEngine sharedAppEngine].reader E710GetCountryEnum:[CSLRfidAppEngine sharedAppEngine].reader forData:&CountryEnum];
-                NSLog(@"Current Country Enum: %d", CountryEnum);
+                if ([[CSLRfidAppEngine sharedAppEngine].reader E710GetCountryEnum:[CSLRfidAppEngine sharedAppEngine].reader forData:&CountryEnum])
+                {
+                    NSLog(@"Current Country Enum: %d", CountryEnum);
+                }
             }
             else
             {
