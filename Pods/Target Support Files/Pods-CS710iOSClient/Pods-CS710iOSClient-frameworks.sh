@@ -176,11 +176,11 @@ code_sign_if_enabled() {
 }
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "${BUILT_PRODUCTS_DIR}/CSL-CS710/CSL_CS710.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/CSL-CS710S/CSL_CS710S.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MQTTClient/MQTTClient.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "${BUILT_PRODUCTS_DIR}/CSL-CS710/CSL_CS710.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/CSL-CS710S/CSL_CS710S.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MQTTClient/MQTTClient.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then

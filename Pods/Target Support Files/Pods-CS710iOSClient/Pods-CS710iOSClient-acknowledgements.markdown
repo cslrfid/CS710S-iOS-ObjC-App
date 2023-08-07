@@ -1,7 +1,7 @@
 # Acknowledgements
 This application makes use of the following third party libraries:
 
-## CSL-CS710
+## CSL-CS710S
 
 MIT License
 

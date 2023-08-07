@@ -27,6 +27,6 @@
 #import "CSLCircularQueue.h"
 #import "CSL_CS710.h"
 
-FOUNDATION_EXPORT double CSL_CS710VersionNumber;
-FOUNDATION_EXPORT const unsigned char CSL_CS710VersionString[];
+FOUNDATION_EXPORT double CSL_CS710SVersionNumber;
+FOUNDATION_EXPORT const unsigned char CSL_CS710SVersionString[];
 

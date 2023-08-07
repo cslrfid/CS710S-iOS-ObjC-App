@@ -3,5 +3,5 @@ use_frameworks!
 
 target 'CS710iOSClient' do
   pod 'MQTTClient'
-  pod 'CSL-CS710', :path => '~/Documents/GitHub/CSL-CS710/'
+  pod 'CSL-CS710S', :path => '~/Documents/GitHub/CSL-CS710S/'
 end
