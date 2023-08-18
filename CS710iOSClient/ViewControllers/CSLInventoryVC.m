@@ -302,7 +302,11 @@
         [CSLRfidAppEngine sharedAppEngine].reader.readerTagRate = 0;
         tagRangingStartTime=[NSDate date];
         [[CSLRfidAppEngine sharedAppEngine].reader setPowerMode:false];
-        [[CSLRfidAppEngine sharedAppEngine].reader startInventory];
+        if ([CSLRfidAppEngine sharedAppEngine].settings.isMultibank1Enabled &&
+            [CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber == CS710)
+            [[CSLRfidAppEngine sharedAppEngine].reader E710StartMBInventory];
+        else
+            [[CSLRfidAppEngine sharedAppEngine].reader startInventory];
         [btnInventory setTitle:@"Stop" forState:UIControlStateNormal];
         btnInventory.enabled=true;
     }
