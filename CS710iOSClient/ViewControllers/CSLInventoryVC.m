@@ -12,6 +12,7 @@
 @interface CSLInventoryVC ()
 {
     NSTimer * scrRefreshTimer;
+    NSTimer * scrBeepTimer;
     UISwipeGestureRecognizer* swipeGestureRecognizer;
     UIImageView *tempImageView;
     MQTTCFSocketTransport *transport;
@@ -99,7 +100,7 @@
     @autoreleasepool {
         if ([CSLRfidAppEngine sharedAppEngine].reader.connectStatus==TAG_OPERATIONS)
         {
-            [[CSLRfidAppEngine sharedAppEngine] soundAlert:1005];
+            //[[CSLRfidAppEngine sharedAppEngine] soundAlert:1005];
             //update table
             [tblTagList reloadData];
             
@@ -144,6 +145,16 @@
     }
 }
 
+- (void)playBeepSound {
+    @autoreleasepool {
+        if ([CSLRfidAppEngine sharedAppEngine].reader.connectStatus==TAG_OPERATIONS)
+        {
+            [[CSLRfidAppEngine sharedAppEngine] soundAlert:1005];
+        }
+    }
+}
+
+
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -175,6 +186,16 @@
                                                      userInfo:nil
                                                       repeats:YES];
     [[NSRunLoop mainRunLoop] addTimer:scrRefreshTimer forMode:NSRunLoopCommonModes];
+    
+    //timer event on beeping during tag read
+    
+    scrBeepTimer = [NSTimer scheduledTimerWithTimeInterval:1.0
+                                                    target:self
+                                                  selector:@selector(playBeepSound)
+                                                  userInfo:nil
+                                                   repeats:YES];
+    [[NSRunLoop mainRunLoop] addTimer:scrBeepTimer forMode:NSRunLoopCommonModes];
+
     
     if ([CSLRfidAppEngine sharedAppEngine].MQTTSettings.isMQTTEnabled) {
         transport = [[MQTTCFSocketTransport alloc] init];
@@ -246,6 +267,9 @@
     
     [scrRefreshTimer invalidate];
     scrRefreshTimer=nil;
+    
+    [scrBeepTimer invalidate];
+    scrBeepTimer=nil;
     
     [CSLRfidAppEngine sharedAppEngine].isBarcodeMode=false;
     [self.view removeGestureRecognizer:swipeGestureRecognizer];

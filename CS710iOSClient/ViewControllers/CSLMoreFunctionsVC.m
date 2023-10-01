@@ -69,10 +69,7 @@
 - (IBAction)btnMQTTPressed:(id)sender {
     CSLMQTTClientSettings* mqttSettings;
     mqttSettings = (CSLMQTTClientSettings*)[[UIStoryboard storyboardWithName:@"CSLRfidDemoApp" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"ID_MQTTSettingsVC"];
-    
-    if ([CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber == CS710)
-        return;
-    
+        
     if (mqttSettings != nil)
     {
         [[self navigationController] pushViewController:mqttSettings animated:YES];
