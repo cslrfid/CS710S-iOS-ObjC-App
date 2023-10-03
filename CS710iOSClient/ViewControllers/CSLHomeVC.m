@@ -291,7 +291,7 @@
     
     CSLMoreFunctionsVC * funcVC;
     //if no device is connected, the settings page will not be loaded
-    if ([CSLRfidAppEngine sharedAppEngine].reader.connectStatus==NOT_CONNECTED || [CSLRfidAppEngine sharedAppEngine].reader.connectStatus==SCANNING || [CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber == CS710) {
+    if ([CSLRfidAppEngine sharedAppEngine].reader.connectStatus==NOT_CONNECTED || [CSLRfidAppEngine sharedAppEngine].reader.connectStatus==SCANNING) {
         
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Reader NOT connected" message:@"Please connect to reader first." preferredStyle:UIAlertControllerStyleAlert];
         
