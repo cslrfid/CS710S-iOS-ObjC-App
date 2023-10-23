@@ -11,6 +11,7 @@
 @interface CSLTagKillVC ()
 {
     bool killCommandAccepted;
+    bool killCommandCompleted;
 }
 @end
 
@@ -68,6 +69,7 @@
     UIAlertAction *ok;
     
     killCommandAccepted=false;
+    killCommandCompleted=false;
     
     //get kill password
     UInt32 killPwd=0;
@@ -75,15 +77,21 @@
     [scanner scanHexInt:&killPwd];
     
     [[CSLRfidAppEngine sharedAppEngine].reader setPowerMode:false];
-    result=[[CSLRfidAppEngine sharedAppEngine].reader startTagMemoryKill:killPwd maskBank:EPC maskPointer:32 maskLength:((UInt32)[self.txtSelectedEPC text].length * 4) maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]];
+    
+    if ([CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber == CS710) {
+        result=[[CSLRfidAppEngine sharedAppEngine].reader E710StartTagMemoryKill:killPwd maskBank:EPC maskPointer:32 maskLength:((UInt32)[self.txtSelectedEPC text].length * 4) maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]];
+    }
+    else {
+        result=[[CSLRfidAppEngine sharedAppEngine].reader startTagMemoryKill:killPwd maskBank:EPC maskPointer:32 maskLength:((UInt32)[self.txtSelectedEPC text].length * 4) maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]];
+    }
     
     for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
-        if (result && killCommandAccepted)
+        if (result && killCommandCompleted)
             break;
         [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.001]];
     }
     
-    if (result && killCommandAccepted)
+    if (result && killCommandAccepted && killCommandCompleted)
         alert = [UIAlertController alertControllerWithTitle:@"Tag Kill" message:@"ACCEPTED" preferredStyle:UIAlertControllerStyleAlert];
     else
         alert = [UIAlertController alertControllerWithTitle:@"Tag Kill" message:@"FAILED" preferredStyle:UIAlertControllerStyleAlert];
@@ -118,12 +126,21 @@
     
 }
 - (void) didReceiveTagAccessData:(CSLBleReader *)sender tagReceived:(CSLBleTag *)tag {
-    if ((tag.AccessError == 0xFF) &&
-        !tag.CRCError &&
-        tag.BackScatterError == 0xFF &&
-        !tag.ACKTimeout &&
-        !tag.CRCError) {
-        killCommandAccepted=true;
+    if ([CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber == CS710 && tag.AccessCommand == KILL) {
+        if (tag.AccessError == 0x10 && tag.BackScatterError == 0x00) {
+            killCommandAccepted=true;
+        }
+        killCommandCompleted=true;
+    }
+    else {
+        if ((tag.AccessError == 0xFF) &&
+            !tag.CRCError &&
+            tag.BackScatterError == 0xFF &&
+            !tag.ACKTimeout &&
+            !tag.CRCError) {
+            killCommandAccepted=true;
+        }
+        killCommandCompleted=true;
     }
 }
 
