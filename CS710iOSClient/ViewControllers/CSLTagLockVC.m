@@ -171,7 +171,13 @@
         }
         
         [[CSLRfidAppEngine sharedAppEngine].reader setPowerMode:false];
-        result=[[CSLRfidAppEngine sharedAppEngine].reader startTagMemoryLock:lockCommandConfigBits ACCPWD:accPwd maskBank:EPC maskPointer:32 maskLength:((UInt32)[self.txtSelectedEPC text].length * 4) maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]];
+        
+        if ([CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber == CS710) {
+            result=[[CSLRfidAppEngine sharedAppEngine].reader E710StartTagMemoryLock:lockCommandConfigBits ACCPWD:accPwd maskBank:EPC maskPointer:32 maskLength:((UInt32)[self.txtSelectedEPC text].length * 4) maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]];
+        }
+        else {
+            result=[[CSLRfidAppEngine sharedAppEngine].reader startTagMemoryLock:lockCommandConfigBits ACCPWD:accPwd maskBank:EPC maskPointer:32 maskLength:((UInt32)[self.txtSelectedEPC text].length * 4) maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]];
+        }
         
         for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
             if (result && securityCommandAccepted)
@@ -342,12 +348,20 @@
     
 }
 - (void) didReceiveTagAccessData:(CSLBleReader *)sender tagReceived:(CSLBleTag *)tag {
-    if ((tag.AccessError == 0xFF) &&
-        !tag.CRCError &&
-        tag.BackScatterError == 0xFF &&
-        !tag.ACKTimeout &&
-        !tag.CRCError) {
-        securityCommandAccepted=true;
+    
+    if ([CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber == CS710) {
+        if (tag.AccessError == 0x10 && tag.BackScatterError == 0x00) {
+            securityCommandAccepted=true;
+        }
+    }
+    else {
+        if ((tag.AccessError == 0xFF) &&
+            !tag.CRCError &&
+            tag.BackScatterError == 0xFF &&
+            !tag.ACKTimeout &&
+            !tag.CRCError) {
+            securityCommandAccepted=true;
+        }
     }
 }
 
