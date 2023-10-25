@@ -61,9 +61,8 @@
     rollingAvgRssi = [[CSLCircularQueue alloc] initWithCapacity:ROLLING_AVG_COUNT];
     
     // Do any additional setup after loading the view.
-    //[((CSLTabVC*)self.tabBarController) setAntennaPortsAndPowerForTags];
-    //[((CSLTabVC*)self.tabBarController) setConfigurationsForTags];
     [CSLReaderConfigurations setAntennaPortsAndPowerForTagSearch:false];
+    [CSLReaderConfigurations setConfigurationsForClearAllSelectionsAndMultibanks];
     [CSLReaderConfigurations setConfigurationsForTags];
 }
 

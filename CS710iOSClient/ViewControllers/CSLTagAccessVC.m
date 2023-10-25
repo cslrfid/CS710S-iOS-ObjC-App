@@ -96,8 +96,9 @@
     
     // Do any additional setup after loading the view.
     [CSLReaderConfigurations setAntennaPortsAndPowerForTagAccess:false];
-    [CSLReaderConfigurations setConfigurationsForTags];
     [CSLReaderConfigurations setConfigurationsForClearAllSelectionsAndMultibanks];
+    [CSLReaderConfigurations setConfigurationsForTags];
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

@@ -236,6 +236,7 @@
             [[CSLRfidAppEngine sharedAppEngine].reader stopTriggerKeyAutoReporting];
             [CSLReaderConfigurations setReaderRegionAndFrequencies];
             [CSLReaderConfigurations setAntennaPortsAndPowerForTags:true];
+            [CSLReaderConfigurations setConfigurationsForClearAllSelectionsAndMultibanks];
             [CSLReaderConfigurations setConfigurationsForTags];
             
             [self->actSpinner stopAnimating];

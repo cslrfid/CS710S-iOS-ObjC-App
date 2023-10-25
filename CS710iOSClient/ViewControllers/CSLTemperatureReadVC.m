@@ -22,9 +22,8 @@
     [super viewDidLoad];
     
     // Do any additional setup after loading the view.
-    //[((CSLTemperatureTabVC*)self.tabBarController) setAntennaPortsAndPowerForTemperatureTags];
-    //[((CSLTemperatureTabVC*)self.tabBarController) setConfigurationsForTemperatureTags];
     [CSLReaderConfigurations setAntennaPortsAndPowerForTemperatureTags:false];
+    [CSLReaderConfigurations setConfigurationsForClearAllSelectionsAndMultibanks];
     [CSLReaderConfigurations setConfigurationsForTemperatureTags];
     
     //initialize averaging buffer
@@ -175,7 +174,10 @@
         
         //start inventory
         [[CSLRfidAppEngine sharedAppEngine].reader setPowerMode:false];
-        [[CSLRfidAppEngine sharedAppEngine].reader startInventory];
+        if ([CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber == CS710)
+            [[CSLRfidAppEngine sharedAppEngine].reader E710StartSelectMBInventory];
+        else
+            [[CSLRfidAppEngine sharedAppEngine].reader startInventory];
         [self.btnInventory setImage:[UIImage imageNamed:@"Stop-icon.png"] forState:UIControlStateNormal];
         self.lbInventory.text=@"Stop";
         self.btnInventory.enabled=true;

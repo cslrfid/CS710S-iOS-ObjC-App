@@ -612,6 +612,7 @@
     
     [CSLReaderConfigurations setReaderRegionAndFrequencies];
     [CSLReaderConfigurations setAntennaPortsAndPowerForTags:true];
+    [CSLReaderConfigurations setConfigurationsForClearAllSelectionsAndMultibanks];
     [CSLReaderConfigurations setConfigurationsForTags];
     
     [self.actSettingSpinner stopAnimating];

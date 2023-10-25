@@ -145,7 +145,6 @@
     [[CSLRfidAppEngine sharedAppEngine] saveTemperatureTagSettingsToUserDefaults];
     
     //refresh configurations and clear previous readings on sensor read table view
-    //[((CSLTemperatureTabVC*)self.tabBarController) setConfigurationsForTemperatureTags];
     //initialize averaging buffer
 
     CSLTemperatureReadVC* sensorVC = [self.tabBarController viewControllers][CSL_VC_TEMPTAB_READTEMP_VC_IDX];

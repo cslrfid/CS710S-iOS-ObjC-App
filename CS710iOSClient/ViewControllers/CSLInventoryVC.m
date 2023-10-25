@@ -242,6 +242,7 @@
     
     // Do any additional setup after loading the view.
     [CSLReaderConfigurations setAntennaPortsAndPowerForTags:false];
+    [CSLReaderConfigurations setConfigurationsForClearAllSelectionsAndMultibanks];
     [CSLReaderConfigurations setConfigurationsForTags];
 }
 
@@ -318,9 +319,6 @@
     {
         [[CSLRfidAppEngine sharedAppEngine] soundAlert:1033];
         btnInventory.enabled=false;
-        
-        // Do any additional setup after loading the view.
-        //[((CSLTabVC*)self.tabBarController) setConfigurationsForTags];
 
         //start inventory
         [CSLRfidAppEngine sharedAppEngine].reader.readerTagRate = 0;
