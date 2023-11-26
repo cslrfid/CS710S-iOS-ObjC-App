@@ -93,12 +93,24 @@
     }
     
     self.txtPower.text=[NSString stringWithFormat:@"%d", [CSLRfidAppEngine sharedAppEngine].settings.power];
+
+    [self.actTagAccessSpinner startAnimating];
+    self.view.userInteractionEnabled=false;
     
+}
+
+- (void)viewDidAppear:(BOOL)animated {
     // Do any additional setup after loading the view.
     [CSLReaderConfigurations setAntennaPortsAndPowerForTagAccess:false];
     [CSLReaderConfigurations setConfigurationsForClearAllSelectionsAndMultibanks];
     [CSLReaderConfigurations setConfigurationsForTags];
-
+    self.view.userInteractionEnabled=true;
+    [self.actTagAccessSpinner stopAnimating];
+    
+    self.btnRead.enabled=true;
+    self.btnWrite.enabled=true;
+    self.btnSecurity.enabled=true;
+    self.btnKill.enabled=true;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -241,8 +253,12 @@
 - (IBAction)btnReadPressed:(id)sender {
 
     @autoreleasepool {
+        self.btnRead.enabled=false;
         self.btnWrite.enabled=false;
         self.btnSecurity.enabled=false;
+        self.btnKill.enabled=false;
+        [self.actTagAccessSpinner startAnimating];
+        self.view.userInteractionEnabled=false;
         
         BOOL result=true;
         Byte tidWordCount =[[[self.btnTidUidWord titleLabel].text substringFromIndex:5] intValue];
@@ -535,16 +551,24 @@
         [alert addAction:ok];
         [self presentViewController:alert animated:YES completion:nil];
         
+        self.btnRead.enabled=true;
         self.btnWrite.enabled=true;
         self.btnSecurity.enabled=true;
+        self.btnKill.enabled=true;
         
+        [self.actTagAccessSpinner stopAnimating];
+        self.view.userInteractionEnabled=true;
     }
 }
 
 - (IBAction)btnWritePressed:(id)sender {
     @autoreleasepool {
         self.btnRead.enabled=false;
+        self.btnWrite.enabled=false;
         self.btnSecurity.enabled=false;
+        self.btnKill.enabled=false;
+        [self.actTagAccessSpinner startAnimating];
+        self.view.userInteractionEnabled=false;
         
         BOOL result=true;
         Byte userWordCount = [[[self.btnUserWord titleLabel].text substringFromIndex:5] intValue];
@@ -842,7 +866,12 @@
         [self presentViewController:alert animated:YES completion:nil];
         
         self.btnRead.enabled=true;
+        self.btnWrite.enabled=true;
         self.btnSecurity.enabled=true;
+        self.btnKill.enabled=true;
+        
+        [self.actTagAccessSpinner stopAnimating];
+        self.view.userInteractionEnabled=true;
     }
     
 }

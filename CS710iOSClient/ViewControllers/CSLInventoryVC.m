@@ -240,10 +240,18 @@
                 [self->uivSendTagData setHidden:true];
     }
     
+    self.view.userInteractionEnabled=false;
+    [self.actInventorySpinner startAnimating];
+
+}
+
+- (void)viewDidAppear:(BOOL)animated {
     // Do any additional setup after loading the view.
     [CSLReaderConfigurations setAntennaPortsAndPowerForTags:false];
     [CSLReaderConfigurations setConfigurationsForClearAllSelectionsAndMultibanks];
     [CSLReaderConfigurations setConfigurationsForTags];
+    self.view.userInteractionEnabled=true;
+    [self.actInventorySpinner stopAnimating];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

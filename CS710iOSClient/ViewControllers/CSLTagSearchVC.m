@@ -60,10 +60,17 @@
     
     rollingAvgRssi = [[CSLCircularQueue alloc] initWithCapacity:ROLLING_AVG_COUNT];
     
+    [self.actSearchSpinner startAnimating];
+    self.view.userInteractionEnabled=false;
+}
+
+- (void)viewDidAppear:(BOOL)animated {
     // Do any additional setup after loading the view.
     [CSLReaderConfigurations setAntennaPortsAndPowerForTagSearch:false];
     [CSLReaderConfigurations setConfigurationsForClearAllSelectionsAndMultibanks];
     [CSLReaderConfigurations setConfigurationsForTags];
+    self.view.userInteractionEnabled=true;
+    [self.actSearchSpinner stopAnimating];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

@@ -21,11 +21,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Do any additional setup after loading the view.
-    [CSLReaderConfigurations setAntennaPortsAndPowerForTemperatureTags:false];
-    [CSLReaderConfigurations setConfigurationsForClearAllSelectionsAndMultibanks];
-    [CSLReaderConfigurations setConfigurationsForTemperatureTags];
-    
     //initialize averaging buffer
     [CSLRfidAppEngine sharedAppEngine].temperatureSettings.temperatureAveragingBuffer = [[NSMutableDictionary alloc] init];
     [CSLRfidAppEngine sharedAppEngine].temperatureSettings.lastGoodReadBuffer = [[NSMutableDictionary alloc] init];
@@ -74,13 +69,18 @@
     [self.tblTagList setEditing:true animated:true];
     self.tblTagList.backgroundView = nil;
     self.tblTagList.backgroundColor = [UIColor whiteColor];
-
+    
+    [self.actLoading startAnimating];
+    self.view.userInteractionEnabled=false;
     
 }
 - (void)viewDidAppear:(BOOL)animated {
-    
-
-    
+    // Do any additional setup after loading the view.
+    [CSLReaderConfigurations setAntennaPortsAndPowerForTemperatureTags:false];
+    [CSLReaderConfigurations setConfigurationsForClearAllSelectionsAndMultibanks];
+    [CSLReaderConfigurations setConfigurationsForTemperatureTags];
+    self.view.userInteractionEnabled=true;
+    [self.actLoading stopAnimating];
 }
 /*
 #pragma mark - Navigation

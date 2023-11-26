@@ -24,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UITableView *tblTagList;
 @property (weak, nonatomic) IBOutlet UILabel *lbTagCount;
 @property (weak, nonatomic) IBOutlet UILabel *lbInventory;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *actLoading;
 
 - (IBAction)btnInventoryPressed:(id)sender;
 - (IBAction)btnSelectAllTagPressed:(id)sender;
