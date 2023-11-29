@@ -128,7 +128,7 @@
 - (void) didReceiveTagAccessData:(CSLBleReader *)sender tagReceived:(CSLBleTag *)tag {
     if ([CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber == CS710 && tag.AccessCommand == KILL) {
         //a killed tag would have 0x00 (No error) or 0x04 (no access reply) as the tag has already been killed
-        if (tag.AccessError == 0x10 && (tag.BackScatterError == 0x00 ||tag.BackScatterError == 0x04)) {
+        if (tag.AccessError == 0x10 && tag.BackScatterError == 0x00) {
             killCommandAccepted=true;
         }
         killCommandCompleted=true;
