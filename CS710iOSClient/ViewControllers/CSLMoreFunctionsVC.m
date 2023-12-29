@@ -10,6 +10,7 @@
 #import "CSLMQTTClientSettings.h"
 #import "CSLMultibankAccessVC.h"
 #import "CSLFilterTabVC.h"
+#import "CSLImpinjInventoryVC.h"
 
 @interface CSLMoreFunctionsVC ()
 
@@ -62,6 +63,17 @@
     if (tabVC != nil)
     {
         [[self navigationController] pushViewController:tabVC animated:YES];
+    }
+    
+}
+
+- (IBAction)btnAuthenticationPressed:(id)sender {
+    CSLImpinjInventoryVC* impinjVC;
+    impinjVC = (CSLImpinjInventoryVC*)[[UIStoryboard storyboardWithName:@"CSLRfidDemoApp" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"ID_ImpinjInventoryVC"];
+    
+    if (impinjVC != nil)
+    {
+        [[self navigationController] pushViewController:impinjVC animated:YES];
     }
     
 }
