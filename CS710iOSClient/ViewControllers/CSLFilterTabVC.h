@@ -10,7 +10,7 @@
 #import "CSLRfidAppEngine.h"
 
 #define CSL_VC_RFIDTAB_PREFILTER_VC_IDX 0
-#define CSL_VC_RFIDTAB_PREFILTER_IDX 1
+#define CSL_VC_RFIDTAB_POSTFILTER_VC_IDX 1
 
 @interface CSLFilterTabVC : UITabBarController <UITabBarControllerDelegate>
 {

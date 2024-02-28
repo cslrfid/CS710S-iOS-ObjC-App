@@ -54,10 +54,6 @@
 - (IBAction)btnFiltersPressed:(id)sender {
         
     CSLFilterTabVC * tabVC = (CSLFilterTabVC*)[[UIStoryboard storyboardWithName:@"CSLRfidDemoApp" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"ID_FilterTabVC"];
-    
-    if ([CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber == CS710)
-        return;
-    
     [tabVC setActiveView:CSL_VC_RFIDTAB_PREFILTER_VC_IDX];
     self.view.userInteractionEnabled=false;
     if (tabVC != nil)

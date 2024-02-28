@@ -14,6 +14,9 @@
 {
     [super viewDidLoad];
     
+    if([CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber == CS710)
+        [self.tabBar.items[CSL_VC_RFIDTAB_POSTFILTER_VC_IDX] setEnabled:false];
+    
     self.delegate = self;
 }
 
