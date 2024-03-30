@@ -10,6 +10,7 @@
 #import "CSLMQTTClientSettings.h"
 #import "CSLMultibankAccessVC.h"
 #import "CSLFilterTabVC.h"
+#import "CSLImpinjInventoryVC.h"
 
 @interface CSLMoreFunctionsVC ()
 
@@ -53,15 +54,22 @@
 - (IBAction)btnFiltersPressed:(id)sender {
         
     CSLFilterTabVC * tabVC = (CSLFilterTabVC*)[[UIStoryboard storyboardWithName:@"CSLRfidDemoApp" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"ID_FilterTabVC"];
-    
-    if ([CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber == CS710)
-        return;
-    
     [tabVC setActiveView:CSL_VC_RFIDTAB_PREFILTER_VC_IDX];
     self.view.userInteractionEnabled=false;
     if (tabVC != nil)
     {
         [[self navigationController] pushViewController:tabVC animated:YES];
+    }
+    
+}
+
+- (IBAction)btnAuthenticationPressed:(id)sender {
+    CSLImpinjInventoryVC* impinjVC;
+    impinjVC = (CSLImpinjInventoryVC*)[[UIStoryboard storyboardWithName:@"CSLRfidDemoApp" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"ID_ImpinjInventoryVC"];
+    
+    if (impinjVC != nil)
+    {
+        [[self navigationController] pushViewController:impinjVC animated:YES];
     }
     
 }

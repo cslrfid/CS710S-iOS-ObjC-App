@@ -19,6 +19,8 @@
 		CA506644215996A000C3C9C8 /* digital-7 (mono).ttf in Resources */ = {isa = PBXBuildFile; fileRef = CA506643215996A000C3C9C8 /* digital-7 (mono).ttf */; };
 		CA57AA7821CAC45E00D081F9 /* LMGaugeView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA57AA7621CAC45D00D081F9 /* LMGaugeView.m */; };
 		CA5C059421E4517D00E68E44 /* CSLMQTTClientSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5C059321E4517D00E68E44 /* CSLMQTTClientSettings.m */; };
+		CA5E8D382AFCBA3800B1E2D5 /* CSLImpinjInventoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5E8D362AFCBA3800B1E2D5 /* CSLImpinjInventoryVC.m */; };
+		CA5E8D3B2AFCE23900B1E2D5 /* CSLImpinjAuthenticationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5E8D3A2AFCE23900B1E2D5 /* CSLImpinjAuthenticationVC.m */; };
 		CA722980222AB13300D8C2CF /* CSLTemperatureTagListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA72297E222AB13300D8C2CF /* CSLTemperatureTagListCell.m */; };
 		CA722981222AB13300D8C2CF /* CSLTemperatureTagListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA72297F222AB13300D8C2CF /* CSLTemperatureTagListCell.xib */; };
 		CA787361214CC154009B7FE6 /* CSLHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CA787360214CC153009B7FE6 /* CSLHomeVC.m */; };
@@ -90,6 +92,10 @@
 		CA57AA7721CAC45E00D081F9 /* LMGaugeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMGaugeView.h; sourceTree = "<group>"; };
 		CA5C059221E4517D00E68E44 /* CSLMQTTClientSettings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLMQTTClientSettings.h; sourceTree = "<group>"; };
 		CA5C059321E4517D00E68E44 /* CSLMQTTClientSettings.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLMQTTClientSettings.m; sourceTree = "<group>"; };
+		CA5E8D362AFCBA3800B1E2D5 /* CSLImpinjInventoryVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSLImpinjInventoryVC.m; sourceTree = "<group>"; };
+		CA5E8D372AFCBA3800B1E2D5 /* CSLImpinjInventoryVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSLImpinjInventoryVC.h; sourceTree = "<group>"; };
+		CA5E8D392AFCE23800B1E2D5 /* CSLImpinjAuthenticationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSLImpinjAuthenticationVC.h; sourceTree = "<group>"; };
+		CA5E8D3A2AFCE23900B1E2D5 /* CSLImpinjAuthenticationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSLImpinjAuthenticationVC.m; sourceTree = "<group>"; };
 		CA72297D222AB13300D8C2CF /* CSLTemperatureTagListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLTemperatureTagListCell.h; sourceTree = "<group>"; };
 		CA72297E222AB13300D8C2CF /* CSLTemperatureTagListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLTemperatureTagListCell.m; sourceTree = "<group>"; };
 		CA72297F222AB13300D8C2CF /* CSLTemperatureTagListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CSLTemperatureTagListCell.xib; sourceTree = "<group>"; };
@@ -182,6 +188,10 @@
 		CA78735E214CC072009B7FE6 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				CA5E8D392AFCE23800B1E2D5 /* CSLImpinjAuthenticationVC.h */,
+				CA5E8D3A2AFCE23900B1E2D5 /* CSLImpinjAuthenticationVC.m */,
+				CA5E8D372AFCBA3800B1E2D5 /* CSLImpinjInventoryVC.h */,
+				CA5E8D362AFCBA3800B1E2D5 /* CSLImpinjInventoryVC.m */,
 				CA57AA7721CAC45E00D081F9 /* LMGaugeView.h */,
 				CA57AA7621CAC45D00D081F9 /* LMGaugeView.m */,
 				CA78735F214CC153009B7FE6 /* CSLHomeVC.h */,
@@ -418,6 +428,7 @@
 				CAA89F45223D23D50066B601 /* CSLTemperatureUploadVC.m in Sources */,
 				CAFF2698221D3F7000D89112 /* CSLMultibankAccessVC.m in Sources */,
 				CAE95309222DA3DE00C4EC73 /* CSLTemperatureDetailsVC.m in Sources */,
+				CA5E8D3B2AFCE23900B1E2D5 /* CSLImpinjAuthenticationVC.m in Sources */,
 				CA5066412157889C00C3C9C8 /* CSLAboutVC.m in Sources */,
 				CA150B70236C0DFB00ACF53D /* CSLAntennaPortVC.m in Sources */,
 				CAF79C6C260091E900C2F5F6 /* CSLFilterTabVC.m in Sources */,
@@ -432,6 +443,7 @@
 				CA33BF8E2600EE8A00835159 /* CSLPrefilterVC.m in Sources */,
 				CAB31377221A75330048DA62 /* CSLTagListCell.m in Sources */,
 				CAB3137B221BE17D0048DA62 /* CSLMoreFunctionsVC.m in Sources */,
+				CA5E8D382AFCBA3800B1E2D5 /* CSLImpinjInventoryVC.m in Sources */,
 				CA787361214CC154009B7FE6 /* CSLHomeVC.m in Sources */,
 				CABA715821325BF600D15BB1 /* main.m in Sources */,
 				CABA714A21325BF500D15BB1 /* AppDelegate.m in Sources */,
@@ -590,7 +602,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.csl.CS710SiOSClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -617,7 +629,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.csl.CS710SiOSClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

@@ -331,10 +331,25 @@
         //start inventory
         [CSLRfidAppEngine sharedAppEngine].reader.readerTagRate = 0;
         tagRangingStartTime=[NSDate date];
+        
+        //For CS710S, there are four inventory mode here:
+        // 1) Regular inventory at high speed (startInventory)
+        // 2) Mulitbank inventory with filtering (E710StartSelectMBInventory)
+        // 3) Mulitbank inventory with no filtering (E710StartMBInventory)
+        // 4) Single bank inventory with filtering (E710StartSelectCompactInventory)
         [[CSLRfidAppEngine sharedAppEngine].reader setPowerMode:false];
         if ([CSLRfidAppEngine sharedAppEngine].settings.isMultibank1Enabled &&
+                 [CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber == CS710 &&
+                 [CSLRfidAppEngine sharedAppEngine].settings.prefilterIsEnabled) {
+            [[CSLRfidAppEngine sharedAppEngine].reader E710StartSelectMBInventory];
+        }
+        else if ([CSLRfidAppEngine sharedAppEngine].settings.isMultibank1Enabled &&
             [CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber == CS710)
             [[CSLRfidAppEngine sharedAppEngine].reader E710StartMBInventory];
+        else if ([CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber == CS710 &&
+                 [CSLRfidAppEngine sharedAppEngine].settings.prefilterIsEnabled) {
+            [[CSLRfidAppEngine sharedAppEngine].reader E710StartSelectCompactInventory];
+        }
         else
             [[CSLRfidAppEngine sharedAppEngine].reader startInventory];
         [btnInventory setTitle:@"Stop" forState:UIControlStateNormal];

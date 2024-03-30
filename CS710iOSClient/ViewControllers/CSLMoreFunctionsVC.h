@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (IBAction)btnMultibankPressed:(id)sender;
 - (IBAction)btnFiltersPressed:(id)sender;
 - (IBAction)btnMQTTPressed:(id)sender;
+- (IBAction)btnAuthenticationPressed:(id)sender;
 
 
 @end

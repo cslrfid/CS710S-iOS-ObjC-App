@@ -266,6 +266,7 @@
         Byte userWordCount = [[[self.btnUserWord titleLabel].text substringFromIndex:5] intValue];
         Byte userOffset = [[[self.btnUserOffset titleLabel].text substringFromIndex:7] intValue];
         Byte EPCWordCount = [[self.txtSelectedEPC text] length] / 4;
+        int retryCount = 0;
         
         //clear UI
         //if ([self.swTidUid isOn])
@@ -299,62 +300,85 @@
             if ([self.swEPC isOn] || [self.swPC isOn]) {
                 bankSelected=EPC;
                 
+                retryCount=1;
+                [self.txtEPC setTag:0];
                 //read EPC
-                result = [[CSLRfidAppEngine sharedAppEngine].reader E710StartTagMemoryRead:EPC
-                                                                                dataOffset:2
-                                                                                 dataCount:EPCWordCount
-                                                                                    ACCPWD:accPwd
-                                                                                  maskBank:EPC
-                                                                               maskPointer:32
-                                                                                maskLength:((UInt32)[self.txtSelectedEPC text].length * 4)
-                                                                                  maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]];
-                
-                for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
-                    if([self.txtEPC.text length] != 0 || [self.txtPC.text length] != 0)
-                        break;
-                    [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.001]];
+                while (true) {
+                    result = [[CSLRfidAppEngine sharedAppEngine].reader E710StartTagMemoryRead:EPC
+                                                                                    dataOffset:2
+                                                                                     dataCount:EPCWordCount
+                                                                                        ACCPWD:accPwd
+                                                                                      maskBank:EPC
+                                                                                   maskPointer:32
+                                                                                    maskLength:((UInt32)[self.txtSelectedEPC text].length * 4)
+                                                                                      maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]];
+                    
+                    for (int i=0;i<COMMAND_TIMEOUT_3S;i++) {  //receive data or time out in 5 seconds
+                        if([self.txtEPC.text length] != 0 || [self.txtPC.text length] != 0 || self.txtEPC.tag == -1)
+                            break;
+                        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.001]];
+                    }
+                    
+                    if([self.txtEPC.text length] == 0 && [self.txtEPC.text length] == 0 && retryCount > 0) {
+                        [self.txtEPC setTag:0];
+                        retryCount--;
+                        continue;
+                    }
+                    
+                    if([self.txtEPC.text length] == 0 && [self.swEPC isOn]) {
+                        [self.txtEPC setBackgroundColor:UIColorFromRGB(0xFFB3B3)];
+                    } else if ([self.txtEPC.text length] != 0 && [self.swEPC isOn]) {
+                        [self.txtEPC setBackgroundColor:UIColorFromRGB(0xD1F2EB)];
+                    }
+                    if([self.txtPC.text length] == 0 && [self.swPC isOn]) {
+                        [self.txtPC setBackgroundColor:UIColorFromRGB(0xFFB3B3)];
+                    } else if ([self.txtPC.text length] != 0 && [self.swPC isOn]) {
+                        [self.txtPC setBackgroundColor:UIColorFromRGB(0xD1F2EB)];
+                    }
+                    //refresh UI
+                    [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.0]];
+                    break;
+                    
                 }
-                
-                if([self.txtEPC.text length] == 0 && [self.swEPC isOn]) {
-                    [self.txtEPC setBackgroundColor:UIColorFromRGB(0xFFB3B3)];
-                } else if ([self.txtEPC.text length] != 0 && [self.swEPC isOn]) {
-                    [self.txtEPC setBackgroundColor:UIColorFromRGB(0xD1F2EB)];
-                }
-                if([self.txtPC.text length] == 0 && [self.swPC isOn]) {
-                    [self.txtPC setBackgroundColor:UIColorFromRGB(0xFFB3B3)];
-                } else if ([self.txtPC.text length] != 0 && [self.swPC isOn]) {
-                    [self.txtPC setBackgroundColor:UIColorFromRGB(0xD1F2EB)];
-                }
-                //refresh UI
-                [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.0]];
             }
             
             if ([self.swTidUid isOn]) {
                 bankSelected=TID;
                 
-                //read EPC
-                result = [[CSLRfidAppEngine sharedAppEngine].reader E710StartTagMemoryRead:TID
-                                                                                dataOffset:tidOffset
-                                                                                 dataCount:tidWordCount
-                                                                                    ACCPWD:accPwd
-                                                                                  maskBank:EPC
-                                                                               maskPointer:32
-                                                                                maskLength:((UInt32)[self.txtSelectedEPC text].length * 4)
-                                                                                  maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]];
-                
-                for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
-                    if([self.txtTidUid.text length] != 0)
-                        break;
-                    [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.001]];
+                retryCount=1;
+                [self.txtTidUid setTag:0];
+                //read TID
+                while (true) {
+                    result = [[CSLRfidAppEngine sharedAppEngine].reader E710StartTagMemoryRead:TID
+                                                                                    dataOffset:tidOffset
+                                                                                     dataCount:tidWordCount
+                                                                                        ACCPWD:accPwd
+                                                                                      maskBank:EPC
+                                                                                   maskPointer:32
+                                                                                    maskLength:((UInt32)[self.txtSelectedEPC text].length * 4)
+                                                                                      maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]];
+                    
+                    for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
+                        if([self.txtTidUid.text length] != 0 || self.txtTidUid.tag == -1)
+                            break;
+                        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.001]];
+                    }
+                    
+                    if([self.txtTidUid.text length] == 0 && retryCount > 0) {
+                        [self.txtTidUid setTag:0];
+                        retryCount--;
+                        continue;
+                    }
+                    
+                    if([self.txtTidUid.text length] == 0 && [self.swTidUid isOn]) {
+                        [self.txtTidUid setBackgroundColor:UIColorFromRGB(0xFFB3B3)];
+                    } else if ([self.txtTidUid.text length] != 0 && [self.swTidUid isOn]) {
+                        [self.txtTidUid setBackgroundColor:UIColorFromRGB(0xD1F2EB)];
+                    }
+                    //refresh UI
+                    [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.0]];
+                    break;
                 }
-                
-                if([self.txtTidUid.text length] == 0 && [self.swTidUid isOn]) {
-                    [self.txtTidUid setBackgroundColor:UIColorFromRGB(0xFFB3B3)];
-                } else if ([self.txtTidUid.text length] != 0 && [self.swTidUid isOn]) {
-                    [self.txtTidUid setBackgroundColor:UIColorFromRGB(0xD1F2EB)];
-                }
-                //refresh UI
-                [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.0]];
             }
             
         }
@@ -401,27 +425,41 @@
             if ([self.swAccPwd isOn]) {
                 bankSelected=RESERVED;
                 memItem=mACCPWD;
-                result=[[CSLRfidAppEngine sharedAppEngine].reader E710StartTagMemoryRead:RESERVED
-                                                                              dataOffset:2
-                                                                               dataCount:2
-                                                                                  ACCPWD:accPwd
-                                                                                maskBank:EPC
-                                                                             maskPointer:32
-                                                                              maskLength:((UInt32)[self.txtSelectedEPC text].length * 4)
-                                                                                maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]];
                 
-                for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
-                    if([self.txtAccPwd.text length] != 0)
-                        break;
-                    [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.001]];
+                retryCount=1;
+                [self.txtAccessPwd setTag:0];
+                //read access password
+                while (true) {
+                    result=[[CSLRfidAppEngine sharedAppEngine].reader E710StartTagMemoryRead:RESERVED
+                                                                                  dataOffset:2
+                                                                                   dataCount:2
+                                                                                      ACCPWD:accPwd
+                                                                                    maskBank:EPC
+                                                                                 maskPointer:32
+                                                                                  maskLength:((UInt32)[self.txtSelectedEPC text].length * 4)
+                                                                                    maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]];
+                    
+                    for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
+                        if([self.txtAccPwd.text length] != 0 || self.txtAccPwd.tag == -1)
+                            break;
+                        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.001]];
+                    }
+                    
+                    if([self.txtAccPwd.text length] == 0 && retryCount > 0) {
+                        [self.txtAccPwd setTag:0];
+                        retryCount--;
+                        continue;
+                    }
+                    
+                    if([self.txtAccPwd.text length] == 0 && [self.swAccPwd isOn]) {
+                        [self.txtAccPwd setBackgroundColor:UIColorFromRGB(0xFFB3B3)];
+                    } else if ([self.txtAccPwd.text length] != 0 && [self.swAccPwd isOn]) {
+                        [self.txtAccPwd setBackgroundColor:UIColorFromRGB(0xD1F2EB)];
+                    }
+                    //refresh UI
+                    [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.0]];
+                    break;
                 }
-                if([self.txtAccPwd.text length] == 0 && [self.swAccPwd isOn]) {
-                    [self.txtAccPwd setBackgroundColor:UIColorFromRGB(0xFFB3B3)];
-                } else if ([self.txtAccPwd.text length] != 0 && [self.swAccPwd isOn]) {
-                    [self.txtAccPwd setBackgroundColor:UIColorFromRGB(0xD1F2EB)];
-                }
-                //refresh UI
-                [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.0]];
             }
         }
         else
@@ -451,27 +489,41 @@
             if ([self.swKillPwd isOn]) {
                 bankSelected=RESERVED;
                 memItem=mKILLPWD;
-                result=[[CSLRfidAppEngine sharedAppEngine].reader E710StartTagMemoryRead:RESERVED
-                                                                              dataOffset:0
-                                                                               dataCount:2
-                                                                                   ACCPWD:accPwd
-                                                                                maskBank:EPC
-                                                                             maskPointer:32
-                                                                              maskLength:((UInt32)[self.txtSelectedEPC text].length * 4)
-                                                                                maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]];
                 
-                for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
-                    if([self.txtKillPwd.text length] != 0)
-                        break;
-                    [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.001]];
+                retryCount=1;
+                [self.txtKillPwd setTag:0];
+                //read kill password
+                while (true) {
+                    result=[[CSLRfidAppEngine sharedAppEngine].reader E710StartTagMemoryRead:RESERVED
+                                                                                  dataOffset:0
+                                                                                   dataCount:2
+                                                                                      ACCPWD:accPwd
+                                                                                    maskBank:EPC
+                                                                                 maskPointer:32
+                                                                                  maskLength:((UInt32)[self.txtSelectedEPC text].length * 4)
+                                                                                    maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]];
+                    
+                    for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
+                        if([self.txtKillPwd.text length] != 0 || self.txtKillPwd.tag == -1)
+                            break;
+                        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.001]];
+                    }
+                    
+                    if([self.txtKillPwd.text length] == 0 && retryCount > 0) {
+                        [self.txtKillPwd setTag:0];
+                        retryCount--;
+                        continue;
+                    }
+                    
+                    if([self.txtKillPwd.text length] == 0 && [self.swKillPwd isOn]) {
+                        [self.txtKillPwd setBackgroundColor:UIColorFromRGB(0xFFB3B3)];
+                    } else if ([self.txtKillPwd.text length] != 0 && [self.swKillPwd isOn]) {
+                        [self.txtKillPwd setBackgroundColor:UIColorFromRGB(0xD1F2EB)];
+                    }
+                    //refresh UI
+                    [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.0]];
+                    break;
                 }
-                if([self.txtKillPwd.text length] == 0 && [self.swKillPwd isOn]) {
-                    [self.txtKillPwd setBackgroundColor:UIColorFromRGB(0xFFB3B3)];
-                } else if ([self.txtKillPwd.text length] != 0 && [self.swKillPwd isOn]) {
-                    [self.txtKillPwd setBackgroundColor:UIColorFromRGB(0xD1F2EB)];
-                }
-                //refresh UI
-                [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.0]];
             }
         }
         else {
@@ -500,27 +552,41 @@
         if ([CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber == CS710) {
             if ([self.swUser isOn]) {
                 bankSelected=USER;
-                result=[[CSLRfidAppEngine sharedAppEngine].reader E710StartTagMemoryRead:USER
-                                                                              dataOffset:userOffset
-                                                                               dataCount:userWordCount
-                                                                                  ACCPWD:accPwd
-                                                                                maskBank:EPC
-                                                                             maskPointer:32
-                                                                              maskLength:((UInt32)[self.txtSelectedEPC text].length * 4)
-                                                                                maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]];
                 
-                for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
-                    if([self.txtUser.text length] != 0)
-                        break;
-                    [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.001]];
+                retryCount=1;
+                [self.txtUser setTag:0];
+                //read user memory
+                while (true) {
+                    result=[[CSLRfidAppEngine sharedAppEngine].reader E710StartTagMemoryRead:USER
+                                                                                  dataOffset:userOffset
+                                                                                   dataCount:userWordCount
+                                                                                      ACCPWD:accPwd
+                                                                                    maskBank:EPC
+                                                                                 maskPointer:32
+                                                                                  maskLength:((UInt32)[self.txtSelectedEPC text].length * 4)
+                                                                                    maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]];
+                    
+                    for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
+                        if([self.txtUser.text length] != 0 || self.txtUser.tag == -1)
+                            break;
+                        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.001]];
+                    }
+                    
+                    if([self.txtUser.text length] == 0 && retryCount > 0) {
+                        [self.txtUser setTag:0];
+                        retryCount--;
+                        continue;
+                    }
+                    
+                    if([self.txtUser.text length] == 0 && [self.swUser isOn]) {
+                        [self.txtUser setBackgroundColor:UIColorFromRGB(0xFFB3B3)];
+                    } else if ([self.txtUser.text length] != 0 && [self.swUser isOn]) {
+                        [self.txtUser setBackgroundColor:UIColorFromRGB(0xD1F2EB)];
+                    }
+                    //refresh UI
+                    [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.0]];
+                    break;
                 }
-                if([self.txtUser.text length] == 0 && [self.swUser isOn]) {
-                    [self.txtUser setBackgroundColor:UIColorFromRGB(0xFFB3B3)];
-                } else if ([self.txtUser.text length] != 0 && [self.swUser isOn]) {
-                    [self.txtUser setBackgroundColor:UIColorFromRGB(0xD1F2EB)];
-                }
-                //refresh UI
-                [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.0]];
             }
         }
         else {
@@ -602,6 +668,12 @@
             ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
             [alert addAction:ok];
             [self presentViewController:alert animated:YES completion:nil];
+            self.btnRead.enabled=true;
+            self.btnWrite.enabled=true;
+            self.btnSecurity.enabled=true;
+            self.btnKill.enabled=true;
+            [self.actTagAccessSpinner stopAnimating];
+            self.view.userInteractionEnabled=true;
             return;
         }
         
@@ -625,15 +697,17 @@
             if ([CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber == CS710) {
                 bankSelected=EPC;
                 memItem=mPC;
+                self.txtPC.tag = 0;
+                
                 result=[[CSLRfidAppEngine sharedAppEngine].reader E710StartTagMemoryWrite:EPC dataOffset:1 dataCount:((UInt32)[self.txtPC text].length / 4) writeData:[CSLBleReader convertHexStringToData:[self.txtPC text]] ACCPWD:accPwd maskBank:EPC maskPointer:32 maskLength:((UInt32)[self.txtSelectedEPC text].length * 4) maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]];
                 
                 for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
-                    if(![[self.txtPC backgroundColor] isEqual:UIColorFromRGB(0xFFFFFF)])
+                    if(![[self.txtPC backgroundColor] isEqual:UIColorFromRGB(0xFFFFFF)] || self.txtPC.tag == -1)
                         break;
                     [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.001]];
                 }
                 //set UI color to red if no tag access reponse returned
-                if([[self.txtPC backgroundColor] isEqual:UIColorFromRGB(0xFFFFFF)]) {
+                if([[self.txtPC backgroundColor] isEqual:UIColorFromRGB(0xFFFFFF)] || self.txtPC.tag == -1) {
                     [self.txtPC setBackgroundColor:UIColorFromRGB(0xFFB3B3)];
                 }
                 //refresh UI
@@ -665,15 +739,17 @@
             if ([CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber == CS710) {
                 bankSelected=EPC;
                 memItem=mEPC;
+                self.txtEPC.tag = 0;
+                
                 result=[[CSLRfidAppEngine sharedAppEngine].reader E710StartTagMemoryWrite:EPC dataOffset:2 dataCount:((UInt32)[self.txtEPC text].length / 4) writeData:[CSLBleReader convertHexStringToData:[self.txtEPC text]] ACCPWD:accPwd maskBank:EPC maskPointer:32 maskLength:((UInt32)[self.txtSelectedEPC text].length * 4) maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]];
                 
                 for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
-                    if(![[self.txtEPC backgroundColor] isEqual:UIColorFromRGB(0xFFFFFF)])
+                    if(![[self.txtEPC backgroundColor] isEqual:UIColorFromRGB(0xFFFFFF)] || self.txtEPC.tag == -1)
                         break;
                     [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.001]];
                 }
                 //set UI color to red if no tag access reponse returned
-                if([[self.txtEPC backgroundColor] isEqual:UIColorFromRGB(0xFFFFFF)]) {
+                if([[self.txtEPC backgroundColor] isEqual:UIColorFromRGB(0xFFFFFF)] || self.txtEPC.tag == -1) {
                     [self.txtEPC setBackgroundColor:UIColorFromRGB(0xFFB3B3)];
                 }
                 //refresh UI
@@ -705,15 +781,17 @@
             if ([CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber == CS710) {
                 bankSelected=RESERVED;
                 memItem=mACCPWD;
+                self.txtAccPwd.tag = 0;
+                
                 result=[[CSLRfidAppEngine sharedAppEngine].reader E710StartTagMemoryWrite:RESERVED dataOffset:2 dataCount:2 writeData:[CSLBleReader convertHexStringToData:[self.txtAccPwd text]] ACCPWD:accPwd maskBank:EPC maskPointer:32 maskLength:((UInt32)[self.txtSelectedEPC text].length * 4) maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]];
                 
                 for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
-                    if(![[self.txtAccPwd backgroundColor] isEqual:UIColorFromRGB(0xFFFFFF)])
+                    if(![[self.txtAccPwd backgroundColor] isEqual:UIColorFromRGB(0xFFFFFF)] || self.txtAccPwd.tag == -1)
                         break;
                     [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.001]];
                 }
                 //set UI color to red if no tag access reponse returned
-                if([[self.txtAccPwd backgroundColor] isEqual:UIColorFromRGB(0xFFFFFF)]) {
+                if([[self.txtAccPwd backgroundColor] isEqual:UIColorFromRGB(0xFFFFFF)] || self.txtEPC.tag == -1) {
                     [self.txtAccPwd setBackgroundColor:UIColorFromRGB(0xFFB3B3)];
                 }
                 //refresh UI
@@ -745,15 +823,17 @@
             if ([CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber == CS710) {
                 bankSelected=RESERVED;
                 memItem=mKILLPWD;
+                self.txtKillPwd.tag = 0;
+                
                 result=[[CSLRfidAppEngine sharedAppEngine].reader E710StartTagMemoryWrite:RESERVED dataOffset:0 dataCount:2 writeData:[CSLBleReader convertHexStringToData:[self.txtKillPwd text]] ACCPWD:accPwd maskBank:EPC maskPointer:32 maskLength:((UInt32)[self.txtSelectedEPC text].length * 4) maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]];
                 
                 for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
-                    if(![[self.txtKillPwd backgroundColor] isEqual:UIColorFromRGB(0xFFFFFF)])
+                    if(![[self.txtKillPwd backgroundColor] isEqual:UIColorFromRGB(0xFFFFFF)] || self.txtKillPwd.tag == -1)
                         break;
                     [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.001]];
                 }
                 //set UI color to red if no tag access reponse returned
-                if([[self.txtKillPwd backgroundColor] isEqual:UIColorFromRGB(0xFFFFFF)]) {
+                if([[self.txtKillPwd backgroundColor] isEqual:UIColorFromRGB(0xFFFFFF)] || self.txtKillPwd.tag == -1) {
                     [self.txtKillPwd setBackgroundColor:UIColorFromRGB(0xFFB3B3)];
                 }
                 //refresh UI
@@ -788,12 +868,12 @@
                 result=[[CSLRfidAppEngine sharedAppEngine].reader E710StartTagMemoryWrite:TID dataOffset:tidOffset dataCount:tidWordCount writeData:[CSLBleReader convertHexStringToData:[self.txtTidUid text]] ACCPWD:accPwd maskBank:EPC maskPointer:32 maskLength:((UInt32)[self.txtSelectedEPC text].length * 4) maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]];
                 
                 for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
-                    if(![[self.txtTidUid backgroundColor] isEqual:UIColorFromRGB(0xFFFFFF)])
+                    if(![[self.txtTidUid backgroundColor] isEqual:UIColorFromRGB(0xFFFFFF)] || self.txtTidUid.tag == -1)
                         break;
                     [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.001]];
                 }
                 //set UI color to red if no tag access reponse returned
-                if([[self.txtTidUid backgroundColor] isEqual:UIColorFromRGB(0xFFFFFF)]) {
+                if([[self.txtTidUid backgroundColor] isEqual:UIColorFromRGB(0xFFFFFF)] || self.txtTidUid.tag == -1) {
                     [self.txtTidUid setBackgroundColor:UIColorFromRGB(0xFFB3B3)];
                 }
                 //refresh UI
@@ -828,12 +908,12 @@
                 result=[[CSLRfidAppEngine sharedAppEngine].reader E710StartTagMemoryWrite:USER dataOffset:userOffset dataCount:userWordCount writeData:[CSLBleReader convertHexStringToData:[self.txtUser text]] ACCPWD:accPwd maskBank:EPC maskPointer:32 maskLength:((UInt32)[self.txtSelectedEPC text].length * 4) maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]];
                 
                 for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
-                    if(![[self.txtUser backgroundColor] isEqual:UIColorFromRGB(0xFFFFFF)])
+                    if(![[self.txtUser backgroundColor] isEqual:UIColorFromRGB(0xFFFFFF)] || self.txtUser.tag == -1)
                         break;
                     [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.001]];
                 }
                 //set UI color to red if no tag access reponse returned
-                if([[self.txtUser backgroundColor] isEqual:UIColorFromRGB(0xFFFFFF)]) {
+                if([[self.txtUser backgroundColor] isEqual:UIColorFromRGB(0xFFFFFF)] || self.txtUser.tag == -1) {
                     [self.txtUser setBackgroundColor:UIColorFromRGB(0xFFB3B3)];
                 }
                 //refresh UI
@@ -1029,19 +1109,25 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         if (tag.AccessCommand == READ) {      //read command
             if (self->bankSelected == EPC && [CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber == CS710) {
-                if (self->swEPC.isOn && [tag.DATA length] > 4 && [self->txtEPC.text length] == 0) {
-                    self->txtEPC.text=[tag.DATA substringFromIndex:4];
+                if (tag.AccessError == 0x10 && tag.BackScatterError == 0x00) {
+                    if ([tag.DATA length] > 4 && self->swEPC.isOn) {
+                        self->txtEPC.text=[tag.DATA substringFromIndex:4];
+                    }
+                    if (self->swPC.isOn && [tag.DATA length] >= 4) {
+                        self->txtPC.text=[tag.DATA substringToIndex:4];
+                    }
                 }
-                if (self->swPC.isOn && [tag.DATA length] >= 4 && [self->txtPC.text length] == 0) {
-                    self->txtPC.text=[tag.DATA substringToIndex:4];
+                else {
+                    [self.txtEPC setTag:-1];    //set a -1 tag on the text field to indicate a failure
                 }
             }
             else if (self->bankSelected == TID) {
                 if ([CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber == CS710) {
-                    if ((tag.AccessError == 0x10) &&
-                        tag.BackScatterError == 0x00 &&
-                        self->swTidUid.isOn) {
+                    if ((tag.AccessError == 0x10) && tag.BackScatterError == 0x00 && self->swTidUid.isOn) {
                         self->txtTidUid.text=[tag.DATA copy];
+                    }
+                    else {
+                        [self.txtTidUid setTag:-1];    //set a -1 tag on the text field to indicate a failure
                     }
                 }
                 else {
@@ -1061,10 +1147,11 @@
             }
             else if (self->bankSelected == USER) {
                 if ([CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber == CS710) {
-                    if ((tag.AccessError == 0x10) &&
-                        tag.BackScatterError == 0x00 &&
-                        self->swUser.isOn) {
+                    if ((tag.AccessError == 0x10) && tag.BackScatterError == 0x00 && self->swUser.isOn) {
                         self->txtUser.text=[tag.DATA copy];
+                    }
+                    else {
+                        [self.txtUser setTag:-1];    //set a -1 tag on the text field to indicate a failure
                     }
                 }
                 else {
@@ -1080,10 +1167,11 @@
             }
             else if (self->bankSelected == RESERVED && self->memItem==mACCPWD) {
                 if ([CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber == CS710) {
-                    if ((tag.AccessError == 0x10) &&
-                        tag.BackScatterError == 0x00 &&
-                        self->swAccPwd.isOn) {
+                    if ((tag.AccessError == 0x10) && tag.BackScatterError == 0x00 && self->swAccPwd.isOn) {
                         self->txtAccPwd.text=[tag.DATA copy];
+                    }
+                    else {
+                        [self.txtAccPwd setTag:-1];    //set a -1 tag on the text field to indicate a failure
                     }
                 }
                 else {
@@ -1100,10 +1188,11 @@
             }
             else if (self->bankSelected == RESERVED && self->memItem==mKILLPWD) {
                 if ([CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber == CS710) {
-                    if ((tag.AccessError == 0x10) &&
-                        tag.BackScatterError == 0x00 &&
-                        self->swKillPwd.isOn) {
+                    if ((tag.AccessError == 0x10) && tag.BackScatterError == 0x00 && self->swKillPwd.isOn) {
                         self->txtKillPwd.text=[tag.DATA copy];
+                    }
+                    else {
+                        [self.txtKillPwd setTag:-1];    //set a -1 tag on the text field to indicate a failure
                     }
                 }
                 else {
@@ -1128,12 +1217,18 @@
                         tag.DATALength == [self.txtEPC.text length] / 4) {
                         [self.txtEPC setBackgroundColor:UIColorFromRGB(0xD1F2EB)];
                     }
+                    else {
+                        [self.txtEPC setTag:-1];    //set a -1 tag on the text field to indicate a failure
+                    }
                 }
                 else if (self->bankSelected == EPC && self->memItem == mPC) {
                     if ((tag.AccessError == 0x10) &&
                         tag.BackScatterError == 0x00 &&
                         tag.DATALength == [self.txtPC.text length] / 4) {
                         [self.txtPC setBackgroundColor:UIColorFromRGB(0xD1F2EB)];
+                    }
+                    else {
+                        [self.txtPC setTag:-1];    //set a -1 tag on the text field to indicate a failure
                     }
                 }
                 else if (self->bankSelected == RESERVED && self->memItem == mACCPWD) {
@@ -1142,12 +1237,18 @@
                         tag.DATALength == [self.txtAccPwd.text length] / 4) {
                         [self.txtAccPwd setBackgroundColor:UIColorFromRGB(0xD1F2EB)];
                     }
+                    else {
+                        [self.txtAccPwd setTag:-1];    //set a -1 tag on the text field to indicate a failure
+                    }
                 }
                 else if (self->bankSelected == RESERVED && self->memItem == mKILLPWD) {
                     if ((tag.AccessError == 0x10) &&
                         tag.BackScatterError == 0x00 &&
                         tag.DATALength == [self.txtKillPwd.text length] / 4) {
                         [self.txtKillPwd setBackgroundColor:UIColorFromRGB(0xD1F2EB)];
+                    }
+                    else {
+                        [self.txtKillPwd setTag:-1];    //set a -1 tag on the text field to indicate a failure
                     }
                 }
                 else if (self->bankSelected == USER && self->memItem == mUSER) {
@@ -1156,12 +1257,18 @@
                         tag.DATALength == [self.txtUser.text length] / 4) {
                         [self.txtUser setBackgroundColor:UIColorFromRGB(0xD1F2EB)];
                     }
+                    else {
+                        [self.txtUser setTag:-1];    //set a -1 tag on the text field to indicate a failure
+                    }
                 }
                 else if (self->bankSelected == TID && self->memItem == mTID) {
                     if ((tag.AccessError == 0x10) &&
                         tag.BackScatterError == 0x00 &&
                         tag.DATALength == [self.txtTidUid.text length] / 4) {
                         [self.txtTidUid setBackgroundColor:UIColorFromRGB(0xD1F2EB)];
+                    }
+                    else {
+                        [self.txtTidUid setTag:-1];    //set a -1 tag on the text field to indicate a failure
                     }
                 }
             }
