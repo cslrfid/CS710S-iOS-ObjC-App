@@ -198,7 +198,7 @@
         [[CSLRfidAppEngine sharedAppEngine] soundAlert:1033];
         btnInventory.enabled=false;
         //start inventory
-        [[CSLRfidAppEngine sharedAppEngine].reader startInventory];
+        [[CSLRfidAppEngine sharedAppEngine].reader E710StartSelectMBInventory];
         [btnInventory setTitle:@"Stop" forState:UIControlStateNormal];
         btnInventory.enabled=true;
     }
@@ -297,11 +297,30 @@
             [tableView registerNib:[UINib nibWithNibName:@"CSLTagListCell" bundle:nil] forCellReuseIdentifier:@"TagCell"];
             cell = [tableView dequeueReusableCellWithIdentifier:@"TagCell"];
         }
-        cell.lbCellEPC.text = [NSString stringWithFormat:@"%d \u25CF %@", (int)(indexPath.row + 1), epc];
-        if ([CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber == CS463)
-            cell.lbCellBank.text= [NSString stringWithFormat:@"RSSI: %d | Port: %d", rssi, portNumber+1];
-        else
-            cell.lbCellBank.text= [NSString stringWithFormat:@"RSSI: %d", rssi];
+              
+        if (data1 != NULL && data2 != NULL ) {
+            cell.lbCellEPC.text = [NSString stringWithFormat:@"%d \u25CF %@", (int)(indexPath.row + 1), epc];
+            if ([CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber == CS463)
+                cell.lbCellBank.text= [NSString stringWithFormat:@"%@=%@\n%@=%@\nRSSI: %d | Port: %d", data1bank, data1, data2bank, data2, rssi, portNumber+1];
+            else
+                cell.lbCellBank.text= [NSString stringWithFormat:@"%@=%@\n%@=%@\nRSSI: %d", data1bank, data1, data2bank, data2, rssi];
+        }
+        else if (data1 != NULL) {
+            cell.lbCellEPC.text = [NSString stringWithFormat:@"%d \u25CF %@", (int)(indexPath.row + 1), epc];
+            cell.lbCellBank.text= [NSString stringWithFormat:@"%@=%@\nRSSI: %d", data1bank, data1, rssi];
+            if ([CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber == CS463)
+                cell.lbCellBank.text= [NSString stringWithFormat:@"%@=%@\nRSSI: %d | Port: %d", data1bank, data1, rssi, portNumber+1];
+            else
+                cell.lbCellBank.text= [NSString stringWithFormat:@"%@=%@\nRSSI: %d", data1bank, data1, rssi];
+        }
+        else {
+            cell.lbCellEPC.text = [NSString stringWithFormat:@"%d \u25CF %@", (int)(indexPath.row + 1), epc];
+            if ([CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber == CS463)
+                cell.lbCellBank.text= [NSString stringWithFormat:@"RSSI: %d | Port: %d", rssi, portNumber+1];
+            else
+                cell.lbCellBank.text= [NSString stringWithFormat:@"RSSI: %d", rssi];
+            
+        }
             
 
     }
