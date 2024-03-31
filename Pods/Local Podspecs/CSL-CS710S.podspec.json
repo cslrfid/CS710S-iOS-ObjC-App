@@ -1,6 +1,6 @@
 {
   "name": "CSL-CS710S",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "summary": "CocoaPod Framework for CSL CS710 SDK",
   "description": "CSL SDK Library Framework, a library for CS710 RFID handheld devices",
   "homepage": "https://github.com/cslrfid/CSL-CS710S",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/cslrfid/CSL-CS710S.git",
-    "tag": "1.4.0"
+    "tag": "1.5.0"
   },
   "source_files": [
     "Classes",
