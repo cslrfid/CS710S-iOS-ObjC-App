@@ -249,7 +249,7 @@
     // Do any additional setup after loading the view.
     [CSLReaderConfigurations setAntennaPortsAndPowerForTags:false];
     [CSLReaderConfigurations setConfigurationsForClearAllSelectionsAndMultibanks];
-    [CSLReaderConfigurations setConfigurationsForTags];
+    [CSLReaderConfigurations setConfigurationsForTags:self.swLEDTag.isOn];
     self.view.userInteractionEnabled=true;
     [self.actInventorySpinner stopAnimating];
 }
@@ -338,7 +338,11 @@
         // 3) Mulitbank inventory with no filtering (E710StartMBInventory)
         // 4) Single bank inventory with filtering (E710StartSelectCompactInventory)
         [[CSLRfidAppEngine sharedAppEngine].reader setPowerMode:false];
-        if ([CSLRfidAppEngine sharedAppEngine].settings.isMultibank1Enabled &&
+        if (self.swLEDTag.isOn && 
+            [CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber == CS710) {
+            [[CSLRfidAppEngine sharedAppEngine].reader E710StartSelectMBInventory];
+        }
+        else if ([CSLRfidAppEngine sharedAppEngine].settings.isMultibank1Enabled &&
                  [CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber == CS710 &&
                  [CSLRfidAppEngine sharedAppEngine].settings.prefilterIsEnabled) {
             [[CSLRfidAppEngine sharedAppEngine].reader E710StartSelectMBInventory];
@@ -386,6 +390,17 @@
 
 - (IBAction)btnClearTable:(id)sender {
     [self ClearTable];
+}
+
+- (IBAction)swLEDTagToggled:(id)sender {
+    self.view.userInteractionEnabled=false;
+    [self.actInventorySpinner startAnimating];
+    [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.0]];
+    //[CSLReaderConfigurations setAntennaPortsAndPowerForTags:false];
+    [CSLReaderConfigurations setConfigurationsForClearAllSelectionsAndMultibanks];
+    [CSLReaderConfigurations setConfigurationsForTags:self.swLEDTag.isOn];
+    self.view.userInteractionEnabled=true;
+    [self.actInventorySpinner stopAnimating];
 }
 
 - (IBAction)btnTagDispalyPressed:(id)sender {
@@ -536,14 +551,14 @@
             cell = [tableView dequeueReusableCellWithIdentifier:@"TagCell"];
         }
               
-        if (data1 != NULL && data2 != NULL ) {
+        if (data1 != NULL && data2 != NULL && !self.swLEDTag.isOn ) {
             cell.lbCellEPC.text = [NSString stringWithFormat:@"%d \u25CF %@", (int)(indexPath.row + 1), (IsAsciiDisplay ? [CSLReaderBarcode convertHexStringToAscii:epc] : epc)];
             if ([CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber == CS463)
                 cell.lbCellBank.text= [NSString stringWithFormat:@"%@=%@\n%@=%@\nRSSI: %d | Port: %d", data1bank, (IsAsciiDisplay ? [CSLReaderBarcode convertHexStringToAscii:data1] : data1), data2bank, (IsAsciiDisplay ? [CSLReaderBarcode convertHexStringToAscii:data2] : data2), rssi, portNumber+1];
             else
                 cell.lbCellBank.text= [NSString stringWithFormat:@"%@=%@\n%@=%@\nRSSI: %d", data1bank, (IsAsciiDisplay ? [CSLReaderBarcode convertHexStringToAscii:data1] : data1), data2bank, (IsAsciiDisplay ? [CSLReaderBarcode convertHexStringToAscii:data2] : data2), rssi];
         }
-        else if (data1 != NULL) {
+        else if (data1 != NULL && !self.swLEDTag.isOn ) {
             cell.lbCellEPC.text = [NSString stringWithFormat:@"%d \u25CF %@", (int)(indexPath.row + 1), (IsAsciiDisplay ? [CSLReaderBarcode convertHexStringToAscii:epc] : epc)];
             cell.lbCellBank.text= [NSString stringWithFormat:@"%@=%@\nRSSI: %d", data1bank, (IsAsciiDisplay ? [CSLReaderBarcode convertHexStringToAscii:data1] : data1), rssi];
             if ([CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber == CS463)

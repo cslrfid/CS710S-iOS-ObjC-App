@@ -27,12 +27,14 @@
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *actInventorySpinner;
 @property (weak, nonatomic) IBOutlet UILabel *lbElapsedTime;
 @property (weak, nonatomic) IBOutlet UIButton *btnTagDisplay;
+@property (weak, nonatomic) IBOutlet UISwitch *swLEDTag;
 
 - (IBAction)btnInventoryPressed:(id)sender;
 - (IBAction)btnClearTable:(id)sender;
 - (IBAction)btnSendTagData:(id)sender;
 - (IBAction)btnSaveData:(id)sender;
 - (IBAction)btnTagDispalyPressed:(id)sender;
+- (IBAction)swLEDTagToggled:(id)sender;
 
 
 @end
