@@ -8,11 +8,14 @@
 
 #import "CSLImpinjInventoryVC.h"
 #import <AudioToolbox/AudioToolbox.h>
+#import "CSLImpinjAuthenticationVC.h"
 
 @interface CSLImpinjInventoryVC ()
 {
     NSTimer * scrRefreshTimer;
     NSTimer * scrBeepTimer;
+    NSString* selectedEPC;
+    NSString* selectedTID;
 }
 
 - (NSString*)bankEnumToString:(MEMORYBANK)bank;
@@ -38,6 +41,9 @@
     
     tblTagList.estimatedRowHeight=45.0;
     tblTagList.rowHeight = UITableViewAutomaticDimension;
+    
+    selectedEPC = @"";
+    selectedTID = @"";
     
 }
 
@@ -122,7 +128,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     // Do any additional setup after loading the view.
-    [CSLReaderConfigurations setAntennaPortsAndPowerForTags:false];
+    [CSLReaderConfigurations setAntennaPortsAndPowerForTagAccess:false];
     [CSLReaderConfigurations setConfigurationsForClearAllSelectionsAndMultibanks];
     [CSLReaderConfigurations setConfigurationsForImpinjTags];
     self.view.userInteractionEnabled=true;
@@ -231,6 +237,16 @@
 
 - (IBAction)btnAuthenticationPressed:(id)sender {
 
+    CSLImpinjAuthenticationVC* authVC;
+    authVC = (CSLImpinjAuthenticationVC*)[[UIStoryboard storyboardWithName:@"CSLRfidDemoApp" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"ID_ImpinjAuthenticationVC"];
+    
+    if (authVC != nil)
+    {
+        authVC.selectedEPC = selectedEPC;
+        authVC.selectedTID = selectedTID;
+        [[self navigationController] pushViewController:authVC animated:YES];
+    }
+    
 }
 
 - (IBAction)btnProtectedModePressed:(id)sender {
@@ -350,10 +366,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if ([[[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer objectAtIndex:indexPath.row] isKindOfClass:[CSLBleTag class]])
-        [CSLRfidAppEngine sharedAppEngine].tagSelected= ((CSLBleTag*)[[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer objectAtIndex:indexPath.row]).EPC;
-    else if ([[[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer objectAtIndex:indexPath.row] isKindOfClass:[CSLReaderBarcode class]])
-        [CSLRfidAppEngine sharedAppEngine].tagSelected= ((CSLReaderBarcode*)[[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer objectAtIndex:indexPath.row]).barcodeValue;
+    if ([[[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer objectAtIndex:indexPath.row] isKindOfClass:[CSLBleTag class]]) {
+        //[CSLRfidAppEngine sharedAppEngine].tagSelected= ((CSLBleTag*)[[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer objectAtIndex:indexPath.row]).EPC;
+        selectedEPC = ((CSLBleTag*)[[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer objectAtIndex:indexPath.row]).EPC;
+        selectedTID = ((CSLBleTag*)[[CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer objectAtIndex:indexPath.row]).DATA1;
+    }
     else
         [CSLRfidAppEngine sharedAppEngine].tagSelected=@"";
         

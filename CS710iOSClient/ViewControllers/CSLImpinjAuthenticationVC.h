@@ -14,13 +14,21 @@ NS_ASSUME_NONNULL_BEGIN
 @interface CSLImpinjAuthenticationVC : UIViewController<CSLBleInterfaceDelegate, CSLBleReaderDelegate, UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *txtSelectedEPC;
+@property (weak, nonatomic) IBOutlet UITextField *txtSelectedTID;
 @property (weak, nonatomic) IBOutlet UITextField *txtAccessPwd;
-@property (weak, nonatomic) IBOutlet UITextField *txtAuthenticatedResult;
-@property (weak, nonatomic) IBOutlet UIButton *btnAuthenticatedRead;
+@property (weak, nonatomic) IBOutlet UIButton *btnVerify;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *actIASVerifyIndicator;
+@property (weak, nonatomic) IBOutlet UIButton *btnIASStatus;
+@property (weak, nonatomic) IBOutlet UIImageView *imgIASStatus;
 
-- (IBAction)btnAuthenticatedReadPressed:(id)sender;
+@property (nonatomic, strong) NSString* selectedEPC;
+@property (nonatomic, strong) NSString* selectedTID;
+
+- (IBAction)btnVerifyPressed:(id)sender;
 - (IBAction)txtAccessPwdEditied:(id)sender;
 - (IBAction)txtSelectedEPCEdited:(id)sender;
+- (IBAction)txtSelectedTIDEdited:(id)sender;
+- (IBAction)btnIasConfigurations:(id)sender;
 
 @end
 
