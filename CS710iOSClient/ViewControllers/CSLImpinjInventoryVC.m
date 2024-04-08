@@ -35,9 +35,17 @@
     // Do any additional setup after loading the view.
     [self.tabBarController setTitle:@"Inventory"];
     
-    btnInventory.layer.borderWidth=1.0f;
-    btnInventory.layer.borderColor=[UIColor clearColor].CGColor;
-    btnInventory.layer.cornerRadius=5.0f;
+    self.btnInventory.layer.borderWidth=1.0f;
+    self.btnInventory.layer.borderColor=[UIColor clearColor].CGColor;
+    self.btnInventory.layer.cornerRadius=5.0f;
+    
+    self.btnAuthenticate.layer.borderWidth=1.0f;
+    self.btnAuthenticate.layer.borderColor=[UIColor clearColor].CGColor;
+    self.btnAuthenticate.layer.cornerRadius=5.0f;
+    
+    self.btnProtectedMode.layer.borderWidth=1.0f;
+    self.btnProtectedMode.layer.borderColor=[UIColor clearColor].CGColor;
+    self.btnProtectedMode.layer.cornerRadius=5.0f;
     
     tblTagList.estimatedRowHeight=45.0;
     tblTagList.rowHeight = UITableViewAutomaticDimension;

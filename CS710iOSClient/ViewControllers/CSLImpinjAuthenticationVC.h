@@ -19,7 +19,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *btnVerify;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *actIASVerifyIndicator;
 @property (weak, nonatomic) IBOutlet UIButton *btnIASStatus;
+@property (weak, nonatomic) IBOutlet UIButton *btnIASConfiguration;
 @property (weak, nonatomic) IBOutlet UIImageView *imgIASStatus;
+
 
 @property (nonatomic, strong) NSString* selectedEPC;
 @property (nonatomic, strong) NSString* selectedTID;
@@ -28,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (IBAction)txtAccessPwdEditied:(id)sender;
 - (IBAction)txtSelectedEPCEdited:(id)sender;
 - (IBAction)txtSelectedTIDEdited:(id)sender;
-- (IBAction)btnIasConfigurations:(id)sender;
+- (IBAction)btnIASConfigurationPressed:(id)sender;
 
 @end
 

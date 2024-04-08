@@ -5724,9 +5724,9 @@ EEFjY2VzcyBQYXNzd29yZA
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="17"/>
                                 <color key="tintColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="IAS Configurations"/>
+                                <state key="normal" title="IAS Login"/>
                                 <connections>
-                                    <action selector="btnIasConfigurations:" destination="a52-Sb-eOo" eventType="touchUpInside" id="NQc-Jq-gzi"/>
+                                    <action selector="btnIASConfigurationPressed:" destination="a52-Sb-eOo" eventType="touchUpInside" id="AuY-HI-Xka"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -5756,6 +5756,7 @@ EEFjY2VzcyBQYXNzd29yZA
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="actIASVerifyIndicator" destination="N5D-J4-cQU" id="41X-cg-hae"/>
+                        <outlet property="btnIASConfiguration" destination="HUT-y5-0OS" id="RWz-WJ-hLn"/>
                         <outlet property="btnIASStatus" destination="UZH-sp-o7I" id="ZLp-Fv-tcV"/>
                         <outlet property="btnVerify" destination="xQd-1c-P95" id="lMB-q0-5Tg"/>
                         <outlet property="imgIASStatus" destination="sQA-Jj-26y" id="55B-xV-iNW"/>
@@ -5768,117 +5769,142 @@ EEFjY2VzcyBQYXNzd29yZA
             </objects>
             <point key="canvasLocation" x="-292" y="1377"/>
         </scene>
-        <!--CslRfid IASConfigVC-->
-        <scene sceneID="NTq-fW-d9f">
+        <!--Impinj Authentication LoginVC-->
+        <scene sceneID="3i5-CU-ZgC">
             <objects>
-                <viewController storyboardIdentifier="ID_IASConfigurationsVC" id="h8J-ts-Ukd" userLabel="CslRfid IASConfigVC" customClass="CSLPostfilterVC" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Atq-7H-a3E">
+                <viewController storyboardIdentifier="ID_ImpinjAuthenticationLoginVC" id="LZg-h8-Z1V" customClass="CSLImpinjAuthenticationLoginVC" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Wvv-Sb-V35">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Tfn-El-eNw">
-                                <rect key="frame" x="5" y="45" width="365" height="235.5"/>
+                            <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="TBi-KK-CBH" userLabel="Authentication Login Elements">
+                                <rect key="frame" x="5" y="20" width="365" height="210"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="IAS Configurations" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iqB-ue-a3b">
-                                        <rect key="frame" x="0.0" y="0.0" width="365" height="20.5"/>
-                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W3u-Uz-8cF">
-                                        <rect key="frame" x="0.0" y="40.5" width="365" height="34"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Yn-X9-wsH" userLabel="Title">
+                                        <rect key="frame" x="0.0" y="0.0" width="365" height="50"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="URL: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CHc-WF-kTw">
-                                                <rect key="frame" x="0.0" y="0.0" width="40" height="34"/>
-                                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="17"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="IAS Service Endpoint" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="43U-1i-sXa" userLabel="URL">
+                                                <rect key="frame" x="0.0" y="0.0" width="365" height="50"/>
+                                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="https://democloud.convergence.com.hk/ias/" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="65Q-cO-WfA">
-                                                <rect key="frame" x="40" y="0.0" width="325" height="34"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                                <connections>
-                                                    <action selector="txtMaskChanged:" destination="h8J-ts-Ukd" eventType="editingDidEnd" id="OlV-D1-Fta"/>
-                                                </connections>
-                                            </textField>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="wO9-d6-DVs"/>
+                                        </constraints>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8gn-3y-6jc">
-                                        <rect key="frame" x="0.0" y="94.5" width="365" height="34"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wdg-NX-iiV" userLabel="URL: ">
+                                        <rect key="frame" x="0.0" y="55" width="365" height="35"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hxh-Qg-c2Z">
-                                                <rect key="frame" x="0.0" y="0.0" width="49" height="34"/>
-                                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="17"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="URL: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eX9-hZ-6ZM" userLabel="URL">
+                                                <rect key="frame" x="0.0" y="0.0" width="50" height="35"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="50" id="3Aq-B1-bI9"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fk1-l2-f8E" userLabel="Email text">
-                                                <rect key="frame" x="49" y="0.0" width="316" height="34"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="https://democloud.convergence.com.hk/ias" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zfF-5W-UZo" userLabel="URL Text">
+                                                <rect key="frame" x="50" y="0.0" width="315" height="35"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                                <connections>
-                                                    <action selector="txtOffsetChanged:" destination="h8J-ts-Ukd" eventType="editingDidEnd" id="6vc-Kn-Q4G"/>
-                                                </connections>
+                                                <textInputTraits key="textInputTraits" textContentType="url"/>
                                             </textField>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="CQY-TK-mc3"/>
+                                        </constraints>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SHZ-wk-xEz">
-                                        <rect key="frame" x="0.0" y="148.5" width="365" height="34"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gTW-Xy-vkU">
+                                        <rect key="frame" x="0.0" y="95" width="365" height="35"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eUZ-AL-P94">
-                                                <rect key="frame" x="0.0" y="0.0" width="80" height="34"/>
-                                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="17"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1GO-xO-fuN">
+                                                <rect key="frame" x="0.0" y="0.0" width="100" height="35"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="100" id="00V-Rs-o0E"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Omu-FF-4VC" userLabel="Password text">
-                                                <rect key="frame" x="80" y="0.0" width="285" height="34"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="llQ-s1-FAb">
+                                                <rect key="frame" x="100" y="0.0" width="265" height="35"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                                <connections>
-                                                    <action selector="txtOffsetChanged:" destination="h8J-ts-Ukd" eventType="editingDidEnd" id="zpS-JA-MPu"/>
-                                                </connections>
+                                                <textInputTraits key="textInputTraits" textContentType="email"/>
                                             </textField>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="6bH-Vd-z1m"/>
+                                        </constraints>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MuG-Ad-ekk">
-                                        <rect key="frame" x="0.0" y="202.5" width="365" height="33"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oa6-vK-sRm">
+                                        <rect key="frame" x="0.0" y="135" width="365" height="35"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rL5-EQ-XBh">
-                                                <rect key="frame" x="0.0" y="0.0" width="365" height="33"/>
-                                                <color key="backgroundColor" red="0.33333333329999998" green="0.50980392159999999" blue="0.77647058820000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GYv-A6-aUL">
+                                                <rect key="frame" x="0.0" y="0.0" width="100" height="35"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="100" id="3Zo-gx-IxS"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="COB-hS-lwV">
+                                                <rect key="frame" x="100" y="0.0" width="265" height="35"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                                            </textField>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="pQ9-lw-16y"/>
+                                        </constraints>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kp5-GY-Ah1">
+                                        <rect key="frame" x="0.0" y="175" width="365" height="35"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bPq-o0-DXG">
+                                                <rect key="frame" x="0.0" y="0.0" width="365" height="35"/>
+                                                <color key="backgroundColor" red="0.29411764709999999" green="0.46666666670000001" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="17"/>
-                                                <state key="normal" title="Save">
-                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                </state>
+                                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Login"/>
                                                 <connections>
-                                                    <action selector="btnSavePressed:" destination="h8J-ts-Ukd" eventType="touchUpInside" id="Hvt-Ox-qaT"/>
+                                                    <action selector="btnLoginPressed:" destination="LZg-h8-Z1V" eventType="touchUpInside" id="wig-Mb-sPq"/>
                                                 </connections>
                                             </button>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="Qam-Vl-bjs"/>
+                                        </constraints>
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <activityIndicatorView hidden="YES" opaque="NO" tag="99" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="i2f-eE-QRT" userLabel="ActAuthenticationLogin">
+                                <rect key="frame" x="169" y="315" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="FCc-qj-dA9"/>
+                        <viewLayoutGuide key="safeArea" id="LxI-vJ-GkM"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="FCc-qj-dA9" firstAttribute="trailing" secondItem="Tfn-El-eNw" secondAttribute="trailing" constant="5" id="GWD-YD-UoQ"/>
-                            <constraint firstItem="Tfn-El-eNw" firstAttribute="leading" secondItem="FCc-qj-dA9" secondAttribute="leading" constant="5" id="rdU-EZ-FlX"/>
-                            <constraint firstItem="Tfn-El-eNw" firstAttribute="top" secondItem="FCc-qj-dA9" secondAttribute="top" constant="25" id="teW-31-By1"/>
+                            <constraint firstItem="LxI-vJ-GkM" firstAttribute="trailing" secondItem="TBi-KK-CBH" secondAttribute="trailing" constant="5" id="Avq-P9-j38"/>
+                            <constraint firstItem="TBi-KK-CBH" firstAttribute="leading" secondItem="Wvv-Sb-V35" secondAttribute="leading" constant="5" id="mdP-Pc-E0z"/>
+                            <constraint firstItem="TBi-KK-CBH" firstAttribute="top" secondItem="LxI-vJ-GkM" secondAttribute="top" id="v1K-Me-Zcg"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Post-filter" image="filter-icon" landscapeImage="filter-icon" largeContentSizeImage="filter-icon" id="fuT-As-a67"/>
                     <connections>
-                        <outlet property="btnSave" destination="rL5-EQ-XBh" id="UzG-mD-2jn"/>
-                        <outlet property="txtMask" destination="65Q-cO-WfA" id="Oo1-iq-0Me"/>
-                        <outlet property="txtOffset" destination="fk1-l2-f8E" id="lUm-zV-uKl"/>
+                        <outlet property="actAuthenticationLogin" destination="i2f-eE-QRT" id="Q5C-vg-3p0"/>
+                        <outlet property="txtEmailAddress" destination="llQ-s1-FAb" id="yB9-sE-Qzd"/>
+                        <outlet property="txtPassword" destination="COB-hS-lwV" id="n1m-4h-K0H"/>
+                        <outlet property="txtUrl" destination="zfF-5W-UZo" id="KaM-52-1iW"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gDv-Z5-r29" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eYa-iJ-L8R" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="358" y="1377"/>
+            <point key="canvasLocation" x="382" y="1377"/>
         </scene>
     </scenes>
     <resources>
