@@ -5881,9 +5881,8 @@ EEFjY2VzcyBQYXNzd29yZA
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <activityIndicatorView hidden="YES" opaque="NO" tag="99" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="i2f-eE-QRT" userLabel="ActAuthenticationLogin">
+                            <activityIndicatorView hidden="YES" opaque="NO" tag="99" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="i2f-eE-QRT" userLabel="ActAuthenticationLogin">
                                 <rect key="frame" x="169" y="315" width="37" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
                         </subviews>
@@ -5891,7 +5890,9 @@ EEFjY2VzcyBQYXNzd29yZA
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="LxI-vJ-GkM" firstAttribute="trailing" secondItem="TBi-KK-CBH" secondAttribute="trailing" constant="5" id="Avq-P9-j38"/>
+                            <constraint firstItem="i2f-eE-QRT" firstAttribute="centerY" secondItem="Wvv-Sb-V35" secondAttribute="centerY" id="i0J-nR-xrG"/>
                             <constraint firstItem="TBi-KK-CBH" firstAttribute="leading" secondItem="Wvv-Sb-V35" secondAttribute="leading" constant="5" id="mdP-Pc-E0z"/>
+                            <constraint firstItem="i2f-eE-QRT" firstAttribute="centerX" secondItem="Wvv-Sb-V35" secondAttribute="centerX" id="opS-j6-QTG"/>
                             <constraint firstItem="TBi-KK-CBH" firstAttribute="top" secondItem="LxI-vJ-GkM" secondAttribute="top" id="v1K-Me-Zcg"/>
                         </constraints>
                     </view>
@@ -5946,7 +5947,7 @@ EEFjY2VzcyBQYXNzd29yZA
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGrayColor">
-            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

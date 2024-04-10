@@ -11,6 +11,7 @@
 
 @interface CSLImpinjAuthenticationVC ()
 {
+    BOOL tagValidation;
 }
 @end
 
@@ -83,6 +84,12 @@
 }
 
 - (IBAction)btnVerifyPressed:(id)sender {
+    
+//    [self ImpinjIasAuthenticate:[CSLRfidAppEngine sharedAppEngine].settings.IasUrl
+//                            TID:@"e2c0e52320004000e9fbd3a3" challenge:@"023beea5f4f7" tagResponse:@"5781d0fed5119d7d"];
+//    [self->imgIASStatus setImage:[UIImage imageNamed:@"verified-box"]];
+//    [self->btnIASStatus setBackgroundColor:UIColorFromRGB(0x26A65B)];
+//    [self->btnIASStatus setTitle:@"VALID" forState:UIControlStateNormal];
     
     if ([self.txtSelectedEPC.text isEqualToString:@""] || [self.txtSelectedTID.text isEqualToString:@""]) {
         UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Impinj Authentication" message:@"No EPC/TID information" preferredStyle:UIAlertControllerStyleAlert];
@@ -221,9 +228,22 @@
             [self presentViewController:alert animated:YES completion:nil];
         }
         else if (tag.AccessError == 0x10 && tag.BackScatterError == 0x00) {
-            [self->imgIASStatus setImage:[UIImage imageNamed:@"verified-box"]];
-            [self->btnIASStatus setBackgroundColor:UIColorFromRGB(0x26A65B)];
-            [self->btnIASStatus setTitle:@"VALID" forState:UIControlStateNormal];
+            
+            //verify against IAS service
+            
+            [self ImpinjIasAuthenticate:[CSLRfidAppEngine sharedAppEngine].settings.IasUrl
+                                    TID:@"e2c0e52320004000e9fbd3a3" challenge:@"023beea5f4f7" tagResponse:@"5781d0fed5119d7d"];
+            
+            if (self->tagValidation) {
+                [self->imgIASStatus setImage:[UIImage imageNamed:@"verified-box"]];
+                [self->btnIASStatus setBackgroundColor:UIColorFromRGB(0x26A65B)];
+                [self->btnIASStatus setTitle:@"VALID" forState:UIControlStateNormal];
+            }
+            else {
+                [self->imgIASStatus setImage:[UIImage imageNamed:@"invalid-box"]];
+                [self->btnIASStatus setBackgroundColor:UIColorFromRGB(0xd63031)];
+                [self->btnIASStatus setTitle:@"INVALID" forState:UIControlStateNormal];
+            }
         }
     });
     
@@ -249,5 +269,71 @@
 }
 
 
+- (BOOL) ImpinjIasAuthenticate:(NSString*)url TID:(NSString*)tid challenge:(NSString*)challenge tagResponse:(NSString*)tag_response {
+    
+    NSURLSessionConfiguration *defaultSessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:defaultSessionConfiguration];
+    
+    NSURL *endpoint = [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/ImpinjAuthentication/authenticate", url]];
+    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:endpoint];
+    
+    //Make an NSDictionary that would be converted to an NSData object sent over as JSON with the request body
+    NSDictionary *tagVerifyObject = [[NSDictionary alloc] initWithObjectsAndKeys:
+                         tid, @"tid", challenge, @"challenge", tag_response, @"tagResponse",
+                         nil];
+    
+    NSDictionary *postObject = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                [NSArray arrayWithObjects:tagVerifyObject, nil], @"tagVerify", @YES, @"sendSignature", @YES, @"sendSalt", @YES, @"sendTime",
+                         nil];
+    
+    NSError *error;
+    NSData *postData = [NSJSONSerialization dataWithJSONObject:postObject options:0 error:&error];
+    
+    NSDictionary *headers = @{ @"Content-type": @"application/json",
+                               @"Authorization": [NSString stringWithFormat:@"Bearer %@", [CSLRfidAppEngine sharedAppEngine].settings.IasToken]};
+    [urlRequest setAllHTTPHeaderFields:headers];
+    [urlRequest setHTTPMethod:@"POST"];
+    [urlRequest setHTTPBody:postData];
+    
+    __block BOOL done = NO;
+    NSURLSessionDataTask *dataTask = [defaultSession dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
 
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+        if (httpResponse.statusCode == 200 && error == NULL) {
+            NSLog(@"Auth response: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+            
+            //Check result
+            NSDictionary  *object = [NSJSONSerialization
+                                         JSONObjectWithData:data
+                                         options:0
+                                         error:&error];
+
+            if ([object objectForKey:@"tagValidity"] != NULL) {
+                if ([((NSArray*)[object objectForKey:@"tagValidity"])[0] objectForKey:@"tagValid"]) {
+                    self->tagValidation = true;
+                }
+                else {
+                    self->tagValidation = false;
+                }
+                NSLog(@"%@", [NSString stringWithFormat:@"Tag valid: %s", (self->tagValidation ? "true" : "false")]);
+                
+            }
+                
+            
+        }
+        else {
+            NSLog(@"Authentication failed");
+        }
+            
+        done = YES;
+    }];
+    [dataTask resume];
+
+    while (!done) {
+        NSDate *date = [[NSDate alloc] initWithTimeIntervalSinceNow:0.1];
+        [[NSRunLoop currentRunLoop] runUntilDate:date];
+    }
+    
+    return true;
+}
 @end

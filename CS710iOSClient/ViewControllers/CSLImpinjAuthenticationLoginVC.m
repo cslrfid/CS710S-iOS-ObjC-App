@@ -10,6 +10,7 @@
 
 @interface CSLImpinjAuthenticationLoginVC ()
 {
+    NSString* ApiErrorMessage;
 }
 @end
 
@@ -93,6 +94,18 @@
     
     [self ImpinjIasLogin:self.txtUrl.text emailAddress:self.txtEmailAddress.text password:self.txtPassword.text];
     
+    if ([[CSLRfidAppEngine sharedAppEngine].settings.IasToken isEqualToString:@""] || [CSLRfidAppEngine sharedAppEngine].settings.IasTokenExpiry == 0) {
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Impinj Authentication" message:[NSString stringWithFormat:@"Login Failed: %@", ApiErrorMessage] preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+        [alert addAction:ok];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+    else {
+        //pop view model
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    
     self.view.userInteractionEnabled=true;
     [self.actAuthenticationLogin stopAnimating];
     
@@ -111,8 +124,6 @@
                          email_address, @"email", password, @"password",
                          nil];
     
-    //NSString *postParams = [NSString stringWithFormat:@"{ \"email\": \"%@\", \"password\": \"%@\" }", email_address, password];
-    //NSData *postData = [postParams dataUsingEncoding:NSUTF8StringEncoding];
     NSError *error;
     NSData *postData = [NSJSONSerialization dataWithJSONObject:tmp options:0 error:&error];
     
@@ -123,9 +134,42 @@
     
     __block BOOL done = NO;
     NSURLSessionDataTask *dataTask = [defaultSession dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        NSLog(@"Response: %@",response);
-        NSLog(@"Data: %@",[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-        NSLog(@"Error: %@",error);
+
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+        if (httpResponse.statusCode == 200 && error == NULL) {
+            [CSLRfidAppEngine sharedAppEngine].settings.IasToken = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            NSLog(@"Auth Token: %@",[CSLRfidAppEngine sharedAppEngine].settings.IasToken);
+            //parse jwt and get expiry date
+            NSArray *parts = [[CSLRfidAppEngine sharedAppEngine].settings.IasToken componentsSeparatedByString: @"."];
+            //create NSData and put in the fill character "="
+            NSData *decodeData = [[NSData alloc] initWithBase64EncodedString:[NSString stringWithFormat:@"%@=", parts[1]] options:NSDataBase64DecodingIgnoreUnknownCharacters];
+            NSString *decodedString = [[NSString alloc] initWithData:decodeData encoding:NSUTF8StringEncoding];
+            NSLog(@"Decoded token: %@", decodedString);
+            NSDictionary  *object = [NSJSONSerialization
+                                         JSONObjectWithData:decodeData
+                                         options:0
+                                         error:&error];
+
+            if ([object objectForKey:@"exp"] != NULL) {
+                [CSLRfidAppEngine sharedAppEngine].settings.IasTokenExpiry=[[object objectForKey:@"exp"] intValue];
+                NSLog(@"Auth Token Expiry: %d",[CSLRfidAppEngine sharedAppEngine].settings.IasTokenExpiry);
+                [CSLRfidAppEngine sharedAppEngine].settings.IasUrl = url;
+                [[CSLRfidAppEngine sharedAppEngine] saveSettingsToUserDefaults];
+            }
+            else {
+                [CSLRfidAppEngine sharedAppEngine].settings.IasToken = @"";
+                [CSLRfidAppEngine sharedAppEngine].settings.IasTokenExpiry = 0;
+                self->ApiErrorMessage = @"";
+                
+            }
+        }
+        else {
+            NSLog(@"Authentication failed");
+            [CSLRfidAppEngine sharedAppEngine].settings.IasToken = @"";
+            [CSLRfidAppEngine sharedAppEngine].settings.IasTokenExpiry = 0;
+            self->ApiErrorMessage = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        }
+            
         done = YES;
     }];
     [dataTask resume];
