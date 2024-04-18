@@ -139,13 +139,20 @@
             [self->rollingAvgRssi enqObject:tag];
         }
         
-        self->_gaugeView.value=[self->rollingAvgRssi calculateRollingAverage];
+        if([CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber == CS710) {
+            NSLog(@"Gauage value: %f", ([self->rollingAvgRssi calculateRollingAverage] / 75.00) * 100.00);
+            self->_gaugeView.value=([self->rollingAvgRssi calculateRollingAverage] / 75.00) * 100.00;
+        }
+        else {
+            self->_gaugeView.value=[self->rollingAvgRssi calculateRollingAverage];
+        }
+        
         if (self->_gaugeView.value > (self->_gaugeView.maxValue * 0.8))
             self->_gaugeView.ringColor=UIColor.redColor;
         else
             self->_gaugeView.ringColor=[UIColor colorWithRed:76.0/255 green:217.0/255 blue:100.0/255 alpha:1];
         
-        NSLog(@"Tag Search with average RRSI = %f",self->_gaugeView.value);
+        NSLog(@"Tag Search with average RRSI = %d", [self->rollingAvgRssi calculateRollingAverage]);
         self->tagLastFoundTime=[NSDate date];
     });
 }
@@ -183,6 +190,9 @@
     return YES;
 }
 
+- (IBAction)swLEDTagToggled:(id)sender {
+}
+
 - (IBAction)btnSearchPressed:(id)sender {
 
     if ([self.txtEPC.text isEqualToString:@""]) {
@@ -216,8 +226,14 @@
 
         //start tag search
         [[CSLRfidAppEngine sharedAppEngine].reader setPowerMode:false];
-        result=[[CSLRfidAppEngine sharedAppEngine].reader startTagSearch:EPC maskPointer:32 maskLength:((UInt32)[self.txtEPC text].length * 4) maskData:[CSLBleReader convertHexStringToData:[self.txtEPC text]]];
-
+        //enforce link profile 244 for LED tags
+        if([CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber == CS710) {
+            if (self.swLEDTag.isOn)
+                [[CSLRfidAppEngine sharedAppEngine].reader setLinkProfile:MID_244];
+            else
+                [[CSLRfidAppEngine sharedAppEngine].reader setLinkProfile:[CSLRfidAppEngine sharedAppEngine].settings.linkProfile];
+        }
+        result=[[CSLRfidAppEngine sharedAppEngine].reader startTagSearch:EPC maskPointer:32 maskLength:((UInt32)[self.txtEPC text].length * 4) maskData:[CSLBleReader convertHexStringToData:[self.txtEPC text]] ledTag:self.swLEDTag.isOn];
         
         if (result) {
             [self.btnSearch setTitle:@"Stop" forState:UIControlStateNormal];

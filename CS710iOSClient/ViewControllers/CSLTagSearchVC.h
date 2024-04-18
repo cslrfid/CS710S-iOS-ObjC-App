@@ -21,10 +21,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *btnSearch;
 @property (weak, nonatomic) IBOutlet UITextField *txtEPC;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *actSearchSpinner;
+@property (weak, nonatomic) IBOutlet UISwitch *swLEDTag;
 
 
 
 - (IBAction)btnSearchPressed:(id)sender;
+- (IBAction)swLEDTagToggled:(id)sender;
 
 @end
 

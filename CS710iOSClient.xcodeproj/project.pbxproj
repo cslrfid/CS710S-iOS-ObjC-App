@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		071C5C7D8CF6066B7ADDF948 /* Pods_CS710iOSClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8886B70CA3EAC4D353ED3F67 /* Pods_CS710iOSClient.framework */; };
+		CA0F9BB42BC3C73300BB6222 /* CSLImpinjAuthenticationLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0F9BB22BC3C73300BB6222 /* CSLImpinjAuthenticationLoginVC.m */; };
 		CA150B70236C0DFB00ACF53D /* CSLAntennaPortVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CA150B6F236C0DFB00ACF53D /* CSLAntennaPortVC.m */; };
 		CA33BF8E2600EE8A00835159 /* CSLPrefilterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CA33BF8D2600EE8A00835159 /* CSLPrefilterVC.m */; };
 		CA33BF912600EEAF00835159 /* CSLPostfilterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CA33BF902600EEAF00835159 /* CSLPostfilterVC.m */; };
@@ -71,6 +72,8 @@
 		389443AB675177851E36005B /* Pods-CS710iOSClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CS710iOSClient.debug.xcconfig"; path = "Target Support Files/Pods-CS710iOSClient/Pods-CS710iOSClient.debug.xcconfig"; sourceTree = "<group>"; };
 		39481D2CDEFE6D3F7C86E9D3 /* Pods-CS710iOSClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CS710iOSClient.release.xcconfig"; path = "Target Support Files/Pods-CS710iOSClient/Pods-CS710iOSClient.release.xcconfig"; sourceTree = "<group>"; };
 		8886B70CA3EAC4D353ED3F67 /* Pods_CS710iOSClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CS710iOSClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA0F9BB22BC3C73300BB6222 /* CSLImpinjAuthenticationLoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSLImpinjAuthenticationLoginVC.m; sourceTree = "<group>"; };
+		CA0F9BB32BC3C73300BB6222 /* CSLImpinjAuthenticationLoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSLImpinjAuthenticationLoginVC.h; sourceTree = "<group>"; };
 		CA150B6E236C0DFB00ACF53D /* CSLAntennaPortVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLAntennaPortVC.h; sourceTree = "<group>"; };
 		CA150B6F236C0DFB00ACF53D /* CSLAntennaPortVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLAntennaPortVC.m; sourceTree = "<group>"; };
 		CA33BF8C2600EE8A00835159 /* CSLPrefilterVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLPrefilterVC.h; sourceTree = "<group>"; };
@@ -188,6 +191,8 @@
 		CA78735E214CC072009B7FE6 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				CA0F9BB32BC3C73300BB6222 /* CSLImpinjAuthenticationLoginVC.h */,
+				CA0F9BB22BC3C73300BB6222 /* CSLImpinjAuthenticationLoginVC.m */,
 				CA5E8D392AFCE23800B1E2D5 /* CSLImpinjAuthenticationVC.h */,
 				CA5E8D3A2AFCE23900B1E2D5 /* CSLImpinjAuthenticationVC.m */,
 				CA5E8D372AFCBA3800B1E2D5 /* CSLImpinjInventoryVC.h */,
@@ -444,6 +449,7 @@
 				CAB31377221A75330048DA62 /* CSLTagListCell.m in Sources */,
 				CAB3137B221BE17D0048DA62 /* CSLMoreFunctionsVC.m in Sources */,
 				CA5E8D382AFCBA3800B1E2D5 /* CSLImpinjInventoryVC.m in Sources */,
+				CA0F9BB42BC3C73300BB6222 /* CSLImpinjAuthenticationLoginVC.m in Sources */,
 				CA787361214CC154009B7FE6 /* CSLHomeVC.m in Sources */,
 				CABA715821325BF600D15BB1 /* main.m in Sources */,
 				CABA714A21325BF500D15BB1 /* AppDelegate.m in Sources */,
@@ -602,7 +608,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.csl.CS710SiOSClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -629,7 +635,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.csl.CS710SiOSClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

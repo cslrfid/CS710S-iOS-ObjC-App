@@ -7,22 +7,32 @@
 //
 
 #import "CSLImpinjAuthenticationVC.h"
+#import "CSLImpinjAuthenticationLoginVC.h"
 
 @interface CSLImpinjAuthenticationVC ()
 {
-    bool killCommandAccepted;
-    bool killCommandCompleted;
+    BOOL tagValidation;
 }
 @end
 
 @implementation CSLImpinjAuthenticationVC
 
+@synthesize btnIASStatus;
+@synthesize imgIASStatus;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.btnAuthenticatedRead.layer.borderColor=[UIColor clearColor].CGColor;
-    self.btnAuthenticatedRead.layer.cornerRadius=5.0f;
+    self.btnVerify.layer.borderColor=[UIColor clearColor].CGColor;
+    self.btnVerify.layer.cornerRadius=5.0f;
+    
+    self.btnIASStatus.layer.borderColor=[UIColor clearColor].CGColor;
+    self.btnIASStatus.layer.cornerRadius=5.0f;
+    
+    self.btnIASConfiguration.layer.borderColor=[UIColor clearColor].CGColor;
+    self.btnIASConfiguration.layer.cornerRadius=5.0f;
+    
 }
 
 /*
@@ -53,10 +63,36 @@
     }
 }
 
-- (IBAction)btnAuthenticatedReadPressed:(id)sender {
+- (IBAction)btnIASConfigurationPressed:(id)sender {
+    CSLImpinjAuthenticationLoginVC* loginVC;
+    loginVC = (CSLImpinjAuthenticationLoginVC*)[[UIStoryboard storyboardWithName:@"CSLRfidDemoApp" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"ID_ImpinjAuthenticationLoginVC"];
     
-    if ([self.txtSelectedEPC.text isEqualToString:@""]) {
-        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Impinj Authentication" message:@"No EPC Selected" preferredStyle:UIAlertControllerStyleAlert];
+    if (loginVC != nil)
+    {
+        [[self navigationController] pushViewController:loginVC animated:YES];
+    }
+}
+
+
+- (IBAction)txtSelectedTIDEdited:(id)sender {
+    //Validate if input is hex value
+    NSCharacterSet *chars = [[NSCharacterSet
+                              characterSetWithCharactersInString:@"0123456789ABCDEF"] invertedSet];
+    if (([[self.txtSelectedEPC.text uppercaseString] rangeOfCharacterFromSet:chars].location != NSNotFound)) {
+        self.txtSelectedEPC.text = @"";
+    }
+}
+
+- (IBAction)btnVerifyPressed:(id)sender {
+    
+//    [self ImpinjIasAuthenticate:[CSLRfidAppEngine sharedAppEngine].settings.IasUrl
+//                            TID:@"e2c0e52320004000e9fbd3a3" challenge:@"023beea5f4f7" tagResponse:@"5781d0fed5119d7d"];
+//    [self->imgIASStatus setImage:[UIImage imageNamed:@"verified-box"]];
+//    [self->btnIASStatus setBackgroundColor:UIColorFromRGB(0x26A65B)];
+//    [self->btnIASStatus setTitle:@"VALID" forState:UIControlStateNormal];
+    
+    if ([self.txtSelectedEPC.text isEqualToString:@""] || [self.txtSelectedTID.text isEqualToString:@""]) {
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Impinj Authentication" message:@"No EPC/TID information" preferredStyle:UIAlertControllerStyleAlert];
         
         UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
         [alert addAction:ok];
@@ -64,43 +100,75 @@
         return;
     }
     
-    BOOL result=true;
-    UIAlertController *alert;
-    UIAlertAction *ok;
+    [self.imgIASStatus setImage:[UIImage imageNamed:@"unknown-box"]];
+    [self.btnIASStatus setBackgroundColor:UIColorFromRGB(0xA3A3A3)];
+    [self.btnIASStatus setTitle:@"UNKNOWN" forState:UIControlStateNormal];
+    self.view.userInteractionEnabled=false;
+    [self.actIASVerifyIndicator startAnimating];
+    [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.0]];
     
-    killCommandAccepted=false;
-    killCommandCompleted=false;
-    
-    //get kill password
-    UInt32 killPwd=0;
+    UInt32 accPwd=0;
     NSScanner* scanner = [NSScanner scannerWithString:[self.txtAccessPwd text]];
-    [scanner scanHexInt:&killPwd];
+    [scanner scanHexInt:&accPwd];
     
-    [[CSLRfidAppEngine sharedAppEngine].reader setPowerMode:false];
-    
-    if ([CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber == CS710) {
-        result=[[CSLRfidAppEngine sharedAppEngine].reader E710StartTagMemoryKill:killPwd maskBank:EPC maskPointer:32 maskLength:((UInt32)[self.txtSelectedEPC text].length * 4) maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]];
+    //select tag
+    if ([CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber==CS710) {
+        if (![[CSLRfidAppEngine sharedAppEngine].reader E710SelectTag:0
+                                                        maskBank:EPC
+                                                     maskPointer:32
+                                                      maskLength:[[self.txtSelectedEPC text] length] * 4
+                                                        maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]
+                                                          target:4
+                                                          action:0
+                                                     postConfigDelay:0]) {
+            
+            
+            self.view.userInteractionEnabled=true;
+            [self.actIASVerifyIndicator stopAnimating];
+            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Impinj Authentication" message:@"Unable to seledct tag" preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+            [alert addAction:ok];
+            [self presentViewController:alert animated:YES completion:nil];
+            return;
+        }
+        
+        
+        
+        //set authetnication registers
+        if (![[CSLRfidAppEngine sharedAppEngine].reader setImpinjAuthentication:accPwd
+                                                                   sendRep:1
+                                                                 incRepLen:1
+                                                                       csi:1 
+                                                             messageLength:0x30
+                                                       authenticateMessage:[CSLBleReader convertHexStringToData:@"009CA53E55EA"]
+                                                                   responseLen:0x40]) {
+            self.view.userInteractionEnabled=true;
+            [self.actIASVerifyIndicator stopAnimating];
+            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Impinj Authentication" message:@"Unable to set Impinj authentication config" preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+            [alert addAction:ok];
+            [self presentViewController:alert animated:YES completion:nil];
+            return;
+            
+        }
+        
+        if(![[CSLRfidAppEngine sharedAppEngine].reader E710SCSLRFIDAuthenticate]) {
+            self.view.userInteractionEnabled=true;
+            [self.actIASVerifyIndicator stopAnimating];
+            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Impinj Authentication" message:@"Unable to start Impinj authentication" preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+            [alert addAction:ok];
+            [self presentViewController:alert animated:YES completion:nil];
+        }
+        
+        self.view.userInteractionEnabled=true;
+        [self.actIASVerifyIndicator stopAnimating];
+        
     }
-    else {
-        result=[[CSLRfidAppEngine sharedAppEngine].reader startTagMemoryKill:killPwd maskBank:EPC maskPointer:32 maskLength:((UInt32)[self.txtSelectedEPC text].length * 4) maskData:[CSLBleReader convertHexStringToData:[self.txtSelectedEPC text]]];
-    }
     
-    for (int i=0;i<COMMAND_TIMEOUT_5S;i++) {  //receive data or time out in 5 seconds
-        if (result && killCommandCompleted)
-            break;
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.001]];
-    }
-    
-    if (result && killCommandAccepted && killCommandCompleted)
-        alert = [UIAlertController alertControllerWithTitle:@"Tag Kill" message:@"ACCEPTED" preferredStyle:UIAlertControllerStyleAlert];
-    else
-        alert = [UIAlertController alertControllerWithTitle:@"Tag Kill" message:@"FAILED" preferredStyle:UIAlertControllerStyleAlert];
-    
-    [[CSLRfidAppEngine sharedAppEngine].reader setPowerMode:true];
-    
-    ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
-    [alert addAction:ok];
-    [self presentViewController:alert animated:YES completion:nil];
     
 }
 
@@ -115,6 +183,31 @@
     
     [CSLRfidAppEngine sharedAppEngine].reader.delegate = self;
     [CSLRfidAppEngine sharedAppEngine].reader.readerDelegate=self;
+    
+    self.txtSelectedEPC.text = self.selectedEPC;
+    self.txtSelectedTID.text = self.selectedTID;
+    
+    NSDate *now = [NSDate date];
+    NSTimeInterval nowEpochSeconds = [now timeIntervalSince1970];
+    
+    if ([[CSLRfidAppEngine sharedAppEngine].settings.IasToken isEqualToString:@""]) {
+        [self.btnIASConfiguration setTitle:@"IAS Login" forState:UIControlStateNormal];
+        [self.btnVerify setEnabled:false];
+    }
+    else if (nowEpochSeconds > [CSLRfidAppEngine sharedAppEngine].settings.IasTokenExpiry &&
+             [CSLRfidAppEngine sharedAppEngine].settings.IasTokenExpiry != 0) {
+        //Clear token
+        [CSLRfidAppEngine sharedAppEngine].settings.IasToken = @"";
+        [CSLRfidAppEngine sharedAppEngine].settings.IasTokenExpiry = 0;
+        [[CSLRfidAppEngine sharedAppEngine] saveSettingsToUserDefaults];
+        
+        [self.btnIASConfiguration setTitle:@"IAS Login" forState:UIControlStateNormal];
+        [self.btnVerify setEnabled:false];
+    }
+    else  {
+        [self.btnIASConfiguration setTitle:@"IAS Ready" forState:UIControlStateNormal];
+        [self.btnVerify setEnabled:true];
+    }
 
 }
 
@@ -126,22 +219,34 @@
     
 }
 - (void) didReceiveTagAccessData:(CSLBleReader *)sender tagReceived:(CSLBleTag *)tag {
-    if ([CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber == CS710 && tag.AccessCommand == KILL) {
-        if (tag.AccessError == 0x10 && tag.BackScatterError == 0x00) {
-            killCommandAccepted=true;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (tag.DATA == NULL) {
+            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Impinj Authentication" message:@"No Authentication Response" preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+            [alert addAction:ok];
+            [self presentViewController:alert animated:YES completion:nil];
         }
-        killCommandCompleted=true;
-    }
-    else {
-        if ((tag.AccessError == 0xFF) &&
-            !tag.CRCError &&
-            tag.BackScatterError == 0xFF &&
-            !tag.ACKTimeout &&
-            !tag.CRCError) {
-            killCommandAccepted=true;
+        else if (tag.AccessError == 0x10 && tag.BackScatterError == 0x00) {
+            
+            //verify against IAS service
+            
+            [self ImpinjIasAuthenticate:[CSLRfidAppEngine sharedAppEngine].settings.IasUrl
+                                    TID:@"e2c0e52320004000e9fbd3a3" challenge:@"023beea5f4f7" tagResponse:@"5781d0fed5119d7d"];
+            
+            if (self->tagValidation) {
+                [self->imgIASStatus setImage:[UIImage imageNamed:@"verified-box"]];
+                [self->btnIASStatus setBackgroundColor:UIColorFromRGB(0x26A65B)];
+                [self->btnIASStatus setTitle:@"VALID" forState:UIControlStateNormal];
+            }
+            else {
+                [self->imgIASStatus setImage:[UIImage imageNamed:@"invalid-box"]];
+                [self->btnIASStatus setBackgroundColor:UIColorFromRGB(0xd63031)];
+                [self->btnIASStatus setTitle:@"INVALID" forState:UIControlStateNormal];
+            }
         }
-        killCommandCompleted=true;
-    }
+    });
+    
 }
 
 - (void) didReceiveBatteryLevelIndicator: (CSLBleReader *) sender batteryPercentage:(int)battPct {
@@ -164,5 +269,71 @@
 }
 
 
+- (BOOL) ImpinjIasAuthenticate:(NSString*)url TID:(NSString*)tid challenge:(NSString*)challenge tagResponse:(NSString*)tag_response {
+    
+    NSURLSessionConfiguration *defaultSessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:defaultSessionConfiguration];
+    
+    NSURL *endpoint = [NSURL URLWithString:[NSString stringWithFormat:@"%@/api/ImpinjAuthentication/authenticate", url]];
+    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:endpoint];
+    
+    //Make an NSDictionary that would be converted to an NSData object sent over as JSON with the request body
+    NSDictionary *tagVerifyObject = [[NSDictionary alloc] initWithObjectsAndKeys:
+                         tid, @"tid", challenge, @"challenge", tag_response, @"tagResponse",
+                         nil];
+    
+    NSDictionary *postObject = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                [NSArray arrayWithObjects:tagVerifyObject, nil], @"tagVerify", @YES, @"sendSignature", @YES, @"sendSalt", @YES, @"sendTime",
+                         nil];
+    
+    NSError *error;
+    NSData *postData = [NSJSONSerialization dataWithJSONObject:postObject options:0 error:&error];
+    
+    NSDictionary *headers = @{ @"Content-type": @"application/json",
+                               @"Authorization": [NSString stringWithFormat:@"Bearer %@", [CSLRfidAppEngine sharedAppEngine].settings.IasToken]};
+    [urlRequest setAllHTTPHeaderFields:headers];
+    [urlRequest setHTTPMethod:@"POST"];
+    [urlRequest setHTTPBody:postData];
+    
+    __block BOOL done = NO;
+    NSURLSessionDataTask *dataTask = [defaultSession dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
 
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+        if (httpResponse.statusCode == 200 && error == NULL) {
+            NSLog(@"Auth response: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+            
+            //Check result
+            NSDictionary  *object = [NSJSONSerialization
+                                         JSONObjectWithData:data
+                                         options:0
+                                         error:&error];
+
+            if ([object objectForKey:@"tagValidity"] != NULL) {
+                if ([((NSArray*)[object objectForKey:@"tagValidity"])[0] objectForKey:@"tagValid"]) {
+                    self->tagValidation = true;
+                }
+                else {
+                    self->tagValidation = false;
+                }
+                NSLog(@"%@", [NSString stringWithFormat:@"Tag valid: %s", (self->tagValidation ? "true" : "false")]);
+                
+            }
+                
+            
+        }
+        else {
+            NSLog(@"Authentication failed");
+        }
+            
+        done = YES;
+    }];
+    [dataTask resume];
+
+    while (!done) {
+        NSDate *date = [[NSDate alloc] initWithTimeIntervalSinceNow:0.1];
+        [[NSRunLoop currentRunLoop] runUntilDate:date];
+    }
+    
+    return true;
+}
 @end
