@@ -144,6 +144,7 @@
             //read OEM data: to be implemented for getting reader regional settings and parameters
             UInt32 OEMData;
             UInt32 CountryEnum = 0;
+            UInt32 FrequencIndex = 0;
             
             if ([CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber == CS710)
             {
@@ -176,6 +177,26 @@
                 {
                     NSLog(@"Current Country Enum: %d", CountryEnum);
                 }
+                //Current Country frequency index
+                if ([[CSLRfidAppEngine sharedAppEngine].reader E710GetFrequencyChannelIndex:[CSLRfidAppEngine sharedAppEngine].reader forData:&FrequencIndex])
+                {
+                    NSLog(@"Current Frequency Channel Index: %d", FrequencIndex);
+                }
+                
+                [CSLRfidAppEngine sharedAppEngine].readerRegionFrequency = [[CSLReaderFrequency alloc] initWithOEMDataForCS710S:[CSLRfidAppEngine sharedAppEngine].readerInfo.countryCode
+                                                                                                          specialCountryVerison:[CSLRfidAppEngine sharedAppEngine].readerInfo.specialCountryVerison
+                                                                                                                    FreqModFlag:[CSLRfidAppEngine sharedAppEngine].readerInfo.freqModFlag
+                                                                                                                      ModelCode:[CSLRfidAppEngine sharedAppEngine].readerInfo.modelCode];
+                
+                if([CSLRfidAppEngine sharedAppEngine].readerRegionFrequency.TableOfFrequencies[[CSLRfidAppEngine sharedAppEngine].settings.region] == nil &&
+                   CountryEnum != 0) {
+                    //no previous valid configurations were being saved.  Save current configuration.
+                    [CSLRfidAppEngine sharedAppEngine].settings.region=[CSLRfidAppEngine sharedAppEngine].readerRegionFrequency.AllRegionList[CountryEnum];
+                    [CSLRfidAppEngine sharedAppEngine].settings.channel=[[CSLRfidAppEngine sharedAppEngine].readerRegionFrequency.CountryEnumToHoppingStatus[CountryEnum] intValue]  == 0 ? @"0" : [@(FrequencIndex) stringValue];
+                    NSLog(@"Configuration saved.  Region: %@  Channel: %d", [CSLRfidAppEngine sharedAppEngine].settings.region, FrequencIndex);
+                    [[CSLRfidAppEngine sharedAppEngine] saveSettingsToUserDefaults];
+                }
+                [CSLRfidAppEngine sharedAppEngine].readerInfo.isFxied = [[CSLRfidAppEngine sharedAppEngine].readerRegionFrequency.CountryEnumToHoppingStatus[CountryEnum] intValue]  == 0 ? FALSE : TRUE;
             }
             else
             {
@@ -199,22 +220,21 @@
                 [[CSLRfidAppEngine sharedAppEngine].reader readOEMData:[CSLRfidAppEngine sharedAppEngine].reader atAddr:0x0000009D forData:&OEMData];
                 [CSLRfidAppEngine sharedAppEngine].readerInfo.isFxied=OEMData;
                 NSLog(@"OEM data address 0x%08X: 0x%08X", 0x9D, OEMData);
+                
+                [CSLRfidAppEngine sharedAppEngine].readerRegionFrequency = [[CSLReaderFrequency alloc] initWithOEMData:[CSLRfidAppEngine sharedAppEngine].readerInfo.countryCode
+                                                                                                 specialCountryVerison:[CSLRfidAppEngine sharedAppEngine].readerInfo.specialCountryVerison
+                                                                                                           FreqModFlag:[CSLRfidAppEngine sharedAppEngine].readerInfo.freqModFlag
+                                                                                                             ModelCode:[CSLRfidAppEngine sharedAppEngine].readerInfo.modelCode
+                                                                                                               isFixed:[CSLRfidAppEngine sharedAppEngine].readerInfo.isFxied];
+                
+                if([CSLRfidAppEngine sharedAppEngine].readerRegionFrequency.TableOfFrequencies[[CSLRfidAppEngine sharedAppEngine].settings.region] == nil) {
+                    //the region being stored is not valid, reset to default region and frequency channel
+                    [CSLRfidAppEngine sharedAppEngine].settings.region=[CSLRfidAppEngine sharedAppEngine].readerRegionFrequency.RegionList[0];
+                    [CSLRfidAppEngine sharedAppEngine].settings.channel=@"0";
+                    [[CSLRfidAppEngine sharedAppEngine] saveSettingsToUserDefaults];
+                }
             }
-            
-            [CSLRfidAppEngine sharedAppEngine].readerRegionFrequency = [[CSLReaderFrequency alloc] initWithOEMData:[CSLRfidAppEngine sharedAppEngine].readerInfo.countryCode
-                                                                                             specialCountryVerison:[CSLRfidAppEngine sharedAppEngine].readerInfo.specialCountryVerison
-                                                                                                       FreqModFlag:[CSLRfidAppEngine sharedAppEngine].readerInfo.freqModFlag
-                                                                                                         ModelCode:[CSLRfidAppEngine sharedAppEngine].readerInfo.modelCode
-                                                                                                       CountryEnum:CountryEnum];
-            [CSLRfidAppEngine sharedAppEngine].readerInfo.isFxied = [CSLRfidAppEngine sharedAppEngine].readerRegionFrequency.isFixed;
-            
-            if([CSLRfidAppEngine sharedAppEngine].readerRegionFrequency.TableOfFrequencies[[CSLRfidAppEngine sharedAppEngine].settings.region] == nil) {
-                //the region being stored is not valid, reset to default region and frequency channel
-                [CSLRfidAppEngine sharedAppEngine].settings.region=[CSLRfidAppEngine sharedAppEngine].readerRegionFrequency.RegionList[0];
-                [CSLRfidAppEngine sharedAppEngine].settings.channel=@"0";
-                [[CSLRfidAppEngine sharedAppEngine] saveSettingsToUserDefaults];
-            }
-            
+                        
             if ([CSLRfidAppEngine sharedAppEngine].reader.readerModelNumber == CS710)
             {
                 [[CSLRfidAppEngine sharedAppEngine].reader startBatteryAutoReporting];
