@@ -87,26 +87,16 @@
         self.view.userInteractionEnabled = false;
         self.navigationController.view.userInteractionEnabled = false;
         
-        // Dispatch background task to avoid blocking main thread
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            [self connectToReadInBackgroundAndWaitAndWait:indexPath.row];
+        [self connectToReadAsync:indexPath.row completion:^{
+            NSLog(@"ConnectToReadAsync comppleted");
+            // Update UI here
+            [self->actSpinner stopAnimating];
 
-            // Update UI after connection completes
-            dispatch_async(dispatch_get_main_queue(), ^{
-                NSLog(@"Reader connection finished.");
-
-                // Dispatch UI update to main thread
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    NSLog(@"Updating UI on main thread...");
-                    [self->actSpinner stopAnimating];
-                    
-                    // enanble UI and return back to main page
-                    self.view.userInteractionEnabled = true;
-                    self.navigationController.view.userInteractionEnabled = true;
-                    [self.navigationController popToRootViewControllerAnimated:YES];
-                });
-            });
-        });
+            // enanble UI and return back to main page
+            self.view.userInteractionEnabled = true;
+            self.navigationController.view.userInteractionEnabled = true;
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }];
     }];
     
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
@@ -118,24 +108,26 @@
 }
 
 
-- (void)connectToReadInBackgroundAndWaitAndWait:(NSInteger) readerIndex {
-    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-
+- (void)connectToReadAsync:(NSInteger)readerIndex completion:(void (^)(void))completion {
+    __block UIBackgroundTaskIdentifier bgTask = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
+        NSLog(@"Background task expired.");
+        [[UIApplication sharedApplication] endBackgroundTask:bgTask];
+        bgTask = UIBackgroundTaskInvalid;
+    }];
+    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        // Perform your background task
         [self connnectReaderSelector:readerIndex];
 
-        // Signal that the task is done
-        dispatch_semaphore_signal(semaphore);
-    });
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (bgTask != UIBackgroundTaskInvalid) {
+                [[UIApplication sharedApplication] endBackgroundTask:bgTask];
+                bgTask = UIBackgroundTaskInvalid;
+            }
 
-    // Wait until the background task is complete
-    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-
-    // Continue with main thread logic after completion
-    dispatch_async(dispatch_get_main_queue(), ^{
-        NSLog(@"Background task completed.");
-        // You can update the UI here if needed
+            if (completion) {
+                completion();
+            }
+        });
     });
 }
 
