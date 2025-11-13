@@ -695,17 +695,6 @@
 - (IBAction)btnRadioSettingsPressed:(id)sender {
 }
 
-- (IBAction)btnMQTTClientPressed:(id)sender {
-    CSLMQTTClientSettings* mqttSettings;
-    mqttSettings = (CSLMQTTClientSettings*)[[UIStoryboard storyboardWithName:@"CSLRfidDemoApp" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"ID_MQTTSettingsVC"];
-    
-    if (mqttSettings != nil)
-    {
-        [[self navigationController] pushViewController:mqttSettings animated:YES];
-    }
-    
-}
-
 -(BOOL) textFieldShouldReturn:(UITextField *)textField{
     
     [textField resignFirstResponder];

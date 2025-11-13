@@ -11,9 +11,9 @@
 #import "CSLTagListCell.h"
 #import "CSLTabVC.h"
 
-@interface CSLInventoryVC : UIViewController<CSLBleReaderDelegate, CSLBleInterfaceDelegate, UITableViewDataSource, UITableViewDelegate, MQTTSessionDelegate> {
+@interface CSLInventoryVC : UIViewController<CSLBleReaderDelegate, CSLBleInterfaceDelegate, UITableViewDataSource, UITableViewDelegate> {
     NSDate * tagRangingStartTime;
-   
+
 }
 @property (weak, nonatomic) IBOutlet UILabel *lbTagCount;
 @property (weak, nonatomic) IBOutlet UILabel *lbTagRate;
@@ -23,7 +23,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *lbStatus;
 @property (weak, nonatomic) IBOutlet UIButton *lbClear;
 @property (weak, nonatomic) IBOutlet UILabel *lbMode;
-@property (weak, nonatomic) IBOutlet UIView *uivSendTagData;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *actInventorySpinner;
 @property (weak, nonatomic) IBOutlet UILabel *lbElapsedTime;
 @property (weak, nonatomic) IBOutlet UIButton *btnTagDisplay;
@@ -31,7 +30,6 @@
 
 - (IBAction)btnInventoryPressed:(id)sender;
 - (IBAction)btnClearTable:(id)sender;
-- (IBAction)btnSendTagData:(id)sender;
 - (IBAction)btnSaveData:(id)sender;
 - (IBAction)btnTagDispalyPressed:(id)sender;
 - (IBAction)swLEDTagToggled:(id)sender;
