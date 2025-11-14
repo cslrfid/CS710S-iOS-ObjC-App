@@ -1,28 +1,16 @@
 PODS:
-  - CSL-CS710S (1.10.0):
-    - MQTTClient
-  - MQTTClient (0.15.3):
-    - MQTTClient/Core (= 0.15.3)
-  - MQTTClient/Core (0.15.3):
-    - MQTTClient/Manager
-    - MQTTClient/Min
-  - MQTTClient/Manager (0.15.3):
-    - MQTTClient/Min
-  - MQTTClient/Min (0.15.3)
+  - CSL-CS710S (1.11.0)
 
 DEPENDENCIES:
-  - CSL-CS710S
-  - MQTTClient
+  - CSL-CS710S (~> 1.11.0)
 
 SPEC REPOS:
   trunk:
     - CSL-CS710S
-    - MQTTClient
 
 SPEC CHECKSUMS:
-  CSL-CS710S: 13b09c4e20d9a16ea7d712a9db33a36f16c9e3ea
-  MQTTClient: 0dfa04e789479c2e461786464969895c1fcb0875
+  CSL-CS710S: 2ba1271d8ed8ac915470b63cb4b140286a1760cf
 
-PODFILE CHECKSUM: e09e64e39bde5f0589e07a9cb7131321dbb7d80e
+PODFILE CHECKSUM: 425d399c24eedb29915338ce2eb35fc7c3fd9bcf
 
 COCOAPODS: 1.16.2

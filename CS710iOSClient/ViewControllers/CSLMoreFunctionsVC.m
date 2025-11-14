@@ -7,7 +7,6 @@
 //
 
 #import "CSLMoreFunctionsVC.h"
-#import "CSLMQTTClientSettings.h"
 #import "CSLMultibankAccessVC.h"
 #import "CSLFilterTabVC.h"
 #import "CSLImpinjInventoryVC.h"
@@ -66,22 +65,11 @@
 - (IBAction)btnAuthenticationPressed:(id)sender {
     CSLImpinjInventoryVC* impinjVC;
     impinjVC = (CSLImpinjInventoryVC*)[[UIStoryboard storyboardWithName:@"CSLRfidDemoApp" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"ID_ImpinjInventoryVC"];
-    
+
     if (impinjVC != nil)
     {
         [[self navigationController] pushViewController:impinjVC animated:YES];
     }
-    
-}
 
-- (IBAction)btnMQTTPressed:(id)sender {
-    CSLMQTTClientSettings* mqttSettings;
-    mqttSettings = (CSLMQTTClientSettings*)[[UIStoryboard storyboardWithName:@"CSLRfidDemoApp" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"ID_MQTTSettingsVC"];
-        
-    if (mqttSettings != nil)
-    {
-        [[self navigationController] pushViewController:mqttSettings animated:YES];
-    }
-    
 }
 @end

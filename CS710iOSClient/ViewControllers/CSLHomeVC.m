@@ -68,9 +68,7 @@
     //remove tag buffer
     [CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer=nil;
     [CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer =[[NSMutableArray alloc] init];
-    //refresh MQTT (all previosu connections will drop) and temperature tag settings
-    [CSLRfidAppEngine sharedAppEngine].MQTTSettings = [[CSLMQTTSettings alloc] init];
-    [[CSLRfidAppEngine sharedAppEngine] reloadMQTTSettingsFromUserDefaults];
+    //refresh temperature tag settings
     [CSLRfidAppEngine sharedAppEngine].temperatureSettings = [[CSLTemperatureTagSettings alloc] init];
     [[CSLRfidAppEngine sharedAppEngine] reloadTemperatureTagSettingsFromUserDefaults];
     [CSLRfidAppEngine sharedAppEngine].settings = [[CSLReaderSettings alloc] init];

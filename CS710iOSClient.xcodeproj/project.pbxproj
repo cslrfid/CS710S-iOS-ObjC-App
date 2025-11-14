@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		071C5C7D8CF6066B7ADDF948 /* Pods_CS710iOSClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8886B70CA3EAC4D353ED3F67 /* Pods_CS710iOSClient.framework */; };
+		6DF5AFF4221BBA9F2AA0FC45 /* Pods_CS710iOSClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B99DB1DB3818EC2FD4CD9F9A /* Pods_CS710iOSClient.framework */; };
 		CA0F9BB42BC3C73300BB6222 /* CSLImpinjAuthenticationLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CA0F9BB22BC3C73300BB6222 /* CSLImpinjAuthenticationLoginVC.m */; };
 		CA150B70236C0DFB00ACF53D /* CSLAntennaPortVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CA150B6F236C0DFB00ACF53D /* CSLAntennaPortVC.m */; };
 		CA33BF8E2600EE8A00835159 /* CSLPrefilterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CA33BF8D2600EE8A00835159 /* CSLPrefilterVC.m */; };
@@ -19,7 +19,6 @@
 		CA5066412157889C00C3C9C8 /* CSLAboutVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5066402157889C00C3C9C8 /* CSLAboutVC.m */; };
 		CA506644215996A000C3C9C8 /* digital-7 (mono).ttf in Resources */ = {isa = PBXBuildFile; fileRef = CA506643215996A000C3C9C8 /* digital-7 (mono).ttf */; };
 		CA57AA7821CAC45E00D081F9 /* LMGaugeView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA57AA7621CAC45D00D081F9 /* LMGaugeView.m */; };
-		CA5C059421E4517D00E68E44 /* CSLMQTTClientSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5C059321E4517D00E68E44 /* CSLMQTTClientSettings.m */; };
 		CA5E8D382AFCBA3800B1E2D5 /* CSLImpinjInventoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5E8D362AFCBA3800B1E2D5 /* CSLImpinjInventoryVC.m */; };
 		CA5E8D3B2AFCE23900B1E2D5 /* CSLImpinjAuthenticationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CA5E8D3A2AFCE23900B1E2D5 /* CSLImpinjAuthenticationVC.m */; };
 		CA722980222AB13300D8C2CF /* CSLTemperatureTagListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CA72297E222AB13300D8C2CF /* CSLTemperatureTagListCell.m */; };
@@ -32,7 +31,6 @@
 		CA787372214CD7CF009B7FE6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA787371214CD7CF009B7FE6 /* Foundation.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		CA7873782150DF7A009B7FE6 /* CSLDeviceTV.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7873772150DF7A009B7FE6 /* CSLDeviceTV.m */; };
 		CA8212BA236B1C4000911EF2 /* CSLPowerLevelVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8212B9236B1C4000911EF2 /* CSLPowerLevelVC.m */; };
-		CAA89F45223D23D50066B601 /* CSLTemperatureUploadVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CAA89F44223D23D50066B601 /* CSLTemperatureUploadVC.m */; };
 		CAB31377221A75330048DA62 /* CSLTagListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB31375221A75330048DA62 /* CSLTagListCell.m */; };
 		CAB31378221A75330048DA62 /* CSLTagListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAB31376221A75330048DA62 /* CSLTagListCell.xib */; };
 		CAB3137B221BE17D0048DA62 /* CSLMoreFunctionsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB3137A221BE17D0048DA62 /* CSLMoreFunctionsVC.m */; };
@@ -69,9 +67,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		389443AB675177851E36005B /* Pods-CS710iOSClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CS710iOSClient.debug.xcconfig"; path = "Target Support Files/Pods-CS710iOSClient/Pods-CS710iOSClient.debug.xcconfig"; sourceTree = "<group>"; };
-		39481D2CDEFE6D3F7C86E9D3 /* Pods-CS710iOSClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CS710iOSClient.release.xcconfig"; path = "Target Support Files/Pods-CS710iOSClient/Pods-CS710iOSClient.release.xcconfig"; sourceTree = "<group>"; };
-		8886B70CA3EAC4D353ED3F67 /* Pods_CS710iOSClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CS710iOSClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		81FB10CD72557BA1C46A3C5B /* Pods-CS710iOSClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CS710iOSClient.debug.xcconfig"; path = "Target Support Files/Pods-CS710iOSClient/Pods-CS710iOSClient.debug.xcconfig"; sourceTree = "<group>"; };
+		B99DB1DB3818EC2FD4CD9F9A /* Pods_CS710iOSClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CS710iOSClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA0F9BB22BC3C73300BB6222 /* CSLImpinjAuthenticationLoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSLImpinjAuthenticationLoginVC.m; sourceTree = "<group>"; };
 		CA0F9BB32BC3C73300BB6222 /* CSLImpinjAuthenticationLoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSLImpinjAuthenticationLoginVC.h; sourceTree = "<group>"; };
 		CA150B6E236C0DFB00ACF53D /* CSLAntennaPortVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLAntennaPortVC.h; sourceTree = "<group>"; };
@@ -93,8 +90,6 @@
 		CA506643215996A000C3C9C8 /* digital-7 (mono).ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "digital-7 (mono).ttf"; sourceTree = "<group>"; };
 		CA57AA7621CAC45D00D081F9 /* LMGaugeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMGaugeView.m; sourceTree = "<group>"; };
 		CA57AA7721CAC45E00D081F9 /* LMGaugeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMGaugeView.h; sourceTree = "<group>"; };
-		CA5C059221E4517D00E68E44 /* CSLMQTTClientSettings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLMQTTClientSettings.h; sourceTree = "<group>"; };
-		CA5C059321E4517D00E68E44 /* CSLMQTTClientSettings.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLMQTTClientSettings.m; sourceTree = "<group>"; };
 		CA5E8D362AFCBA3800B1E2D5 /* CSLImpinjInventoryVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSLImpinjInventoryVC.m; sourceTree = "<group>"; };
 		CA5E8D372AFCBA3800B1E2D5 /* CSLImpinjInventoryVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSLImpinjInventoryVC.h; sourceTree = "<group>"; };
 		CA5E8D392AFCE23800B1E2D5 /* CSLImpinjAuthenticationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSLImpinjAuthenticationVC.h; sourceTree = "<group>"; };
@@ -116,8 +111,6 @@
 		CA7873772150DF7A009B7FE6 /* CSLDeviceTV.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLDeviceTV.m; sourceTree = "<group>"; };
 		CA8212B8236B1C4000911EF2 /* CSLPowerLevelVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLPowerLevelVC.h; sourceTree = "<group>"; };
 		CA8212B9236B1C4000911EF2 /* CSLPowerLevelVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLPowerLevelVC.m; sourceTree = "<group>"; };
-		CAA89F43223D23D50066B601 /* CSLTemperatureUploadVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLTemperatureUploadVC.h; sourceTree = "<group>"; };
-		CAA89F44223D23D50066B601 /* CSLTemperatureUploadVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLTemperatureUploadVC.m; sourceTree = "<group>"; };
 		CAB31374221A75330048DA62 /* CSLTagListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLTagListCell.h; sourceTree = "<group>"; };
 		CAB31375221A75330048DA62 /* CSLTagListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLTagListCell.m; sourceTree = "<group>"; };
 		CAB31376221A75330048DA62 /* CSLTagListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CSLTagListCell.xib; sourceTree = "<group>"; };
@@ -149,6 +142,7 @@
 		CAF8351C22268F97002F90AC /* Lato-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Italic.ttf"; sourceTree = "<group>"; };
 		CAFF2696221D3F7000D89112 /* CSLMultibankAccessVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSLMultibankAccessVC.h; sourceTree = "<group>"; };
 		CAFF2697221D3F7000D89112 /* CSLMultibankAccessVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSLMultibankAccessVC.m; sourceTree = "<group>"; };
+		D6BDA7A0C51BA7D1A38BCD64 /* Pods-CS710iOSClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CS710iOSClient.release.xcconfig"; path = "Target Support Files/Pods-CS710iOSClient/Pods-CS710iOSClient.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,7 +154,7 @@
 				CA787372214CD7CF009B7FE6 /* Foundation.framework in Frameworks */,
 				CA787370214CD7C4009B7FE6 /* UIKit.framework in Frameworks */,
 				CAB810842133E16F009D2F8F /* CoreBluetooth.framework in Frameworks */,
-				071C5C7D8CF6066B7ADDF948 /* Pods_CS710iOSClient.framework in Frameworks */,
+				6DF5AFF4221BBA9F2AA0FC45 /* Pods_CS710iOSClient.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -170,8 +164,8 @@
 		B5D80DFEDCD0D58B42FFA1C2 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				389443AB675177851E36005B /* Pods-CS710iOSClient.debug.xcconfig */,
-				39481D2CDEFE6D3F7C86E9D3 /* Pods-CS710iOSClient.release.xcconfig */,
+				81FB10CD72557BA1C46A3C5B /* Pods-CS710iOSClient.debug.xcconfig */,
+				D6BDA7A0C51BA7D1A38BCD64 /* Pods-CS710iOSClient.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -221,8 +215,6 @@
 				CA411CDE21D8C59F0029E779 /* CSLTagLockVC.m */,
 				CAC0A628272CFB99000CD6DA /* CSLTagKillVC.h */,
 				CAC0A629272CFB99000CD6DA /* CSLTagKillVC.m */,
-				CA5C059221E4517D00E68E44 /* CSLMQTTClientSettings.h */,
-				CA5C059321E4517D00E68E44 /* CSLMQTTClientSettings.m */,
 				CAB31374221A75330048DA62 /* CSLTagListCell.h */,
 				CAB31375221A75330048DA62 /* CSLTagListCell.m */,
 				CAB31376221A75330048DA62 /* CSLTagListCell.xib */,
@@ -241,8 +233,6 @@
 				CAE95308222DA3DE00C4EC73 /* CSLTemperatureDetailsVC.m */,
 				CA46619F223AD3A80028333B /* CSLTemperatureTagSettingsVC.h */,
 				CA4661A0223AD3A80028333B /* CSLTemperatureTagSettingsVC.m */,
-				CAA89F43223D23D50066B601 /* CSLTemperatureUploadVC.h */,
-				CAA89F44223D23D50066B601 /* CSLTemperatureUploadVC.m */,
 				CA8212B8236B1C4000911EF2 /* CSLPowerLevelVC.h */,
 				CA8212B9236B1C4000911EF2 /* CSLPowerLevelVC.m */,
 				CA150B6E236C0DFB00ACF53D /* CSLAntennaPortVC.h */,
@@ -264,7 +254,7 @@
 				CA787371214CD7CF009B7FE6 /* Foundation.framework */,
 				CA78736F214CD7C4009B7FE6 /* UIKit.framework */,
 				CAB810832133E16F009D2F8F /* CoreBluetooth.framework */,
-				8886B70CA3EAC4D353ED3F67 /* Pods_CS710iOSClient.framework */,
+				B99DB1DB3818EC2FD4CD9F9A /* Pods_CS710iOSClient.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -308,12 +298,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CABA715B21325BF600D15BB1 /* Build configuration list for PBXNativeTarget "CS710iOSClient" */;
 			buildPhases = (
-				C04AA18D342ABE429ADEAB1B /* [CP] Check Pods Manifest.lock */,
+				6C61228E06003BC985168318 /* [CP] Check Pods Manifest.lock */,
 				CABA714121325BF500D15BB1 /* Sources */,
 				CABA714221325BF500D15BB1 /* Frameworks */,
 				CABA714321325BF500D15BB1 /* Resources */,
 				CA4661A4223B49430028333B /* Embed Frameworks */,
-				53F26E5B0901093BE59E9C4C /* [CP] Embed Pods Frameworks */,
+				E4AFC14F93CC5FCFFC8F0B37 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -331,7 +321,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 2610;
 				ORGANIZATIONNAME = "Convergence Systems Limited";
 				TargetAttributes = {
 					CABA714421325BF500D15BB1 = {
@@ -383,28 +373,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		53F26E5B0901093BE59E9C4C /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CS710iOSClient/Pods-CS710iOSClient-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CS710iOSClient/Pods-CS710iOSClient-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CS710iOSClient/Pods-CS710iOSClient-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C04AA18D342ABE429ADEAB1B /* [CP] Check Pods Manifest.lock */ = {
+		6C61228E06003BC985168318 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -426,6 +395,27 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		E4AFC14F93CC5FCFFC8F0B37 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CS710iOSClient/Pods-CS710iOSClient-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CS710iOSClient/Pods-CS710iOSClient-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CS710iOSClient/Pods-CS710iOSClient-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -434,7 +424,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA4D5CA0222860DA007A55B3 /* CSLTemperatureTabVC.m in Sources */,
-				CAA89F45223D23D50066B601 /* CSLTemperatureUploadVC.m in Sources */,
 				CAFF2698221D3F7000D89112 /* CSLMultibankAccessVC.m in Sources */,
 				CAE95309222DA3DE00C4EC73 /* CSLTemperatureDetailsVC.m in Sources */,
 				CA5E8D3B2AFCE23900B1E2D5 /* CSLImpinjAuthenticationVC.m in Sources */,
@@ -458,7 +447,6 @@
 				CABA715821325BF600D15BB1 /* main.m in Sources */,
 				CABA714A21325BF500D15BB1 /* AppDelegate.m in Sources */,
 				CACFBBBB21C8E4D0001161F6 /* CSLTagSearchVC.m in Sources */,
-				CA5C059421E4517D00E68E44 /* CSLMQTTClientSettings.m in Sources */,
 				CA8212BA236B1C4000911EF2 /* CSLPowerLevelVC.m in Sources */,
 				CA33BF912600EEAF00835159 /* CSLPostfilterVC.m in Sources */,
 				CA78736A214CCA47009B7FE6 /* CSLSettingsVC.m in Sources */,
@@ -517,8 +505,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 67RT9ZRG3Y;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -537,6 +527,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 			};
 			name = Debug;
 		};
@@ -576,8 +567,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 67RT9ZRG3Y;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -589,18 +582,18 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
 		CABA715C21325BF600D15BB1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 389443AB675177851E36005B /* Pods-CS710iOSClient.debug.xcconfig */;
+			baseConfigurationReference = 81FB10CD72557BA1C46A3C5B /* Pods-CS710iOSClient.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 67RT9ZRG3Y;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -612,7 +605,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.8;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.csl.CS710SiOSClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -622,12 +615,11 @@
 		};
 		CABA715D21325BF600D15BB1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 39481D2CDEFE6D3F7C86E9D3 /* Pods-CS710iOSClient.release.xcconfig */;
+			baseConfigurationReference = D6BDA7A0C51BA7D1A38BCD64 /* Pods-CS710iOSClient.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 67RT9ZRG3Y;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -639,7 +631,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.8;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.csl.CS710SiOSClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

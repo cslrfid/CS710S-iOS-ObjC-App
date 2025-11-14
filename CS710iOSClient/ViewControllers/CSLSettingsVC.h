@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "CSLReaderSettings.h"
-#import "CSLMQTTClientSettings.h"
 #import "CSLRfidAppEngine.h"
 #import "CSLPowerLevelVC.h"
 #import "CSLAntennaPortVC.h"
