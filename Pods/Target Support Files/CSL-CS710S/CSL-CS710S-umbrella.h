@@ -10,7 +10,6 @@
 #endif
 #endif
 
-#import "CSLMQTTSettings.h"
 #import "CSLReaderBarcode.h"
 #import "CSLReaderBattery.h"
 #import "CSLReaderConfigurations.h"
