@@ -547,7 +547,7 @@
                 else {
                     //for moisture mesurements
                     if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.sensorType==MAGNUSS3) {
-                        if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.moistureAlertCondition==GREATER) {
+                        if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.moistureAlertCondition==ALERT_GREATER) {
                             if ((((490.00 - [average doubleValue]) / (490.00 - 5.00)) * 100.00) > [CSLRfidAppEngine sharedAppEngine].temperatureSettings.moistureAlertValue) {
                                 cell.lbTagStatus.backgroundColor=UIColorFromRGB(0xd63031);
                                 [cell.lbTagStatus setTitle:@"High" forState:UIControlStateNormal];
@@ -569,7 +569,7 @@
                         }
                     }
                     else { //S2 chip with lower moisture resolution
-                        if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.moistureAlertCondition==GREATER) {
+                        if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.moistureAlertCondition==ALERT_GREATER) {
                             if ((((31 - [average doubleValue]) / (31)) * 100.00) > [CSLRfidAppEngine sharedAppEngine].temperatureSettings.moistureAlertValue) {
                                 cell.lbTagStatus.backgroundColor=UIColorFromRGB(0xd63031);
                                 [cell.lbTagStatus setTitle:@"High" forState:UIControlStateNormal];

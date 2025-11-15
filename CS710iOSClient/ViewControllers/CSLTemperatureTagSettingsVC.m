@@ -88,7 +88,7 @@
     else
         [self.swDisplayTagInAscii setOn:true];
     
-    if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.moistureAlertCondition==GREATER)
+    if ([CSLRfidAppEngine sharedAppEngine].temperatureSettings.moistureAlertCondition==ALERT_GREATER)
         [self.btnMoistureCompare setTitle:@">" forState:UIControlStateNormal];
     else
         [self.btnMoistureCompare setTitle:@"<" forState:UIControlStateNormal];
@@ -140,7 +140,7 @@
         [CSLRfidAppEngine sharedAppEngine].temperatureSettings.powerLevel=SYSTEMSETTING;
     
     [CSLRfidAppEngine sharedAppEngine].temperatureSettings.tagIdFormat=(TAGIDFORMAT)self.swDisplayTagInAscii.isOn;
-    [CSLRfidAppEngine sharedAppEngine].temperatureSettings.moistureAlertCondition=[self.btnMoistureCompare.currentTitle containsString:@">"] ? GREATER : LESSTHAN;
+    [CSLRfidAppEngine sharedAppEngine].temperatureSettings.moistureAlertCondition=[self.btnMoistureCompare.currentTitle containsString:@">"] ? ALERT_GREATER : ALERT_LESSTHAN;
     [CSLRfidAppEngine sharedAppEngine].temperatureSettings.moistureAlertValue=[self.txtMoistureValue.text intValue];
     [[CSLRfidAppEngine sharedAppEngine] saveTemperatureTagSettingsToUserDefaults];
     
