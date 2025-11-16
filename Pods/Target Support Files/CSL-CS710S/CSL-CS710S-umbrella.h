@@ -10,6 +10,12 @@
 #endif
 #endif
 
+#import "CSLBleInterface.h"
+#import "CSLBlePacket.h"
+#import "CSLBleReader+AccessControl.h"
+#import "CSLBleReader.h"
+#import "CSLBleTag.h"
+#import "CSLCircularQueue.h"
 #import "CSLReaderBarcode.h"
 #import "CSLReaderBattery.h"
 #import "CSLReaderConfigurations.h"
@@ -18,12 +24,6 @@
 #import "CSLReaderSettings.h"
 #import "CSLRfidAppEngine.h"
 #import "CSLTemperatureTagSettings.h"
-#import "CSLBleInterface.h"
-#import "CSLBlePacket.h"
-#import "CSLBleReader+AccessControl.h"
-#import "CSLBleReader.h"
-#import "CSLBleTag.h"
-#import "CSLCircularQueue.h"
 #import "CSL_CS710.h"
 
 FOUNDATION_EXPORT double CSL_CS710SVersionNumber;
