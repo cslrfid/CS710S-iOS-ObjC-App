@@ -602,6 +602,7 @@
 				INFOPLIST_FILE = CS710iOSClient/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "CS710S RFID";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -629,6 +630,7 @@
 				INFOPLIST_FILE = CS710iOSClient/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "CS710S RFID";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
