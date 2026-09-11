@@ -7,41 +7,41 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		024BCABC4E9230F05538138621F8E642 /* CSLReaderBarcode.h in Headers */ = {isa = PBXBuildFile; fileRef = D51F7CC07490F6527A606C46B86264E5 /* CSLReaderBarcode.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		06CA30D37B5947ED592EE9C479CE6ADD /* CSLReaderBarcode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F1645BAB676758FCF57D35E6DF8657B /* CSLReaderBarcode.m */; };
-		0ED5133CFD6CC15C0D88E1FCB62FA75C /* CSLBlePacket.h in Headers */ = {isa = PBXBuildFile; fileRef = 7EF5D6F4918A456B0B54CC4B19865D61 /* CSLBlePacket.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1EF299EF421FA3514C010F3C594F09AA /* CSLTemperatureTagSettings.h in Headers */ = {isa = PBXBuildFile; fileRef = 31856C4C20E780ECE94F0439E6AF5B92 /* CSLTemperatureTagSettings.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		25472A287078759CB18068A576402BFD /* CSLReaderSettings.h in Headers */ = {isa = PBXBuildFile; fileRef = B9740F81EEB73F0B4F14F60F61E83A75 /* CSLReaderSettings.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		29405B8135CB508063156EAE294B07E8 /* CSL_CS710.h in Headers */ = {isa = PBXBuildFile; fileRef = 805F9D5FF256E303603A62D51EC7E94E /* CSL_CS710.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2C3FC47B9DD2175CD9FD962E524636FE /* CSLReaderFrequency.h in Headers */ = {isa = PBXBuildFile; fileRef = 358E86678F9C17D3A353ED9457E02500 /* CSLReaderFrequency.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2E87CAD19377D85DBAAD3E2E655EC917 /* CSLBleReader.h in Headers */ = {isa = PBXBuildFile; fileRef = 47B84C72EC99FFA53B207E839C54EEB8 /* CSLBleReader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0016273F3E245D80F8C979CBDF3909C2 /* CSLReaderFrequency.h in Headers */ = {isa = PBXBuildFile; fileRef = CEE725985C3CB067F0D6EF160AAACCEC /* CSLReaderFrequency.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		05300C055EC62B6478472B93DE88191B /* CSLReaderSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E5BBC023FC6CA9C8EDBC0161326931 /* CSLReaderSettings.m */; };
+		11FC64992D614BD0D5E9A09199CC9BFE /* CSLReaderBattery.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB2411C5143D7EC5119FAAE2ABB0026 /* CSLReaderBattery.m */; };
+		20EDF1796B6ADD889319839A7C896BD5 /* CSLReaderBattery.h in Headers */ = {isa = PBXBuildFile; fileRef = 25AF8234F96903DB03024F8BD0C31C82 /* CSLReaderBattery.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		32AD08DA8B7774736D8116BA4F5F39DD /* CSLReaderConfigurations.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A64B554606AD712943944A8D7DEA379 /* CSLReaderConfigurations.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		41D7EB15E445F05AB88E364D90806C83 /* CSLTemperatureTagSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 9948D14221578DE05B5F053065DE3A0E /* CSLTemperatureTagSettings.m */; };
+		43B11C7867CFC6F3EB51283EDD8B450C /* CSLBlePacket.h in Headers */ = {isa = PBXBuildFile; fileRef = B03FD0AAA73155CC2B81C686651B7825 /* CSLBlePacket.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4593FB78CB0323F783801803A07BD7A8 /* CSLBleInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = 742998463E79A051FC98B596029E620D /* CSLBleInterface.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		46CAC79B96CAD21745E340947EA4193C /* Pods-CS710iOSClient-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 953DA1DE9AA6305BCAE0FA0BAB78E0DC /* Pods-CS710iOSClient-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4E2CDAC8BBFD6BEAA09370AD5EF5BF0A /* CSLCircularQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A076FDF7EBBDF15B5D5BB90F2BE526C /* CSLCircularQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5A87C4B4F212D848DDC27C5ABE318568 /* CSLReaderConfigurations.h in Headers */ = {isa = PBXBuildFile; fileRef = 8EE5EB58A21026EE3C25CA928334B841 /* CSLReaderConfigurations.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5B0EA594F6B00AB1BE6CBBD8CC92F535 /* CSLBleTag.h in Headers */ = {isa = PBXBuildFile; fileRef = 9FAF5AA078BD80CCFBCFCBB67E622F58 /* CSLBleTag.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		490E34924F4E16B100362FDD3A200EDA /* CSLRfidAppEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = EA34A65D85DE5D9DBD91FDD37A96CB01 /* CSLRfidAppEngine.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5C411BFA909E8586A5F6F6CDF26D058D /* Pods-CS710iOSClient-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C282D0193CE3A4DFFEBC106D3DE5839 /* Pods-CS710iOSClient-dummy.m */; };
-		5DEC837CBDF1FE98A8345EA342951C39 /* CSLBleReader.m in Sources */ = {isa = PBXBuildFile; fileRef = F31B0F535AD9762B483209CF7DD0FA0B /* CSLBleReader.m */; };
-		6531EE424875BC5CCAB77AC686C60034 /* CSLReaderBattery.m in Sources */ = {isa = PBXBuildFile; fileRef = 321020A6B05449B6E00657B98746CE7C /* CSLReaderBattery.m */; };
-		66019AE821D2F9D007487EAEE79EDB20 /* CSLReaderBattery.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F07776326CD033963681F475B7D9925 /* CSLReaderBattery.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		77B7C0767288E84BDCA86292463D8658 /* CSLBlePacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 576E40B87E83615F046F4C92A6A15674 /* CSLBlePacket.m */; };
-		79CC89674989E6F7430B25ACCFEBBD9C /* CSLBleTag.m in Sources */ = {isa = PBXBuildFile; fileRef = FEC296425FF52B25A08F53DEAD46F36E /* CSLBleTag.m */; };
-		7D57FD08A657EBF7FB2438E0704CD35F /* CSLReaderConfigurations.m in Sources */ = {isa = PBXBuildFile; fileRef = CF31A6FF4D292DF2307983746E524A76 /* CSLReaderConfigurations.m */; };
-		8350424F43BE69F98CBC1FCC83BCE933 /* CSL-CS710S-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C51F0775E36C7F855E80E02B105D1CC /* CSL-CS710S-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		89421E4CAAF45E370D31F924F63A68CD /* CSLRfidAppEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 41A4B9A474A07D0FB677D4E99C30B286 /* CSLRfidAppEngine.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6222A41752CE03DE71F476A0E53B98C4 /* CSLReaderFrequency.m in Sources */ = {isa = PBXBuildFile; fileRef = D48D6C23F88D10C820162811F6E48963 /* CSLReaderFrequency.m */; };
+		6C0E0C05F85AD933222F32AAE9F09A26 /* CSLReaderInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E05B4B351E1D8492838365B148EF403 /* CSLReaderInfo.m */; };
+		70394CE1BED0A631FE6FCE0E38DBFF5F /* CSLCircularQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = C53345194F314CD4DDDDEEE51C159D29 /* CSLCircularQueue.m */; };
+		714C2FB5BC29DC0F5A3F802AA0442374 /* CSLBleReader.h in Headers */ = {isa = PBXBuildFile; fileRef = D4B4243A6A12A555C364DFFAE074BEE6 /* CSLBleReader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		729C059B157F88745AE205A3010F51A9 /* CSLBleReader+AccessControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D8FE61D145E20A7F883E6E46FFCF380 /* CSLBleReader+AccessControl.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8350424F43BE69F98CBC1FCC83BCE933 /* CSL-CS710S-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7055A8FF689876E681F8AAC134E6EFBF /* CSL-CS710S-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		85C7EE4C07B672BB8F8A43755DE4CDB0 /* CSLBleTag.h in Headers */ = {isa = PBXBuildFile; fileRef = FEC0341ABF58485C5FC7004C4D1D99EA /* CSLBleTag.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		874A5AADAC0243B7B1278D175E30B8FC /* CSLReaderInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = C54D53467D0FF106FE2F90430F64A8C2 /* CSLReaderInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8879B67AD4C6260EC8A7440DB25FE36B /* CSLReaderBarcode.h in Headers */ = {isa = PBXBuildFile; fileRef = 5782ED37977D2687D5070E1E2039EFD9 /* CSLReaderBarcode.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8BB20221BDCA379A073D3FF4FA42D6F5 /* CSLCircularQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 126A5EA46003FBBFF2EDAC9EA0D5DA9A /* CSLCircularQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8DCC18F4B92A55ACCD158130365EE8B2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 384DDA2CB25005BD6479B5987C619DD4 /* Foundation.framework */; };
-		97A18A93C0B1C567A3160B9F56082CEB /* CSLReaderSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 48C7AD1C20EFC3805189F37F8928178B /* CSLReaderSettings.m */; };
-		9C41BEAD8F1E314BE01A8C486D15266A /* CSLReaderFrequency.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C36CC88D2AA0EEE927590326C744D8C /* CSLReaderFrequency.m */; };
-		B0241131CA94AF93424A1DD59363DB32 /* CSLRfidAppEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD0E63D7CB82CDDAC79232F10859149 /* CSLRfidAppEngine.m */; };
-		B7F994A109341509C7BF1F2E950CB341 /* CSLTemperatureTagSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 1445EE48C567D014A799DE146C56FDA7 /* CSLTemperatureTagSettings.m */; };
-		BCAA047C079821B0B5BFFD358F6B59A9 /* CSLBleInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = C029210938FF3F5C377767D2C20943E1 /* CSLBleInterface.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C0FEA46C9C90AF0DC14CEFB04F9A2F87 /* CSLBleReader+AccessControl.h in Headers */ = {isa = PBXBuildFile; fileRef = BCE3A04541EACF5D1CCB0D1C90F53FBB /* CSLBleReader+AccessControl.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C259D696CFEEAD1B6A1210FF4CF8558C /* CSLCircularQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = D1BF0D62F2FFC485EDB06CD21A79C034 /* CSLCircularQueue.m */; };
-		C3919925DFEABBBB8F48ACEF7E8F6BEC /* CSLBleInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF6DA40B9BE9694C473CE06C479D9AC /* CSLBleInterface.m */; };
-		CD402333B2DF6D0F2A8D078AEDF8B6C3 /* CSLReaderInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1392941E5C0D23C4E30976602AA909CF /* CSLReaderInfo.m */; };
+		A1CBF0E4374A6A1011F1048C93BF8BD1 /* CSLReaderBarcode.m in Sources */ = {isa = PBXBuildFile; fileRef = E5F6B3850A07015B0B828085B67463B3 /* CSLReaderBarcode.m */; };
+		A24E5EC1FAFDBA05415B89B764336A07 /* CSLBleTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 57AD0B337F97B710BE1FB10A83F7BB61 /* CSLBleTag.m */; };
+		BD4C426570AB6AA734080117FE9C9062 /* CSLRfidAppEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = FE37D3EE0E0F74A6F8FE98B539C12020 /* CSLRfidAppEngine.m */; };
+		BF3D4F0797E81E80205D98311572F867 /* CSLBlePacket.m in Sources */ = {isa = PBXBuildFile; fileRef = A1870FD6D929946870E3B557F76B4461 /* CSLBlePacket.m */; };
+		D77DED913620C5E3747A0A2E77B5F782 /* CSLBleInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB7009B9B2BA99C239E16F3F6B869AB /* CSLBleInterface.m */; };
 		D8976146B3EC2A4AF6EAB96D1F2B1ED1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 384DDA2CB25005BD6479B5987C619DD4 /* Foundation.framework */; };
-		E4BB0B081472A636F0EA6D93BF1B412F /* CSLReaderInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 56B4F023040B09646F62EBDD9E3805E5 /* CSLReaderInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EAF1FDBEA1DFA318C491178FE59AE998 /* CSL-CS710S-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B349C11317425ED8E59EBB41061CBF3 /* CSL-CS710S-dummy.m */; };
-		F150FD288DD608185126D3653BAC9F52 /* CSLBleReader+AccessControl.m in Sources */ = {isa = PBXBuildFile; fileRef = DDAD3A75406FA4C1DA9738D886429345 /* CSLBleReader+AccessControl.m */; };
+		E26936583731CCB7DFC4DB35B836DE51 /* CSLReaderSettings.h in Headers */ = {isa = PBXBuildFile; fileRef = 5CDC5ED76C249C53A69365151223CB6C /* CSLReaderSettings.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E7CFD353A02DBD69D40A8BFBA3156441 /* CSL_CS710.h in Headers */ = {isa = PBXBuildFile; fileRef = CFE6C236CC652A08C7063A2ECFDBCF8B /* CSL_CS710.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E926C2A4089A6A471F88AE40BE77EDC8 /* CSLBleReader.m in Sources */ = {isa = PBXBuildFile; fileRef = C81D8E9E8322C27B02897154DA1C9EF9 /* CSLBleReader.m */; };
+		EAF1FDBEA1DFA318C491178FE59AE998 /* CSL-CS710S-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B8F716ABC8A0B66A90038636A6D55B /* CSL-CS710S-dummy.m */; };
+		ECCE794DD0922FF00BC059A0ADA3CD55 /* CSLBleReader+AccessControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7C0607690181254A75E7E246DFD61F /* CSLBleReader+AccessControl.m */; };
+		EE8748CD724CDB9E20B33441CB24580B /* CSLTemperatureTagSettings.h in Headers */ = {isa = PBXBuildFile; fileRef = C6BD5AE1BB0D8DC50FD6CFFE183BBD92 /* CSLTemperatureTagSettings.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EF630AD6A8119CEDF8775A685D70AB65 /* CSLReaderConfigurations.m in Sources */ = {isa = PBXBuildFile; fileRef = E0F24215D91557B0A8D19D3D7F71FF87 /* CSLReaderConfigurations.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,54 +56,54 @@
 
 /* Begin PBXFileReference section */
 		040B1C925D6554BB89F29E37A206C599 /* CSL-CS710S */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "CSL-CS710S"; path = CSL_CS710S.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1392941E5C0D23C4E30976602AA909CF /* CSLReaderInfo.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CSLReaderInfo.m; path = "CSL-CS710S/CSLModel/CSLReaderInfo.m"; sourceTree = "<group>"; };
-		1445EE48C567D014A799DE146C56FDA7 /* CSLTemperatureTagSettings.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CSLTemperatureTagSettings.m; path = "CSL-CS710S/CSLModel/CSLTemperatureTagSettings.m"; sourceTree = "<group>"; };
-		17F67841156C7C75FDEB19199B453415 /* CSL-CS710S-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CSL-CS710S-prefix.pch"; sourceTree = "<group>"; };
-		1BD0E63D7CB82CDDAC79232F10859149 /* CSLRfidAppEngine.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CSLRfidAppEngine.m; path = "CSL-CS710S/CSLModel/CSLRfidAppEngine.m"; sourceTree = "<group>"; };
+		07B8F716ABC8A0B66A90038636A6D55B /* CSL-CS710S-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CSL-CS710S-dummy.m"; sourceTree = "<group>"; };
+		126A5EA46003FBBFF2EDAC9EA0D5DA9A /* CSLCircularQueue.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CSLCircularQueue.h; path = "CSL-CS710S-Core/include/CSLCircularQueue.h"; sourceTree = "<group>"; };
+		17CE566A1C15354F98A72D056000EF1A /* CSL-CS710S.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "CSL-CS710S.debug.xcconfig"; sourceTree = "<group>"; };
+		183C857AE3DEEC9C7649F1A3369113FE /* CSL-CS710S-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CSL-CS710S-prefix.pch"; sourceTree = "<group>"; };
 		1E347088F7EDAE6454732355FC75EA68 /* Pods-CS710iOSClient-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CS710iOSClient-acknowledgements.markdown"; sourceTree = "<group>"; };
-		2C36CC88D2AA0EEE927590326C744D8C /* CSLReaderFrequency.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CSLReaderFrequency.m; path = "CSL-CS710S/CSLModel/CSLReaderFrequency.m"; sourceTree = "<group>"; };
-		31856C4C20E780ECE94F0439E6AF5B92 /* CSLTemperatureTagSettings.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CSLTemperatureTagSettings.h; path = "CSL-CS710S/include/CSLTemperatureTagSettings.h"; sourceTree = "<group>"; };
-		321020A6B05449B6E00657B98746CE7C /* CSLReaderBattery.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CSLReaderBattery.m; path = "CSL-CS710S/CSLModel/CSLReaderBattery.m"; sourceTree = "<group>"; };
-		358E86678F9C17D3A353ED9457E02500 /* CSLReaderFrequency.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CSLReaderFrequency.h; path = "CSL-CS710S/include/CSLReaderFrequency.h"; sourceTree = "<group>"; };
+		25AF8234F96903DB03024F8BD0C31C82 /* CSLReaderBattery.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CSLReaderBattery.h; path = "CSL-CS710S-Core/include/CSLReaderBattery.h"; sourceTree = "<group>"; };
+		2E05B4B351E1D8492838365B148EF403 /* CSLReaderInfo.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CSLReaderInfo.m; path = "CSL-CS710S-Core/CSLModel/CSLReaderInfo.m"; sourceTree = "<group>"; };
 		384DDA2CB25005BD6479B5987C619DD4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		3A076FDF7EBBDF15B5D5BB90F2BE526C /* CSLCircularQueue.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CSLCircularQueue.h; path = "CSL-CS710S/include/CSLCircularQueue.h"; sourceTree = "<group>"; };
 		3A5600F1921AA05F474DE3C16FD87A6B /* Pods-CS710iOSClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CS710iOSClient.debug.xcconfig"; sourceTree = "<group>"; };
-		3C51F0775E36C7F855E80E02B105D1CC /* CSL-CS710S-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CSL-CS710S-umbrella.h"; sourceTree = "<group>"; };
-		41A4B9A474A07D0FB677D4E99C30B286 /* CSLRfidAppEngine.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CSLRfidAppEngine.h; path = "CSL-CS710S/include/CSLRfidAppEngine.h"; sourceTree = "<group>"; };
-		47B84C72EC99FFA53B207E839C54EEB8 /* CSLBleReader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CSLBleReader.h; path = "CSL-CS710S/include/CSLBleReader.h"; sourceTree = "<group>"; };
-		48C7AD1C20EFC3805189F37F8928178B /* CSLReaderSettings.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CSLReaderSettings.m; path = "CSL-CS710S/CSLModel/CSLReaderSettings.m"; sourceTree = "<group>"; };
-		4F07776326CD033963681F475B7D9925 /* CSLReaderBattery.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CSLReaderBattery.h; path = "CSL-CS710S/include/CSLReaderBattery.h"; sourceTree = "<group>"; };
+		3A7C0607690181254A75E7E246DFD61F /* CSLBleReader+AccessControl.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "CSLBleReader+AccessControl.m"; path = "CSL-CS710S-Core/CSLReader/CSLBleReader+AccessControl.m"; sourceTree = "<group>"; };
+		4D8FE61D145E20A7F883E6E46FFCF380 /* CSLBleReader+AccessControl.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "CSLBleReader+AccessControl.h"; path = "CSL-CS710S-Core/include/CSLBleReader+AccessControl.h"; sourceTree = "<group>"; };
 		53433D2E660F37A5607B948D58693E73 /* Pods-CS710iOSClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CS710iOSClient.release.xcconfig"; sourceTree = "<group>"; };
-		56B4F023040B09646F62EBDD9E3805E5 /* CSLReaderInfo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CSLReaderInfo.h; path = "CSL-CS710S/include/CSLReaderInfo.h"; sourceTree = "<group>"; };
-		576E40B87E83615F046F4C92A6A15674 /* CSLBlePacket.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CSLBlePacket.m; path = "CSL-CS710S/CSLReader/CSLBlePacket.m"; sourceTree = "<group>"; };
-		5B349C11317425ED8E59EBB41061CBF3 /* CSL-CS710S-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CSL-CS710S-dummy.m"; sourceTree = "<group>"; };
+		5782ED37977D2687D5070E1E2039EFD9 /* CSLReaderBarcode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CSLReaderBarcode.h; path = "CSL-CS710S-Core/include/CSLReaderBarcode.h"; sourceTree = "<group>"; };
+		57AD0B337F97B710BE1FB10A83F7BB61 /* CSLBleTag.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CSLBleTag.m; path = "CSL-CS710S-Core/CSLReader/CSLBleTag.m"; sourceTree = "<group>"; };
+		5CDC5ED76C249C53A69365151223CB6C /* CSLReaderSettings.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CSLReaderSettings.h; path = "CSL-CS710S-Core/include/CSLReaderSettings.h"; sourceTree = "<group>"; };
 		5E5FE794E14075D2BA155D5F4BDA71CA /* Pods-CS710iOSClient */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-CS710iOSClient"; path = Pods_CS710iOSClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		681979DAFBEE7B52EEC7D6E88E641017 /* CSL-CS710S.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "CSL-CS710S.release.xcconfig"; sourceTree = "<group>"; };
+		7055A8FF689876E681F8AAC134E6EFBF /* CSL-CS710S-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CSL-CS710S-umbrella.h"; sourceTree = "<group>"; };
+		742998463E79A051FC98B596029E620D /* CSLBleInterface.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CSLBleInterface.h; path = "CSL-CS710S-Core/include/CSLBleInterface.h"; sourceTree = "<group>"; };
 		761E2F8D5F5B6198E9E92DD003EABE2A /* Pods-CS710iOSClient-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CS710iOSClient-Info.plist"; sourceTree = "<group>"; };
-		7EF5D6F4918A456B0B54CC4B19865D61 /* CSLBlePacket.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CSLBlePacket.h; path = "CSL-CS710S/include/CSLBlePacket.h"; sourceTree = "<group>"; };
-		805F9D5FF256E303603A62D51EC7E94E /* CSL_CS710.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CSL_CS710.h; path = "CSL-CS710S/include/CSL_CS710.h"; sourceTree = "<group>"; };
-		8EE5EB58A21026EE3C25CA928334B841 /* CSLReaderConfigurations.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CSLReaderConfigurations.h; path = "CSL-CS710S/include/CSLReaderConfigurations.h"; sourceTree = "<group>"; };
-		8F1645BAB676758FCF57D35E6DF8657B /* CSLReaderBarcode.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CSLReaderBarcode.m; path = "CSL-CS710S/CSLModel/CSLReaderBarcode.m"; sourceTree = "<group>"; };
+		7A64B554606AD712943944A8D7DEA379 /* CSLReaderConfigurations.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CSLReaderConfigurations.h; path = "CSL-CS710S-Core/include/CSLReaderConfigurations.h"; sourceTree = "<group>"; };
+		8803E86B9E5FAFCE3CE9C3E42422E6AF /* CSL-CS710S-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "CSL-CS710S-Info.plist"; sourceTree = "<group>"; };
 		953DA1DE9AA6305BCAE0FA0BAB78E0DC /* Pods-CS710iOSClient-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CS710iOSClient-umbrella.h"; sourceTree = "<group>"; };
+		9948D14221578DE05B5F053065DE3A0E /* CSLTemperatureTagSettings.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CSLTemperatureTagSettings.m; path = "CSL-CS710S-Core/CSLModel/CSLTemperatureTagSettings.m"; sourceTree = "<group>"; };
 		9C282D0193CE3A4DFFEBC106D3DE5839 /* Pods-CS710iOSClient-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-CS710iOSClient-dummy.m"; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9FAF5AA078BD80CCFBCFCBB67E622F58 /* CSLBleTag.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CSLBleTag.h; path = "CSL-CS710S/include/CSLBleTag.h"; sourceTree = "<group>"; };
-		A0020F9D8092361671C0720F3B9638F3 /* CSL-CS710S.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "CSL-CS710S.debug.xcconfig"; sourceTree = "<group>"; };
-		A1158D7FF9F29E7395D43E093327EE96 /* CSL-CS710S.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "CSL-CS710S.modulemap"; sourceTree = "<group>"; };
-		ACF6DA40B9BE9694C473CE06C479D9AC /* CSLBleInterface.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CSLBleInterface.m; path = "CSL-CS710S/CSLReader/CSLBleInterface.m"; sourceTree = "<group>"; };
+		A1870FD6D929946870E3B557F76B4461 /* CSLBlePacket.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CSLBlePacket.m; path = "CSL-CS710S-Core/CSLReader/CSLBlePacket.m"; sourceTree = "<group>"; };
+		B03FD0AAA73155CC2B81C686651B7825 /* CSLBlePacket.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CSLBlePacket.h; path = "CSL-CS710S-Core/include/CSLBlePacket.h"; sourceTree = "<group>"; };
 		B503765A0136B710C1A2F75FB11F9C1A /* Pods-CS710iOSClient.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-CS710iOSClient.modulemap"; sourceTree = "<group>"; };
-		B9740F81EEB73F0B4F14F60F61E83A75 /* CSLReaderSettings.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CSLReaderSettings.h; path = "CSL-CS710S/include/CSLReaderSettings.h"; sourceTree = "<group>"; };
-		BCE3A04541EACF5D1CCB0D1C90F53FBB /* CSLBleReader+AccessControl.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "CSLBleReader+AccessControl.h"; path = "CSL-CS710S/include/CSLBleReader+AccessControl.h"; sourceTree = "<group>"; };
-		C029210938FF3F5C377767D2C20943E1 /* CSLBleInterface.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CSLBleInterface.h; path = "CSL-CS710S/include/CSLBleInterface.h"; sourceTree = "<group>"; };
+		C53345194F314CD4DDDDEEE51C159D29 /* CSLCircularQueue.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CSLCircularQueue.m; path = "CSL-CS710S-Core/CSLReader/CSLCircularQueue.m"; sourceTree = "<group>"; };
+		C54D53467D0FF106FE2F90430F64A8C2 /* CSLReaderInfo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CSLReaderInfo.h; path = "CSL-CS710S-Core/include/CSLReaderInfo.h"; sourceTree = "<group>"; };
+		C6BD5AE1BB0D8DC50FD6CFFE183BBD92 /* CSLTemperatureTagSettings.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CSLTemperatureTagSettings.h; path = "CSL-CS710S-Core/include/CSLTemperatureTagSettings.h"; sourceTree = "<group>"; };
 		C7C5FF33D03E6A1F964FFC830A07EA32 /* Pods-CS710iOSClient-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-CS710iOSClient-frameworks.sh"; sourceTree = "<group>"; };
-		CF31A6FF4D292DF2307983746E524A76 /* CSLReaderConfigurations.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CSLReaderConfigurations.m; path = "CSL-CS710S/CSLModel/CSLReaderConfigurations.m"; sourceTree = "<group>"; };
-		D1BF0D62F2FFC485EDB06CD21A79C034 /* CSLCircularQueue.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CSLCircularQueue.m; path = "CSL-CS710S/CSLReader/CSLCircularQueue.m"; sourceTree = "<group>"; };
-		D51F7CC07490F6527A606C46B86264E5 /* CSLReaderBarcode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CSLReaderBarcode.h; path = "CSL-CS710S/include/CSLReaderBarcode.h"; sourceTree = "<group>"; };
-		D92A5C4C989BCE35AAF25F512F1B9DCC /* CSL-CS710S.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "CSL-CS710S.release.xcconfig"; sourceTree = "<group>"; };
-		DDAD3A75406FA4C1DA9738D886429345 /* CSLBleReader+AccessControl.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "CSLBleReader+AccessControl.m"; path = "CSL-CS710S/CSLReader/CSLBleReader+AccessControl.m"; sourceTree = "<group>"; };
-		ED3E9C95D689F318E557C2FFF2385552 /* CSL-CS710S-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "CSL-CS710S-Info.plist"; sourceTree = "<group>"; };
-		F31B0F535AD9762B483209CF7DD0FA0B /* CSLBleReader.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CSLBleReader.m; path = "CSL-CS710S/CSLReader/CSLBleReader.m"; sourceTree = "<group>"; };
+		C81D8E9E8322C27B02897154DA1C9EF9 /* CSLBleReader.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CSLBleReader.m; path = "CSL-CS710S-Core/CSLReader/CSLBleReader.m"; sourceTree = "<group>"; };
+		CAB7009B9B2BA99C239E16F3F6B869AB /* CSLBleInterface.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CSLBleInterface.m; path = "CSL-CS710S-Core/CSLReader/CSLBleInterface.m"; sourceTree = "<group>"; };
+		CEB2411C5143D7EC5119FAAE2ABB0026 /* CSLReaderBattery.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CSLReaderBattery.m; path = "CSL-CS710S-Core/CSLModel/CSLReaderBattery.m"; sourceTree = "<group>"; };
+		CEE725985C3CB067F0D6EF160AAACCEC /* CSLReaderFrequency.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CSLReaderFrequency.h; path = "CSL-CS710S-Core/include/CSLReaderFrequency.h"; sourceTree = "<group>"; };
+		CFE6C236CC652A08C7063A2ECFDBCF8B /* CSL_CS710.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CSL_CS710.h; path = "CSL-CS710S-Core/include/CSL_CS710.h"; sourceTree = "<group>"; };
+		D48D6C23F88D10C820162811F6E48963 /* CSLReaderFrequency.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CSLReaderFrequency.m; path = "CSL-CS710S-Core/CSLModel/CSLReaderFrequency.m"; sourceTree = "<group>"; };
+		D4B4243A6A12A555C364DFFAE074BEE6 /* CSLBleReader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CSLBleReader.h; path = "CSL-CS710S-Core/include/CSLBleReader.h"; sourceTree = "<group>"; };
+		E0F24215D91557B0A8D19D3D7F71FF87 /* CSLReaderConfigurations.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CSLReaderConfigurations.m; path = "CSL-CS710S-Core/CSLModel/CSLReaderConfigurations.m"; sourceTree = "<group>"; };
+		E1E5BBC023FC6CA9C8EDBC0161326931 /* CSLReaderSettings.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CSLReaderSettings.m; path = "CSL-CS710S-Core/CSLModel/CSLReaderSettings.m"; sourceTree = "<group>"; };
+		E5F6B3850A07015B0B828085B67463B3 /* CSLReaderBarcode.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CSLReaderBarcode.m; path = "CSL-CS710S-Core/CSLModel/CSLReaderBarcode.m"; sourceTree = "<group>"; };
+		EA34A65D85DE5D9DBD91FDD37A96CB01 /* CSLRfidAppEngine.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CSLRfidAppEngine.h; path = "CSL-CS710S-Core/include/CSLRfidAppEngine.h"; sourceTree = "<group>"; };
+		F060164118C7266A2707C26CD5C57993 /* CSL-CS710S.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "CSL-CS710S.modulemap"; sourceTree = "<group>"; };
 		FD96E285B391436FAB8F155FA697422C /* Pods-CS710iOSClient-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CS710iOSClient-acknowledgements.plist"; sourceTree = "<group>"; };
-		FEC296425FF52B25A08F53DEAD46F36E /* CSLBleTag.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CSLBleTag.m; path = "CSL-CS710S/CSLReader/CSLBleTag.m"; sourceTree = "<group>"; };
+		FE37D3EE0E0F74A6F8FE98B539C12020 /* CSLRfidAppEngine.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CSLRfidAppEngine.m; path = "CSL-CS710S-Core/CSLModel/CSLRfidAppEngine.m"; sourceTree = "<group>"; };
+		FEC0341ABF58485C5FC7004C4D1D99EA /* CSLBleTag.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CSLBleTag.h; path = "CSL-CS710S-Core/include/CSLBleTag.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,16 +134,16 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		29CEE0C16B9563E124082565D2C63E0B /* Support Files */ = {
+		07745A02C46621CFBB9B3CBD9F0D50BD /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				A1158D7FF9F29E7395D43E093327EE96 /* CSL-CS710S.modulemap */,
-				5B349C11317425ED8E59EBB41061CBF3 /* CSL-CS710S-dummy.m */,
-				ED3E9C95D689F318E557C2FFF2385552 /* CSL-CS710S-Info.plist */,
-				17F67841156C7C75FDEB19199B453415 /* CSL-CS710S-prefix.pch */,
-				3C51F0775E36C7F855E80E02B105D1CC /* CSL-CS710S-umbrella.h */,
-				A0020F9D8092361671C0720F3B9638F3 /* CSL-CS710S.debug.xcconfig */,
-				D92A5C4C989BCE35AAF25F512F1B9DCC /* CSL-CS710S.release.xcconfig */,
+				F060164118C7266A2707C26CD5C57993 /* CSL-CS710S.modulemap */,
+				07B8F716ABC8A0B66A90038636A6D55B /* CSL-CS710S-dummy.m */,
+				8803E86B9E5FAFCE3CE9C3E42422E6AF /* CSL-CS710S-Info.plist */,
+				183C857AE3DEEC9C7649F1A3369113FE /* CSL-CS710S-prefix.pch */,
+				7055A8FF689876E681F8AAC134E6EFBF /* CSL-CS710S-umbrella.h */,
+				17CE566A1C15354F98A72D056000EF1A /* CSL-CS710S.debug.xcconfig */,
+				681979DAFBEE7B52EEC7D6E88E641017 /* CSL-CS710S.release.xcconfig */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/CSL-CS710S";
@@ -152,7 +152,7 @@
 		515E525D5D6FC213108D1BE8924AB852 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				9ED7048C28356177E7AAF3FFAAD41ED5 /* CSL-CS710S */,
+				A7C73606ED150175204AD5E7D7721CAB /* CSL-CS710S */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -174,39 +174,39 @@
 			path = "Target Support Files/Pods-CS710iOSClient";
 			sourceTree = "<group>";
 		};
-		9ED7048C28356177E7AAF3FFAAD41ED5 /* CSL-CS710S */ = {
+		A7C73606ED150175204AD5E7D7721CAB /* CSL-CS710S */ = {
 			isa = PBXGroup;
 			children = (
-				805F9D5FF256E303603A62D51EC7E94E /* CSL_CS710.h */,
-				C029210938FF3F5C377767D2C20943E1 /* CSLBleInterface.h */,
-				ACF6DA40B9BE9694C473CE06C479D9AC /* CSLBleInterface.m */,
-				7EF5D6F4918A456B0B54CC4B19865D61 /* CSLBlePacket.h */,
-				576E40B87E83615F046F4C92A6A15674 /* CSLBlePacket.m */,
-				47B84C72EC99FFA53B207E839C54EEB8 /* CSLBleReader.h */,
-				F31B0F535AD9762B483209CF7DD0FA0B /* CSLBleReader.m */,
-				BCE3A04541EACF5D1CCB0D1C90F53FBB /* CSLBleReader+AccessControl.h */,
-				DDAD3A75406FA4C1DA9738D886429345 /* CSLBleReader+AccessControl.m */,
-				9FAF5AA078BD80CCFBCFCBB67E622F58 /* CSLBleTag.h */,
-				FEC296425FF52B25A08F53DEAD46F36E /* CSLBleTag.m */,
-				3A076FDF7EBBDF15B5D5BB90F2BE526C /* CSLCircularQueue.h */,
-				D1BF0D62F2FFC485EDB06CD21A79C034 /* CSLCircularQueue.m */,
-				D51F7CC07490F6527A606C46B86264E5 /* CSLReaderBarcode.h */,
-				8F1645BAB676758FCF57D35E6DF8657B /* CSLReaderBarcode.m */,
-				4F07776326CD033963681F475B7D9925 /* CSLReaderBattery.h */,
-				321020A6B05449B6E00657B98746CE7C /* CSLReaderBattery.m */,
-				8EE5EB58A21026EE3C25CA928334B841 /* CSLReaderConfigurations.h */,
-				CF31A6FF4D292DF2307983746E524A76 /* CSLReaderConfigurations.m */,
-				358E86678F9C17D3A353ED9457E02500 /* CSLReaderFrequency.h */,
-				2C36CC88D2AA0EEE927590326C744D8C /* CSLReaderFrequency.m */,
-				56B4F023040B09646F62EBDD9E3805E5 /* CSLReaderInfo.h */,
-				1392941E5C0D23C4E30976602AA909CF /* CSLReaderInfo.m */,
-				B9740F81EEB73F0B4F14F60F61E83A75 /* CSLReaderSettings.h */,
-				48C7AD1C20EFC3805189F37F8928178B /* CSLReaderSettings.m */,
-				41A4B9A474A07D0FB677D4E99C30B286 /* CSLRfidAppEngine.h */,
-				1BD0E63D7CB82CDDAC79232F10859149 /* CSLRfidAppEngine.m */,
-				31856C4C20E780ECE94F0439E6AF5B92 /* CSLTemperatureTagSettings.h */,
-				1445EE48C567D014A799DE146C56FDA7 /* CSLTemperatureTagSettings.m */,
-				29CEE0C16B9563E124082565D2C63E0B /* Support Files */,
+				CFE6C236CC652A08C7063A2ECFDBCF8B /* CSL_CS710.h */,
+				742998463E79A051FC98B596029E620D /* CSLBleInterface.h */,
+				CAB7009B9B2BA99C239E16F3F6B869AB /* CSLBleInterface.m */,
+				B03FD0AAA73155CC2B81C686651B7825 /* CSLBlePacket.h */,
+				A1870FD6D929946870E3B557F76B4461 /* CSLBlePacket.m */,
+				D4B4243A6A12A555C364DFFAE074BEE6 /* CSLBleReader.h */,
+				C81D8E9E8322C27B02897154DA1C9EF9 /* CSLBleReader.m */,
+				4D8FE61D145E20A7F883E6E46FFCF380 /* CSLBleReader+AccessControl.h */,
+				3A7C0607690181254A75E7E246DFD61F /* CSLBleReader+AccessControl.m */,
+				FEC0341ABF58485C5FC7004C4D1D99EA /* CSLBleTag.h */,
+				57AD0B337F97B710BE1FB10A83F7BB61 /* CSLBleTag.m */,
+				126A5EA46003FBBFF2EDAC9EA0D5DA9A /* CSLCircularQueue.h */,
+				C53345194F314CD4DDDDEEE51C159D29 /* CSLCircularQueue.m */,
+				5782ED37977D2687D5070E1E2039EFD9 /* CSLReaderBarcode.h */,
+				E5F6B3850A07015B0B828085B67463B3 /* CSLReaderBarcode.m */,
+				25AF8234F96903DB03024F8BD0C31C82 /* CSLReaderBattery.h */,
+				CEB2411C5143D7EC5119FAAE2ABB0026 /* CSLReaderBattery.m */,
+				7A64B554606AD712943944A8D7DEA379 /* CSLReaderConfigurations.h */,
+				E0F24215D91557B0A8D19D3D7F71FF87 /* CSLReaderConfigurations.m */,
+				CEE725985C3CB067F0D6EF160AAACCEC /* CSLReaderFrequency.h */,
+				D48D6C23F88D10C820162811F6E48963 /* CSLReaderFrequency.m */,
+				C54D53467D0FF106FE2F90430F64A8C2 /* CSLReaderInfo.h */,
+				2E05B4B351E1D8492838365B148EF403 /* CSLReaderInfo.m */,
+				5CDC5ED76C249C53A69365151223CB6C /* CSLReaderSettings.h */,
+				E1E5BBC023FC6CA9C8EDBC0161326931 /* CSLReaderSettings.m */,
+				EA34A65D85DE5D9DBD91FDD37A96CB01 /* CSLRfidAppEngine.h */,
+				FE37D3EE0E0F74A6F8FE98B539C12020 /* CSLRfidAppEngine.m */,
+				C6BD5AE1BB0D8DC50FD6CFFE183BBD92 /* CSLTemperatureTagSettings.h */,
+				9948D14221578DE05B5F053065DE3A0E /* CSLTemperatureTagSettings.m */,
+				07745A02C46621CFBB9B3CBD9F0D50BD /* Support Files */,
 			);
 			name = "CSL-CS710S";
 			path = "CSL-CS710S";
@@ -256,21 +256,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				8350424F43BE69F98CBC1FCC83BCE933 /* CSL-CS710S-umbrella.h in Headers */,
-				29405B8135CB508063156EAE294B07E8 /* CSL_CS710.h in Headers */,
-				BCAA047C079821B0B5BFFD358F6B59A9 /* CSLBleInterface.h in Headers */,
-				0ED5133CFD6CC15C0D88E1FCB62FA75C /* CSLBlePacket.h in Headers */,
-				2E87CAD19377D85DBAAD3E2E655EC917 /* CSLBleReader.h in Headers */,
-				C0FEA46C9C90AF0DC14CEFB04F9A2F87 /* CSLBleReader+AccessControl.h in Headers */,
-				5B0EA594F6B00AB1BE6CBBD8CC92F535 /* CSLBleTag.h in Headers */,
-				4E2CDAC8BBFD6BEAA09370AD5EF5BF0A /* CSLCircularQueue.h in Headers */,
-				024BCABC4E9230F05538138621F8E642 /* CSLReaderBarcode.h in Headers */,
-				66019AE821D2F9D007487EAEE79EDB20 /* CSLReaderBattery.h in Headers */,
-				5A87C4B4F212D848DDC27C5ABE318568 /* CSLReaderConfigurations.h in Headers */,
-				2C3FC47B9DD2175CD9FD962E524636FE /* CSLReaderFrequency.h in Headers */,
-				E4BB0B081472A636F0EA6D93BF1B412F /* CSLReaderInfo.h in Headers */,
-				25472A287078759CB18068A576402BFD /* CSLReaderSettings.h in Headers */,
-				89421E4CAAF45E370D31F924F63A68CD /* CSLRfidAppEngine.h in Headers */,
-				1EF299EF421FA3514C010F3C594F09AA /* CSLTemperatureTagSettings.h in Headers */,
+				E7CFD353A02DBD69D40A8BFBA3156441 /* CSL_CS710.h in Headers */,
+				4593FB78CB0323F783801803A07BD7A8 /* CSLBleInterface.h in Headers */,
+				43B11C7867CFC6F3EB51283EDD8B450C /* CSLBlePacket.h in Headers */,
+				714C2FB5BC29DC0F5A3F802AA0442374 /* CSLBleReader.h in Headers */,
+				729C059B157F88745AE205A3010F51A9 /* CSLBleReader+AccessControl.h in Headers */,
+				85C7EE4C07B672BB8F8A43755DE4CDB0 /* CSLBleTag.h in Headers */,
+				8BB20221BDCA379A073D3FF4FA42D6F5 /* CSLCircularQueue.h in Headers */,
+				8879B67AD4C6260EC8A7440DB25FE36B /* CSLReaderBarcode.h in Headers */,
+				20EDF1796B6ADD889319839A7C896BD5 /* CSLReaderBattery.h in Headers */,
+				32AD08DA8B7774736D8116BA4F5F39DD /* CSLReaderConfigurations.h in Headers */,
+				0016273F3E245D80F8C979CBDF3909C2 /* CSLReaderFrequency.h in Headers */,
+				874A5AADAC0243B7B1278D175E30B8FC /* CSLReaderInfo.h in Headers */,
+				E26936583731CCB7DFC4DB35B836DE51 /* CSLReaderSettings.h in Headers */,
+				490E34924F4E16B100362FDD3A200EDA /* CSLRfidAppEngine.h in Headers */,
+				EE8748CD724CDB9E20B33441CB24580B /* CSLTemperatureTagSettings.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,20 +383,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				EAF1FDBEA1DFA318C491178FE59AE998 /* CSL-CS710S-dummy.m in Sources */,
-				C3919925DFEABBBB8F48ACEF7E8F6BEC /* CSLBleInterface.m in Sources */,
-				77B7C0767288E84BDCA86292463D8658 /* CSLBlePacket.m in Sources */,
-				5DEC837CBDF1FE98A8345EA342951C39 /* CSLBleReader.m in Sources */,
-				F150FD288DD608185126D3653BAC9F52 /* CSLBleReader+AccessControl.m in Sources */,
-				79CC89674989E6F7430B25ACCFEBBD9C /* CSLBleTag.m in Sources */,
-				C259D696CFEEAD1B6A1210FF4CF8558C /* CSLCircularQueue.m in Sources */,
-				06CA30D37B5947ED592EE9C479CE6ADD /* CSLReaderBarcode.m in Sources */,
-				6531EE424875BC5CCAB77AC686C60034 /* CSLReaderBattery.m in Sources */,
-				7D57FD08A657EBF7FB2438E0704CD35F /* CSLReaderConfigurations.m in Sources */,
-				9C41BEAD8F1E314BE01A8C486D15266A /* CSLReaderFrequency.m in Sources */,
-				CD402333B2DF6D0F2A8D078AEDF8B6C3 /* CSLReaderInfo.m in Sources */,
-				97A18A93C0B1C567A3160B9F56082CEB /* CSLReaderSettings.m in Sources */,
-				B0241131CA94AF93424A1DD59363DB32 /* CSLRfidAppEngine.m in Sources */,
-				B7F994A109341509C7BF1F2E950CB341 /* CSLTemperatureTagSettings.m in Sources */,
+				D77DED913620C5E3747A0A2E77B5F782 /* CSLBleInterface.m in Sources */,
+				BF3D4F0797E81E80205D98311572F867 /* CSLBlePacket.m in Sources */,
+				E926C2A4089A6A471F88AE40BE77EDC8 /* CSLBleReader.m in Sources */,
+				ECCE794DD0922FF00BC059A0ADA3CD55 /* CSLBleReader+AccessControl.m in Sources */,
+				A24E5EC1FAFDBA05415B89B764336A07 /* CSLBleTag.m in Sources */,
+				70394CE1BED0A631FE6FCE0E38DBFF5F /* CSLCircularQueue.m in Sources */,
+				A1CBF0E4374A6A1011F1048C93BF8BD1 /* CSLReaderBarcode.m in Sources */,
+				11FC64992D614BD0D5E9A09199CC9BFE /* CSLReaderBattery.m in Sources */,
+				EF630AD6A8119CEDF8775A685D70AB65 /* CSLReaderConfigurations.m in Sources */,
+				6222A41752CE03DE71F476A0E53B98C4 /* CSLReaderFrequency.m in Sources */,
+				6C0E0C05F85AD933222F32AAE9F09A26 /* CSLReaderInfo.m in Sources */,
+				05300C055EC62B6478472B93DE88191B /* CSLReaderSettings.m in Sources */,
+				BD4C426570AB6AA734080117FE9C9062 /* CSLRfidAppEngine.m in Sources */,
+				41D7EB15E445F05AB88E364D90806C83 /* CSLTemperatureTagSettings.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -581,7 +581,7 @@
 		};
 		9E770C5BD56843BB0E83219036116D34 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D92A5C4C989BCE35AAF25F512F1B9DCC /* CSL-CS710S.release.xcconfig */;
+			baseConfigurationReference = 681979DAFBEE7B52EEC7D6E88E641017 /* CSL-CS710S.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -620,7 +620,7 @@
 		};
 		FA689D638D83F3E2CCBAC0175B013342 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A0020F9D8092361671C0720F3B9638F3 /* CSL-CS710S.debug.xcconfig */;
+			baseConfigurationReference = 17CE566A1C15354F98A72D056000EF1A /* CSL-CS710S.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";

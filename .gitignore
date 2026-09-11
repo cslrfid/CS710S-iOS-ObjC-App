@@ -29,3 +29,7 @@ DerivedData/
 
 *.xcuserstate
 CS108iOSClient.xcodeproj/xcuserdata/TurtleMac01.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist
+
+## Claude Code
+.claude/
+CLAUDE.md
