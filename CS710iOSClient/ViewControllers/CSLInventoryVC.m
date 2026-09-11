@@ -367,16 +367,28 @@
     
     NSString* fileContent = @"TIMESTAMP,EPC,DATA1,DATA2,RSSI\n";
 
-    for (CSLBleTag* tag in [CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer) {
-        
-        //tag read timestamp
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"dd/MM/YY HH:mm:ss"];
-        NSDate* date=tag.timestamp;
-        NSString *stringFromDate = [dateFormatter stringFromDate:date];
-        
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"dd/MM/YY HH:mm:ss"];
 
-        fileContent=[fileContent stringByAppendingString:[NSString stringWithFormat:@"%@,%@,%@,%@,%@\n", stringFromDate, (IsAsciiDisplay ? [CSLReaderBarcode convertHexStringToAscii:tag.EPC] : tag.EPC), (IsAsciiDisplay ? [CSLReaderBarcode convertHexStringToAscii:tag.DATA1] : tag.DATA1), (IsAsciiDisplay ? [CSLReaderBarcode convertHexStringToAscii:tag.DATA2] : tag.DATA2), [NSString stringWithFormat:@"%d",tag.rssi]]];
+    for (id item in [CSLRfidAppEngine sharedAppEngine].reader.filteredBuffer) {
+
+        //for rfid data
+        if ([item isKindOfClass:[CSLBleTag class]]) {
+            CSLBleTag* tag = (CSLBleTag*)item;
+
+            //tag read timestamp
+            NSString *stringFromDate = [dateFormatter stringFromDate:tag.timestamp];
+
+            fileContent=[fileContent stringByAppendingString:[NSString stringWithFormat:@"%@,%@,%@,%@,%@\n", stringFromDate, (IsAsciiDisplay ? [CSLReaderBarcode convertHexStringToAscii:tag.EPC] : tag.EPC), (IsAsciiDisplay ? [CSLReaderBarcode convertHexStringToAscii:tag.DATA1] : tag.DATA1), (IsAsciiDisplay ? [CSLReaderBarcode convertHexStringToAscii:tag.DATA2] : tag.DATA2), [NSString stringWithFormat:@"%d",tag.rssi]]];
+        }
+        //for barcode data (CSLReaderBarcode has no timestamp; use save-time)
+        else if ([item isKindOfClass:[CSLReaderBarcode class]]) {
+            CSLReaderBarcode* barcode = (CSLReaderBarcode*)item;
+
+            NSString *stringFromDate = [dateFormatter stringFromDate:[NSDate date]];
+
+            fileContent=[fileContent stringByAppendingString:[NSString stringWithFormat:@"%@,%@,%@,%@,%@\n", stringFromDate, (IsAsciiDisplay ? [CSLReaderBarcode convertHexStringToAscii:barcode.barcodeValue] : barcode.barcodeValue), barcode.codeId, @"", @""]];
+        }
     }
     
     NSArray *objectsToShare = @[fileContent];
